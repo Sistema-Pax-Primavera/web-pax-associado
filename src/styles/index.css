@@ -10,16 +10,18 @@
 * input,
 button,
 select {
+    transform: none;
     border: none;
     outline: none;
     border-radius: 5px;
     padding: 7px;
     font-weight: 800;
+    transition: none;
     
 }
 
-button:hover {
-    cursor: pointer;
+button{
+    transform: none;
 }
 
 * label {

@@ -28,7 +28,7 @@
     color: var(--branco);
     padding-left: 35px;
     padding-right: 35px;
-    transition: none;
+    transform: none;
 }
 
 html, body {
@@ -54,6 +54,7 @@ html, body {
     color: var(--branco);
     font-size: 10px;
     gap: 15px;
+    transform: none;
     font-weight: 700;
 }
 
@@ -81,6 +82,7 @@ html, body {
 
 .navegacao-associado button{
     background-color: var(--verde);
+    transform: none;
     color: var(--branco);
     font-size: 11px;
     text-align: start;
