@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
+
 
 function createData(name, cpf, numerocontrato, cidade, telefone) {
     return { name, cpf, numerocontrato, cidade, telefone };
@@ -28,7 +30,7 @@ const Associado = () => {
     const [loading, setLoading] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
     const [showImage, setShowImage] = useState(true);
-    const [showAdditionalContent, setShowAdditionalContent] = useState(false);
+    const navigate = useNavigate();
 
     const handleSearch = () => {
         setLoading(true);
@@ -56,101 +58,78 @@ const Associado = () => {
         setShowImage(true);
         setSearchResult([]);
         setSearchTerm('');
-        setShowAdditionalContent(true);
+        navigate('/dados-cadastrais')
+        localStorage.setItem('page-associado', '/dados-cadastrais')
     };
 
     return (
         <div className='container-associado'>
-            {showAdditionalContent ? (
-                <div className='estrutura-associado'>
-                    <div className='navegacao-associado'>
-                        <label>Cliente</label>
-                        <button>Dados Cadastrais</button>
-                        <button>Dados Cobrança</button>
-                        <button>Dependentes</button>
-                        <button>PDR</button>
-                        <label>Ações</label>
-                        {/* <button>Recebimento</button>
-                        <button>Iniciar Atendimento</button> */}
-                        <button>Inativar Contrato</button>
-                        <button>Contato</button>
-                        <button>Contratos</button>
-                        <button>Carteirinhas</button>
-                        <label>Histórico do Cliente</label>
-                        <button>Observações</button>
-                        <button>Histórico Funerário</button>
-                        <button>Histórico PET</button>
-                        <button>Histórico Clínica</button>
-                    </div>
+            <div>
+                <div className='pesquisa-associado'>
+                    <input
+                        placeholder='Informe o Nome, CPF ou Nº de Contrato'
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <button onClick={handleSearch}>
+                        <SearchIcon fontSize={'small'} />
+                    </button>
                 </div>
-
-            ) : (
-                <div>
-                    <div className='pesquisa-associado'>
-                        <input
-                            placeholder='Informe o Nome, CPF ou Nº de Contrato'
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button onClick={handleSearch}>
-                            <SearchIcon fontSize={'small'} />
-                        </button>
+                <ToastContainer />
+                {loading && (
+                    <div className='loading-associado'>
+                        <Box sx={{ display: 'flex' }}>
+                            <CircularProgress color='success' />
+                        </Box>
+                        <p>Carregando...</p>
                     </div>
-                    <ToastContainer />
-                    {loading && (
-                        <div className='loading-associado'>
-                            <Box sx={{ display: 'flex' }}>
-                                <CircularProgress color='success' />
-                            </Box>
-                            <p>Carregando...</p>
-                        </div>
-                    )}
-                    {showImage && !loading && searchResult.length === 0 && (
-                        <div className='imagem-pesquisar-associado'>
-                            <img src={Pesquisar} alt='Pesquisar' />
-                        </div>
-                    )}
-                    {!loading && searchResult.length > 0 && (
-                        <div>
-                            <TableContainer component={Paper}>
-                                <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Nome</TableCell>
-                                            <TableCell align='center'>CPF</TableCell>
-                                            <TableCell align='center'>Contrato</TableCell>
-                                            <TableCell align='center'>Cidade</TableCell>
-                                            <TableCell align='center'>Telefone</TableCell>
-                                            <TableCell align='left'>Opções</TableCell>
+                )}
+                {showImage && !loading && searchResult.length === 0 && (
+                    <div className='imagem-pesquisar-associado'>
+                        <img src={Pesquisar} alt='Pesquisar' />
+                    </div>
+                )}
+                {!loading && searchResult.length > 0 && (
+                    <div>
+                        <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Nome</TableCell>
+                                        <TableCell align='center'>CPF</TableCell>
+                                        <TableCell align='center'>Contrato</TableCell>
+                                        <TableCell align='center'>Cidade</TableCell>
+                                        <TableCell align='center'>Telefone</TableCell>
+                                        <TableCell align='left'>Opções</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {searchResult.map((row) => (
+                                        <TableRow
+                                            key={row.name}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component='th' scope='row'>
+                                                {row.name}
+                                            </TableCell>
+                                            <TableCell align='center'>{row.cpf}</TableCell>
+                                            <TableCell align='center'>{row.numerocontrato}</TableCell>
+                                            <TableCell align='center'>{row.cidade}</TableCell>
+                                            <TableCell align='center'>{row.telefone}</TableCell>
+                                            <TableCell align='right'>
+                                                <div className='opcao-associado'>
+                                                    <button onClick={handleOpenButtonClick}>ABRIR </button>
+                                                </div>
+                                            </TableCell>
                                         </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {searchResult.map((row) => (
-                                            <TableRow
-                                                key={row.name}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                                <TableCell component='th' scope='row'>
-                                                    {row.name}
-                                                </TableCell>
-                                                <TableCell align='center'>{row.cpf}</TableCell>
-                                                <TableCell align='center'>{row.numerocontrato}</TableCell>
-                                                <TableCell align='center'>{row.cidade}</TableCell>
-                                                <TableCell align='center'>{row.telefone}</TableCell>
-                                                <TableCell align='right'>
-                                                    <div className='opcao-associado'>
-                                                        <button onClick={handleOpenButtonClick}>ABRIR </button>
-                                                    </div>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </div>
-                    )}
-                </div>
-            )}
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
+                )}
+            </div>
+
         </div>
     );
 };
