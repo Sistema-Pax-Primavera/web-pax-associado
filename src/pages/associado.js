@@ -64,7 +64,6 @@ const Associado = () => {
 
     return (
         <div className='container-associado'>
-
             <div className='pesquisa-associado'>
                 <input
                     placeholder='Informe o Nome, CPF ou Nº de Contrato'

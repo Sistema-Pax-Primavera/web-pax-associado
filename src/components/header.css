@@ -11,6 +11,10 @@
     gap: 5px;
 }
 
+.navegacao-associado button:hover{
+    transform: none;
+}
+
 .navegacao-associado button {
     background-color: var(--verde);
     transform: none;
@@ -30,4 +34,5 @@
 .navegacao-associado button.active {
     border-bottom: 3px solid yellow;
     /* Adapte conforme necessário */
+    transform: none;
 }
