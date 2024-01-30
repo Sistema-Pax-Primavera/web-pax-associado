@@ -64,72 +64,70 @@ const Associado = () => {
 
     return (
         <div className='container-associado'>
-            <div>
-                <div className='pesquisa-associado'>
-                    <input
-                        placeholder='Informe o Nome, CPF ou Nº de Contrato'
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <button onClick={handleSearch}>
-                        <SearchIcon fontSize={'small'} />
-                    </button>
-                </div>
-                <ToastContainer />
-                {loading && (
-                    <div className='loading-associado'>
-                        <Box sx={{ display: 'flex' }}>
-                            <CircularProgress color='success' />
-                        </Box>
-                        <p>Carregando...</p>
-                    </div>
-                )}
-                {showImage && !loading && searchResult.length === 0 && (
-                    <div className='imagem-pesquisar-associado'>
-                        <img src={Pesquisar} alt='Pesquisar' />
-                    </div>
-                )}
-                {!loading && searchResult.length > 0 && (
-                    <div>
-                        <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Nome</TableCell>
-                                        <TableCell align='center'>CPF</TableCell>
-                                        <TableCell align='center'>Contrato</TableCell>
-                                        <TableCell align='center'>Cidade</TableCell>
-                                        <TableCell align='center'>Telefone</TableCell>
-                                        <TableCell align='left'>Opções</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {searchResult.map((row) => (
-                                        <TableRow
-                                            key={row.name}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell component='th' scope='row'>
-                                                {row.name}
-                                            </TableCell>
-                                            <TableCell align='center'>{row.cpf}</TableCell>
-                                            <TableCell align='center'>{row.numerocontrato}</TableCell>
-                                            <TableCell align='center'>{row.cidade}</TableCell>
-                                            <TableCell align='center'>{row.telefone}</TableCell>
-                                            <TableCell align='right'>
-                                                <div className='opcao-associado'>
-                                                    <button onClick={handleOpenButtonClick}>ABRIR </button>
-                                                </div>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </div>
-                )}
-            </div>
 
+            <div className='pesquisa-associado'>
+                <input
+                    placeholder='Informe o Nome, CPF ou Nº de Contrato'
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button onClick={handleSearch}>
+                    <SearchIcon fontSize={'small'} />
+                </button>
+            </div>
+            <ToastContainer />
+            {loading && (
+                <div className='loading-associado'>
+                    <Box sx={{ display: 'flex' }}>
+                        <CircularProgress color='success' />
+                    </Box>
+                    <p>Carregando...</p>
+                </div>
+            )}
+            {showImage && !loading && searchResult.length === 0 && (
+                <div className='imagem-pesquisar-associado'>
+                    <img src={Pesquisar} alt='Pesquisar' />
+                </div>
+            )}
+            {!loading && searchResult.length > 0 && (
+                <div>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Nome</TableCell>
+                                    <TableCell align='center'>CPF</TableCell>
+                                    <TableCell align='center'>Contrato</TableCell>
+                                    <TableCell align='center'>Cidade</TableCell>
+                                    <TableCell align='center'>Telefone</TableCell>
+                                    <TableCell align='left'>Opções</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {searchResult.map((row) => (
+                                    <TableRow
+                                        key={row.name}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component='th' scope='row'>
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell align='center'>{row.cpf}</TableCell>
+                                        <TableCell align='center'>{row.numerocontrato}</TableCell>
+                                        <TableCell align='center'>{row.cidade}</TableCell>
+                                        <TableCell align='center'>{row.telefone}</TableCell>
+                                        <TableCell align='right'>
+                                            <div className='opcao-associado'>
+                                                <button onClick={handleOpenButtonClick}>ABRIR </button>
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
+            )}
         </div>
     );
 };

@@ -17,6 +17,7 @@
     color: var(--branco);
     font-size: 11px;
     text-align: start;
+    transform: none;
     font-weight: 700;
 }
 

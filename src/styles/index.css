@@ -15,7 +15,7 @@ select {
     outline: none;
     border-radius: 5px;
     padding: 7px;
-    font-weight: 800;
+    font-weight: 700;
     transition: none;
     
 }
@@ -28,3 +28,4 @@ button{
     font-weight: 700;
     font-size: 13px;
 }
+

@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
 }
 
 .pesquisa-associado{
@@ -18,7 +19,7 @@
 
 .pesquisa-associado input{
     background-color: var(--cinza-leve);
-    width: 30%;
+    width: 40%;
     padding: 12px;
     font-weight: 700
 }
@@ -29,6 +30,7 @@
     padding-left: 35px;
     padding-right: 35px;
     transform: none;
+    width: 15%;
 }
 
 html, body {
@@ -54,6 +56,7 @@ html, body {
     color: var(--branco);
     font-size: 10px;
     gap: 15px;
+    width: 50%;
     transform: none;
     font-weight: 700;
 }
