@@ -24,6 +24,7 @@
     transform: none;
     font-weight: 500;
     padding: 9px;
+    cursor: pointer;
 }
 
 .navegacao-associado label {
