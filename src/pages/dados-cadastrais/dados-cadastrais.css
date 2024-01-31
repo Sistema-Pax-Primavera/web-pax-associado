@@ -113,3 +113,9 @@
     opacity: 0.9;  
     pointer-events: none;  
 }
+
+.salvar-associado button{
+    background-color: var(--verde);
+    width: 20%;
+    color: var(--branco);
+}

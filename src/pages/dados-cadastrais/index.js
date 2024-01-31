@@ -37,7 +37,6 @@ const DadosCadastrais = () => {
             <div className='container-associados'>
                 <Header />
                 <div className='container'>
-
                     <MyAccordion
                         title="Dados do Titular"
                         icon={<AccountCircleIcon />}
@@ -205,7 +204,9 @@ const DadosCadastrais = () => {
 
                             </AccordionDetails>
                         </Accordion>
+                        
                     </div>
+
                 </div>
             </div>
         </>

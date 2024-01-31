@@ -186,7 +186,9 @@ const PDR = () => {
                             </div>
                         </div>
                     </MyAccordion>
-
+                    <div className='salvar-associado'>
+                            <button>SALVAR</button>
+                    </div>
 
                 </div>
             </div>

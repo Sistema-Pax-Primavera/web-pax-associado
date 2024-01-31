@@ -1,0 +1,73 @@
+.dados-cobranca-associado{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 81%;
+    margin-top: 30px;
+    height: 200px;
+}
+
+.fundo-cobranca{
+    background-color: var(--cinza-leve);
+    padding: 15px;
+    border-radius: 5px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.campos-cadastrais-01{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.campos-cadastrais-01 input{
+    width: 100%;
+    font-weight: 500;
+    background-color: var(--branco);
+}
+
+.campos-cadastrais-02{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+.campos-cadastrais-02 input{
+    width: 100%;
+    font-weight: 500;
+    background-color: var(--branco);
+}
+
+.campos-cadastrais-02 select{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--branco);
+    width: 110%;
+}
+
+.campos-cadastrais-03{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campos-cadastrais-03 input{
+    width: 100%;
+    font-weight: 500;
+    background-color: var(--branco);
+}
+
+.campos-cadastrais-04{
+    width: 8%;
+    display: flex;
+    flex-direction: column;
+}
+
+.campos-cadastrais-04 input{
+    width: 100%;
+    font-weight: 500;
+    background-color: var(--branco);
+}

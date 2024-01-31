@@ -1,0 +1,86 @@
+.container-dependentes{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 81%;
+}
+
+.pet-cremacao-humana{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.pet-cremacao-humana button{
+    width: 18%;
+    font-size: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.baixa-obito{
+    padding: 4px;
+    background-color: var(--branco);
+    border-radius: 5px;
+}
+
+.legenda-cremacao{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.legenda-amarela{
+    width: 1%;
+    border-radius: 50px;
+    padding: 3px;
+    height: 5px;
+    background-color: rgb(251, 255, 0);
+}
+
+.legenda-roxa{
+    width: 1%;
+    border-radius: 50px;
+    padding: 3px;
+    height: 5px;
+    background-color: rgb(255, 0, 242);
+}
+
+.legenda-laranja{
+    width: 1%;
+    border-radius: 50px;
+    padding: 3px;
+    height: 5px;
+    background-color: rgb(255, 94, 0);
+}
+
+.legenda-vermelho{
+    width: 1%;
+    border-radius: 50px;
+    padding: 3px;
+    height: 5px;
+    background-color: rgb(255, 0, 0);
+}
+
+.legenda-ativo{
+    width: 1%;
+    border-radius: 50px;
+    padding: 3px;
+    height: 5px;
+    background-color: var(--verde);
+}
+
+.campos-legenda{
+    width: 68%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--branco);
+}
+
+.botao-ativo {
+    background-color: var(--verde);
+    color: var(--branco);
+  }
