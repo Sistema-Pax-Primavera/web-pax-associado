@@ -1,16 +1,16 @@
 import React from 'react'
 import Header from '../../components/header/header';
 
-const Dependentes = () => {
+const Carteirinha = () => {
     return (
         <>
             <div>
                 <Header />
-                <h1>Dependentes</h1>
+                <h1>Carteirinha</h1>
             </div>
 
         </>
     )
 }
 
-export default Dependentes;
+export default Carteirinha;

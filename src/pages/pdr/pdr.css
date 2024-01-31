@@ -1,11 +1,11 @@
-.divisao-align-itens{
+.divisao-align-itens {
     display: flex;
     align-items: center;
     gap: 10px;
     width: 100%;
 }
 
-.divisao-flex-direction{
+.divisao-flex-direction {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,7 +13,7 @@
     gap: 5px;
 }
 
-.divisao-flex-direction button{
+.divisao-flex-direction button {
     color: var(--branco);
     align-items: center;
     display: flex;
@@ -24,7 +24,7 @@
     background-color: var(--verde);
 }
 
-.divisao-flex-direction button:hover{
+.divisao-flex-direction button:hover {
     transform: none;
 }
 
@@ -34,11 +34,11 @@
     width: 18%;
 }
 
-.campos-01 button:hover{
+.campos-01 button:hover {
     transform: none;
 }
 
-.campos-01 button{
+.campos-01 button {
     background-color: var(--verde);
     color: var(--branco);
     margin-top: 15px;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import './dados-cadastrais.css'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -10,8 +10,8 @@ import Switch from '@mui/material/Switch';
 import HomeIcon from '@mui/icons-material/Home';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import { makeStyles } from '@material-ui/core/styles';
-import DateMaskInput from '../../components/data';
 import MyAccordion from '../../components/accordion';
+import DateMaskInput from '../../components/inputs';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 const useStyles = makeStyles((theme) => ({
@@ -146,7 +146,7 @@ const DadosCadastrais = () => {
                                 />
                             </div>
                         </div>
-                    </MyAccordion>                  
+                    </MyAccordion>
                     <div className={classes.accordionContainer}>
                         <Accordion className={isComercialEnabled ? '' : 'Mui-disabled'}>
                             <AccordionSummary
