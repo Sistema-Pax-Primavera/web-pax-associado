@@ -1,0 +1,17 @@
+.botao-modal{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+}
+
+.botao-modal button{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color:var(--branco);
+    width: 100%;
+    font-size: 11px;
+    padding: 5px;
+    background-color: var(--verde);
+}

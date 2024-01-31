@@ -29,7 +29,8 @@ const Header = () => {
             >
                 Dados Cadastrais
             </button>
-            <button>Dados Cobrança</button>
+            <button onClick={() => handleMenuClick("/dados-cobranca")}
+                className={activeRoute === "/dados-cobranca" ? "active" : ""}>Dados Cobrança</button>
             <button
                 onClick={() => handleMenuClick("/dependentes")}
                 className={activeRoute === "/dependentes" ? "active" : ""}

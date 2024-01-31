@@ -33,6 +33,10 @@
     width: 15%;
 }
 
+.pesquisa-associado button:hover{
+    transform: none;
+}
+
 html, body {
     height: 100%;
     margin: 0;

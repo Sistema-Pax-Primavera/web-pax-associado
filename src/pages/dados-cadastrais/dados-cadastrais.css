@@ -4,7 +4,7 @@
 }
 
 .container{
-    background-color: var(--cinza-leve);
+    margin-top: 20px;
     border-radius: 5px;
     padding: 10px;
     height: auto;
@@ -97,6 +97,10 @@
 
 .icones-nome{
     color: var(--verde);
+    display: flex;
+    gap: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .icones-nome label{
