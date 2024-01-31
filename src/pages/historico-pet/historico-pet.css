@@ -1,0 +1,46 @@
+@import '../../styles/index.css';
+
+.historico-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    margin-left: 25px;
+    gap: 10px;
+    /* Espaçamento entre os cards */
+}
+
+.historico-card {
+    border: 3px solid #ddd;
+    padding: 20px;
+    width: calc(30% - 50px);
+    height: calc(40% - 10px);
+    max-width: 250px;
+    max-height: 200px;
+    /* Largura inicial do card - ajuste conforme necessário */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    overflow: hidden;
+    /* Garante que as bordas arredondadas são aplicadas corretamente */
+    position: relative;
+}
+
+.historico-card p {
+    font-size: 14px;
+}
+
+.historico-card::before {
+    content: '';
+    height: 10px;
+    width: 100%;
+    background-color: var(--verde);
+    /* Cor verde no topo do card */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.icone {
+    /* Estilo do ícone */
+    margin-right: 10px;
+    /* Espaçamento à direita do ícone */
+}

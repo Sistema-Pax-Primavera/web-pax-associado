@@ -22,7 +22,8 @@
     font-size: 12px;
     text-align: start;
     transform: none;
-    font-weight: 700;
+    font-weight: 500;
+    padding: 9px;
 }
 
 .navegacao-associado label {
