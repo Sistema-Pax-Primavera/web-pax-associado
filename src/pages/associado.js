@@ -193,17 +193,17 @@ const Associado = () => {
                 </div>
             )}
             {!loading && searchResult.length > 0 && (
-                <div >
+                <div className='tabelas-associados'>
                     <TableContainer component={Paper} className="TableContainer">
-                        <Table sx={{ minWidth: 650 }} aria-label='simple table'>
+                        <Table sx={{ maxWidth: 1100 }} aria-label='simple table'>
                             <TableHead className="TableHead">
-                                <TableRow>
+                                <TableRow> 
                                     <TableCell align='center'>Contrato</TableCell>
                                     <TableCell align='center'>Nome</TableCell>
                                     <TableCell align='center'>Região</TableCell>
                                     <TableCell align='center'>Ultimo Pagamento</TableCell>
                                     <TableCell align='center'>Situação</TableCell>
-                                    <TableCell align='left'>Opções</TableCell>
+                                    <TableCell align='center'>Opções</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody className="TableBody">

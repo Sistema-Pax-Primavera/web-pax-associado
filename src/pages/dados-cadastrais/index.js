@@ -204,7 +204,10 @@ const DadosCadastrais = () => {
 
                             </AccordionDetails>
                         </Accordion>
-                        
+
+                    </div>
+                    <div className='salva-dependentes'>
+                        <button>SALVAR</button>
                     </div>
 
                 </div>

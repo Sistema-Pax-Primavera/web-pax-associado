@@ -16,6 +16,9 @@
     flex-direction: column;
 }
 
+.campos-cadastrais-06{
+    width: 20%;
+}
 
 .campos-cadastrais-01{
     display: flex;

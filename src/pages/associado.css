@@ -57,14 +57,22 @@ body {
 
 }
 
+.opcao-associado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .opcao-associado button {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: var(--verde);
     color: var(--branco);
     font-size: 10px;
     gap: 15px;
-    width: 50%;
+    width: 80%;
+    text-align: center;
     transform: none;
     font-weight: 700;
     cursor: pointer;
@@ -118,6 +126,11 @@ body {
     /* Defina a altura máxima desejada */
     overflow-y: auto;
     /* Adiciona uma barra de rolagem vertical quando necessário */
+}
+
+.tabelas-associados{
+    width: 100%;
+    overflow-y: hidden;
 }
 
 .TableHead {

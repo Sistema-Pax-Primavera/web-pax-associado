@@ -15,6 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function createData(name, filiacao, carencia, falecimento, valor, especie) {
     return { name, filiacao, carencia, falecimento, valor, especie };
@@ -51,6 +52,7 @@ const Dependentes = () => {
                         >
                             <PersonIcon fontSize={'small'} /> CREMAÇÃO HUMANA
                         </button>
+                        <p><AccountCircleIcon/> Carlos Henrique Nº do Contrato - 123789</p>
                     </div>
                     {mostrarFormularioPet && (
                         <div>
@@ -107,7 +109,7 @@ const Dependentes = () => {
                             </div>
                             <div className='container-linha2'>
                                 <TableContainer component={Paper}>
-                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                    <Table sx={{ maxWidth: 900 }} aria-label="simple table">
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>Nome</TableCell>
@@ -220,7 +222,7 @@ const Dependentes = () => {
                             </div>
                             <div className='container-linha2'>
                                 <TableContainer component={Paper}>
-                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                    <Table sx={{ maxWidth: 900 }} aria-label="simple table">
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>Nome</TableCell>
