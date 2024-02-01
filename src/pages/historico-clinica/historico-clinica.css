@@ -1,19 +1,21 @@
 @import '../../styles/index.css';
 
-.historico-container {
-    display: inline-flex;
+.historico-container-clinica {
+    display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    padding: 15px;
+    gap: 10px;
     margin-top: 25px;
+    margin-left: 10px;
 }
 
-.historico-card {
+.historico-card-clinica {
     border: 3px solid #ddd;
     padding: 5px;
     width: calc(30% - 50px);
-    height: calc(40% - 10px);
-    max-width: 200px;
-    max-height: 200px;
+    height: calc(45% - 10px);
+    max-width: 300px;
+    max-height: 300px;
     /* Largura inicial do card - ajuste conforme necessário */
     border-radius: 10px;
     /* Bordas arredondadas */
@@ -22,11 +24,11 @@
     position: relative;
 }
 
-.historico-card p {
+.historico-card-clinica p {
     font-size: 14px;
 }
 
-.historico-card::before {
+.historico-card-clinica::before {
     content: '';
     height: 10px;
     width: 100%;
@@ -37,14 +39,14 @@
     left: 0;
 }
 
-.icone {
+.icone-clinica {
     /* Estilo do ícone */
     margin-right: 10px;
     margin-top: 10px;
     /* Espaçamento à direita do ícone */
 }
 
-.info {
+.info-clinica {
     margin-top: 5px;
 
 }

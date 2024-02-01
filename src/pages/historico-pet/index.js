@@ -14,12 +14,26 @@ const HistoricoPET = () => {
             status: 'ativo',
         },
         {
+            nome: 'Rex',
+            dataNascimento: '01/01/2018',
+            procedimento: 'Vacinação',
+            dataProcedimento: '15/02/2022',
+            status: 'ativo',
+        },
+        {
             nome: 'Bob',
             dataNascimento: '05/03/2019',
             procedimento: 'Vacinação',
             dataProcedimento: '15/03/2022',
             status: 'inativo',
             dataFalecimento: '20/03/2023',
+        },
+        {
+            nome: 'Marie',
+            dataNascimento: '05/03/2020',
+            procedimento: 'Consulta de rotina',
+            dataProcedimento: '16/01/2022',
+            status: 'ativo',
         },
         {
             nome: 'Marie',
