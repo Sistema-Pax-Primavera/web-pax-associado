@@ -13,6 +13,121 @@
     gap: 5px;
 }
 
+.quitar-pdr{
+    display: flex;
+    background-color: var(--cinza-leve);
+    width: 90%;
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.quitar-01{
+    text-align: center;
+    width: 25%;
+    font-weight: 700;
+}
+.quitar-02{
+    text-align: center;
+    width: 50%;
+
+}
+
+.negociar-pdr{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cinza-leve);
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 5px;
+    gap: 10px;
+}
+
+.quitar-01 input{
+    font-weight: 700;
+}
+
+.icones-nome-fechar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.pdr-icones{
+    width: 50%;
+}
+
+.pdr-icones label{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--verde);
+   
+}
+
+.fecha-modal{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: end;
+    width: 50%;
+}
+
+.fecha-modal button{
+    width: 6%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: var(--vermelho);
+    border-radius: 1000px;
+}
+
+.confirmar-negociacao{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+
+}
+.confirmar-negociacao button{
+    background-color: var(--verde);
+    color: var(--branco);
+}
+
+.campos-necociacao{
+    width: 84%;
+
+}
+
+.imprimir-anual{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imprimir-anual button{
+    background-color: var(--verde);
+    width: 25%;
+    font-weight: 700;
+    color: var(--branco);
+}
+
+.icones-nome-imprimir{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--verde);
+}
+
 .divisao-flex-direction button {
     color: var(--branco);
     align-items: center;
