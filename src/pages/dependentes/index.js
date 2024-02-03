@@ -40,6 +40,8 @@ const Dependentes = () => {
                 <Header />
                 <div className='container-dependentes'>
                     <div className='pet-cremacao-humana'>
+
+                        <p><AccountCircleIcon /> Carlos Henrique Nº do Contrato - 123789</p>
                         <button
                             className={mostrarFormularioPet ? '' : 'botao-ativo'}
                             onClick={() => mostrarFormulario('pet')}
@@ -52,7 +54,6 @@ const Dependentes = () => {
                         >
                             <PersonIcon fontSize={'small'} /> CREMAÇÃO HUMANA
                         </button>
-                        <p><AccountCircleIcon/> Carlos Henrique Nº do Contrato - 123789</p>
                     </div>
                     {mostrarFormularioPet && (
                         <div>

@@ -1,0 +1,62 @@
+.container-contratos{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tipo-contrato-associado{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contrato-associados{
+    background-color: var(--branco);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+
+.tipo-contrato-associado label{
+    color: var(--verde);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.arquivo p{
+    font-size: 10px;
+}
+
+.document{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.document a{
+    color: var(--verde);
+    font-size: 50px;
+}
+
+.document input{
+    background-color: var(---verde);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: var(--branco);
+}
+
+
+
+.document button{
+    background-color: var(--verde);
+    padding: 10px;
+    color: var(--branco);
+    font-weight: 800;
+    font-size: 12px;
+}

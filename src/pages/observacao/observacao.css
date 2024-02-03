@@ -1,0 +1,26 @@
+.textarea{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea textarea{
+    border: none;
+    outline: none;
+    height: 200px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.salva-observacao{
+
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+
+.salva-observacao button{
+    background-color: var(--verde);
+    color: var(--branco);
+    width: 20%
+}
