@@ -99,6 +99,12 @@
     border-radius: 1000px;
 }
 
+.confirmar-tipo-negociacao button{
+    margin-top: 25px;
+    background-color: var(--verde);
+    color: var(--branco);
+}
+
 .confirmar-negociacao {
     display: flex;
     align-items: center;
@@ -137,7 +143,12 @@
     width: 100%;
 }
 .campos-necociacao {
-    width: 84%;
+    width: 33%;
+
+}
+
+.campos-necociacao2 {
+    width: 65%;
 
 }
 

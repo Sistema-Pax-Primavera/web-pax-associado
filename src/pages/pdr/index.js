@@ -59,7 +59,7 @@ const style2 = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 450,
     bgcolor: 'background.paper',
     borderRadius: 5,
     p: 4,
@@ -70,7 +70,7 @@ const style3 = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 250,
+    width: 400,
     bgcolor: 'background.paper',
     borderRadius: 5,
     p: 4,
@@ -225,25 +225,34 @@ const PDR = () => {
                                         </Typography>
                                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                             <div className='negociar-pdr'>
-                                                <div className='campos-necociacao'>
-                                                    <label>Quant. Parcelas</label>
-                                                    <input></input>
+                                                <div className='container-linha'>
+                                                    <div className='campos-necociacao'>
+                                                        <label>Quant. Parcelas</label>
+                                                        <input></input>
+                                                    </div>
+                                                    <div className='campos-necociacao2'>
+                                                        <label>Motivo da Negociação</label>
+                                                        <select></select>
+                                                    </div>
                                                 </div>
-                                                <div className='campos-necociacao'>
-                                                    <label>Valor Total</label>
-                                                    <input></input>
+
+                                                <div className='container-linha'>
+                                                    <div className='campos-necociacao'>
+                                                        <label>Valor Total</label>
+                                                        <input></input>
+                                                    </div>
+                                                    <div className='campos-necociacao'>
+                                                        <label>Valor Acertado</label>
+                                                        <input></input>
+                                                    </div>
+                                                    <div className='confirmar-tipo-negociacao'>
+                                                        <button>CONFIRMAR</button>
+                                                    </div>
                                                 </div>
-                                                <div className='campos-necociacao'>
-                                                    <label>Valor Acertado</label>
-                                                    <input></input>
-                                                </div>
-                                                <div className='campos-necociacao'>
-                                                    <label>Motivo da Negociação</label>
-                                                    <input></input>
-                                                </div>
-                                                <div className='confirmar-negociacao'>
-                                                    <button>CONFIRMAR</button>
-                                                </div>
+
+
+
+
                                             </div>
                                         </Typography>
                                     </Box>
@@ -278,7 +287,7 @@ const PDR = () => {
                                                     <label>Motivo do Cancelamento</label>
                                                     <select></select>
                                                 </div>
-                                                <div className='confirmar-negociacao'>
+                                                <div className='confirmar-tipo-negociacao'>
                                                     <button>CONFIRMAR</button>
                                                 </div>
                                             </div>
