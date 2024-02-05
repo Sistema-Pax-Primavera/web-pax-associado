@@ -43,6 +43,11 @@ const Header = () => {
             </button>
             <label>Ações</label>
             <button
+                onClick={() => handleMenuClick("/recebimento")}
+                className={activeRoute === "/recebimento" ? "active" : ""}
+            >Recebimento
+            </button>
+            <button
                 onClick={() => handleMenuClick("/inativar-contrato")}
                 className={activeRoute === "/inativar-contrato" ? "active" : ""}
             >Inativar Contrato

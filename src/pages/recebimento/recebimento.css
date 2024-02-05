@@ -1,0 +1,68 @@
+.recebimento-associado{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.recebimento-associado button{
+    background-color: var(--verde);
+    color: var(--branco);
+    width: 85%;
+}
+
+.campos-recebimento button{
+    width: 20%;
+    margin-top: 15px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.linhas-recebimento{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.campos-recebimento{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.tabela-acerto-recebimento{
+    display: flex;
+    flex-direction: column;
+}
+
+.formas-recebimento{
+    width: 10%;
+}
+
+.recebimento-03{
+    width: 80%;
+}
+
+.recebimento-01{
+    width: 17%;
+    
+}
+
+.recebimento-01 input{
+    padding: 8px;
+}
+
+.recebimento-02 input{
+    padding: 7px;
+}
+.recebimento-02{
+    width: 10%;
+}
+
+.container-linhas{
+    display: flex;
+    gap: 10px;
+}

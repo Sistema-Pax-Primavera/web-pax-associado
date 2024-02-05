@@ -13,6 +13,7 @@ import HistoricoPET from "./pages/historico-pet";
 import HistoricoClinica from "./pages/historico-clinica";
 import InativarContrato from "./pages/inativar-contrato";
 import PDR from "./pages/pdr";
+import Recebimento from "./pages/recebimento";
 
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/associado">
@@ -22,6 +23,7 @@ const RoutesApp = () => (
             <Route exact path="/dados-cobranca" element={<DadosCobranca />} />
             <Route exact path="/dependentes" element={<Dependentes />} />
             <Route exact path="/pdr" element={<PDR />} />
+            <Route exact path="/recebimento" element={<Recebimento />} />
             <Route exact path="/inativar-contrato" element={<InativarContrato />} />
             <Route exact path="/contato" element={<Contato />} />
             <Route exact path="/contrato" element={<Contrato />} />

@@ -12,12 +12,12 @@ import Paper from '@mui/material/Paper';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
-function createData(name, data, usuario, ) {
-    return { name, data, usuario,  };
+function createData(name, data, usuario,) {
+    return { name, data, usuario, };
 }
 
 const rows = [
-    createData('Teste', '15/01/2023', 'Vanderlei', ),
+    createData('Teste', '15/01/2023', 'Vanderlei',),
 ];
 
 
@@ -56,41 +56,44 @@ const Observacao = () => {
                         <button>SALVAR</button>
                     </div>
                     <div className='container-linha2'>
-                                <TableContainer component={Paper}>
-                                    <Table sx={{ maxWidth: 900 }} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Assunto</TableCell>
-                                                <TableCell align="center">Data</TableCell>
-                                                <TableCell align="center">Usuário</TableCell>                                           
-                                                <TableCell align="center">Opções</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {rows.map((row) => (
-                                                <TableRow
-                                                    key={row.name}
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {row.name}
-                                                    </TableCell>
-                                                    <TableCell align="center">{row.data}</TableCell>
-                                                    <TableCell align="center">{row.usuario}</TableCell>
-                                                    <TableCell align="center">
-                                                        <div className='botao-opcao'>
-                                                            <div className='edit-botao'>
-                                                                <button><RemoveRedEyeIcon fontSize={'small'} /></button>
-                                                            </div>
-                                                            
+                        <TableContainer component={Paper}>
+                            <Table sx={{ maxWidth: 900, }} aria-label="simple table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Assunto</TableCell>
+                                        <TableCell align="center">Data</TableCell>
+                                        <TableCell align="center">Usuário</TableCell>
+                                        <TableCell align="center">Opções</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {rows.map((row) => (
+                                        <TableRow
+                                            key={row.name}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            
+                                                <TableCell component="th" scope="row">
+                                                    {row.name}
+                                                </TableCell>
+                                                <TableCell align="center">{row.data}</TableCell>
+                                                <TableCell align="center">{row.usuario}</TableCell>
+                                                <TableCell align="center">
+                                                    <div className='botao-opcao'>
+                                                        <div className='edit-botao'>
+                                                            <button><RemoveRedEyeIcon fontSize={'small'} /></button>
                                                         </div>
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            </div>
+
+                                                    </div>
+                                                </TableCell>
+                                        
+
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
                 </div>
             </div>
 
