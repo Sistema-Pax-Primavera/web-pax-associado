@@ -147,8 +147,14 @@
 
 }
 
+.campos-necociacao input{
+    width: 100%;
+}
+
 .campos-necociacao2 {
     width: 65%;
+    display: flex;
+    flex-direction: column;
 
 }
 

@@ -272,7 +272,7 @@ const PDR = () => {
                                                     <label><CancelIcon fontSize={'small'} />CANCELAR</label>
                                                 </div>
                                                 <div className='fecha-modal'>
-                                                    <button onClick={handleClose2}><CancelIcon fontSize={'small'} /></button>
+                                                    <button onClick={handleClose3}><CancelIcon fontSize={'small'} /></button>
                                                 </div>
 
                                             </div>
