@@ -24,8 +24,8 @@ import Modal from '@mui/material/Modal';
 import PrintIcon from '@mui/icons-material/Print';
 import { Select } from '@mui/material';
 
-function createData(parcela, vencimento, valor, status) {
-    return { parcela, vencimento, valor, status };
+function createData(id, parcela, vencimento, valor, status) {
+    return { id, parcela, vencimento, valor, status };
 }
 
 const rows = [
@@ -33,8 +33,8 @@ const rows = [
     createData(1, '12/02/2024', 90, 'FECHADA',),
 ];
 
-function extra(valor, mes, formapagamento) {
-    return { valor, mes, formapagamento };
+function extra(id, valor, mes, formapagamento) {
+    return { id, valor, mes, formapagamento };
 }
 
 const extrato = [
@@ -139,7 +139,7 @@ const PDR = () => {
                                                         <TableBody>
                                                             {extrato.map((extratos) => (
                                                                 <TableRow
-                                                                    key={extratos.name}
+                                                                    key={extratos.id}
                                                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                                 >
                                                                     <TableCell component="th" scope="row">
@@ -365,7 +365,7 @@ const PDR = () => {
                                         <TableBody>
                                             {rows.map((row) => (
                                                 <TableRow
-                                                    key={row.parcela}
+                                                    key={row.id}
                                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                 >
                                                     <TableCell component="th" scope="row">
