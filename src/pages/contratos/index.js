@@ -4,13 +4,14 @@ import './contratos.css';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import TaskIcon from '@mui/icons-material/Task';
 import PostAddIcon from '@mui/icons-material/PostAdd';
-import { Document, Page } from 'react-pdf';
+import { saveAs } from 'file-saver';  // Importar a função saveAs do file-saver
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import DownloadIcon from '@mui/icons-material/Download';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Contrato = () => {
   const [arquivos, setArquivos] = useState([]);
   const [arquivoSelecionado, setArquivoSelecionado] = useState(null);
-  const [arquivoVisualizado, setArquivoVisualizado] = useState(null);
 
   const handleProcurarChange = (event) => {
     setArquivoSelecionado(event.target.files[0]);
@@ -29,15 +30,15 @@ const Contrato = () => {
     setArquivos(novosArquivos);
   };
 
-  const handleVisualizarClick = (arquivo) => {
-    setArquivoVisualizado(arquivo);
+  const handleDownloadClick = (arquivo) => {
+    saveAs(arquivo, arquivo.name);  // Utilizar a função saveAs para fazer o download
   };
 
   return (
     <>
       <div className='container-associados'>
         <Header />
-        <div className='container-contato-associado'>
+        <div className='container-contrato-associado'>
           <div className='icones-nome'>
             <label>
               <AssignmentIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776
@@ -45,7 +46,7 @@ const Contrato = () => {
           </div>
           <div className='container-contratos'>
             <div className='tipo-contrato-associado'>
-              <div className='contrato-associados'>
+              <div className='contrato-associados-anexo'>
                 <label>Adicionar</label>
                 <div className='document'>
                   <a>
@@ -56,26 +57,24 @@ const Contrato = () => {
                 </div>
               </div>
 
-              <div className='document'>
+              <div className='document2'>
                 {arquivos.map((arquivo, index) => (
                   <div key={index}>
                     <div className='contrato-associados'>
                       <TaskIcon />
                       <label> {arquivo.name}</label>
-                      <button onClick={() => handleExcluirClick(index)}>Excluir</button>
-                      <button onClick={() => handleVisualizarClick(arquivo)}>VISUALIZAR</button>
+                      <div className='baixa-delete-contrato'>
+                        <div className='deleta-contrato'>
+                          <button onClick={() => handleExcluirClick(index)}><DeleteIcon fontSize={'small'}/></button>
+                        </div>
+                        <div className='baixa-contrato'>
+                          <button onClick={() => handleDownloadClick(arquivo)}><DownloadIcon fontSize={'small'}/></button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-
-              {arquivoVisualizado && (
-                <div className='visualizador-pdf'>
-                  <Document file={arquivoVisualizado}>
-                    <Page pageNumber={1} />
-                  </Document>
-                </div>
-              )}
             </div>
           </div>
           <div>

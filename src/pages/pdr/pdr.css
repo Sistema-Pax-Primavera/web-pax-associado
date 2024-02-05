@@ -13,63 +13,72 @@
     gap: 5px;
 }
 
-.quitar-pdr{
+.quitar-pdr {
     display: flex;
     background-color: var(--cinza-leve);
     width: 90%;
     border-radius: 5px;
-    flex-direction: column;
+    gap: 10px;
     align-items: center;
-    justify-content: center;
     padding: 15px;
 }
 
-.quitar-01{
-    text-align: center;
-    width: 25%;
+.quitar-01 {
+    margin-right: 15px;
+    width: 15%;
     font-weight: 700;
 }
-.quitar-02{
-    text-align: center;
+
+.quitar-01 input {
+    width: 100%;
+    padding: 8px;
+}
+
+.quitar-02 {
     width: 50%;
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
 
 }
 
-.negociar-pdr{
+.quitar-02 input {
+    width: 100%;
+}
+
+.negociar-pdr {
     display: flex;
     flex-direction: column;
     background-color: var(--cinza-leve);
     padding: 10px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
     border-radius: 5px;
+    padding: 20px;
     gap: 10px;
 }
 
-.quitar-01 input{
+.quitar-01 input {
     font-weight: 700;
 }
 
-.icones-nome-fechar{
+.icones-nome-fechar {
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-.pdr-icones{
+.pdr-icones {
     width: 50%;
 }
 
-.pdr-icones label{
+.pdr-icones label {
     display: flex;
     align-items: center;
     gap: 10px;
     color: var(--verde);
-   
+
 }
 
-.fecha-modal{
+.fecha-modal {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -77,7 +86,7 @@
     width: 50%;
 }
 
-.fecha-modal button{
+.fecha-modal button {
     width: 6%;
     cursor: pointer;
     display: flex;
@@ -90,38 +99,56 @@
     border-radius: 1000px;
 }
 
-.confirmar-negociacao{
+.confirmar-negociacao {
     display: flex;
-    margin-top: 10px;
+    margin-top: 25px;
     align-items: center;
     justify-content: center;
+    width: 30%;
 
 }
-.confirmar-negociacao button{
+
+.confirmar-negociacao button {
+
     background-color: var(--verde);
     color: var(--branco);
+    width: 100%;
 }
 
-.campos-necociacao{
+.confirmar-negociacao2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.confirmar-negociacao2 button {
+
+    background-color: var(--verde);
+    color: var(--branco);
+    width: 100%;
+}
+.campos-necociacao {
     width: 84%;
 
 }
 
-.imprimir-anual{
+.imprimir-anual {
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.imprimir-anual button{
+.imprimir-anual button {
     background-color: var(--verde);
     width: 25%;
     font-weight: 700;
     color: var(--branco);
 }
 
-.icones-nome-imprimir{
+.icones-nome-imprimir {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,6 +162,7 @@
     transform: none;
     font-size: 10px;
     justify-content: start;
+    cursor: pointer;
     gap: 10px;
     background-color: var(--verde);
 }

@@ -5,6 +5,7 @@
     background-color: var(--cinza-leve);
     padding: 10px;
     display: flex;
+    height: 300px;
     flex-direction: column;
     gap: 10px;
 }
