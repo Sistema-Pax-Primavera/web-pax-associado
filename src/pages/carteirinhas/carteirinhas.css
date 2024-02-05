@@ -1,0 +1,56 @@
+.carteirinha-container {
+    position: relative;
+    text-align: center;
+}
+
+.carteirinha-img {
+    width: auto;
+    max-width: 52%;
+    margin: 10px auto;
+    /* Centraliza a imagem e aplica margens superior e inferior */
+}
+
+.carteirinha-container button {
+    display: block;
+    margin: 10px auto;
+    /* Centraliza o botão e aplica margens superior e inferior */
+    background-color: var(--verde);
+    color: var(--branco);
+    width: 20%;
+    height: 7%;
+}
+
+.carteirinha-container #selectNome {
+    display: block;
+    margin: 10px auto;
+    /* Centraliza o select e aplica margens superior e inferior */
+}
+
+.carteirinha-container label {
+    display: block;
+    margin-bottom: 10px;
+    /* Adiciona margem inferior para separar o label do select */
+}
+
+.carteirinha-container p {
+    font-size: 13px;
+    max-width: 40%;
+    /* color: var(--branco); */
+    position: relative;
+    top: 57%;
+    left: 35%;
+    margin-left: 22px;
+    transform: translate(-50%, -50%);
+    margin-top: -20px;
+    /* Ajuste conforme necessário para a posição desejada */
+}
+
+.carteirinha-container .validade {
+    font-size: 13px;
+    color: var(--branco);
+    position: relative;
+    top: 61%;
+    left: 32%;
+    margin-top: -20px;
+    /* Ajuste conforme necessário para a posição desejada */
+}

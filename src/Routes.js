@@ -17,7 +17,7 @@ import PDR from "./pages/pdr";
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/associado">
         <Routes>
-            <Route exact path="*" element={<Associado />} />
+            <Route exact path="/" element={<Associado />} />
             <Route exact path="/dados-cadastrais" element={<DadosCadastrais />} />
             <Route exact path="/dados-cobranca" element={<DadosCobranca />} />
             <Route exact path="/dependentes" element={<Dependentes />} />
