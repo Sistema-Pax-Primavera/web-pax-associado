@@ -70,7 +70,7 @@ const style3 = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 200,
+    width: 250,
     bgcolor: 'background.paper',
     borderRadius: 5,
     p: 4,
@@ -194,7 +194,7 @@ const PDR = () => {
                                                     <label>Motivo da Quitação</label>
                                                     <select></select>
                                                 </div>
-                                                <div className='confirmar-negociacao'>
+                                                <div className='confirmar-quitacao'>
                                                     <button>CONFIRMAR</button>
                                                 </div>
                                             </div>
@@ -226,7 +226,7 @@ const PDR = () => {
                                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                             <div className='negociar-pdr'>
                                                 <div className='campos-necociacao'>
-                                                    <label>Quantidade de Parcelas</label>
+                                                    <label>Quant. Parcelas</label>
                                                     <input></input>
                                                 </div>
                                                 <div className='campos-necociacao'>

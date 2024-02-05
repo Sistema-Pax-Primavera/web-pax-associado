@@ -101,15 +101,22 @@
 
 .confirmar-negociacao {
     display: flex;
-    margin-top: 25px;
     align-items: center;
     justify-content: center;
     width: 30%;
+}
+
+.confirmar-quitacao{
+    margin-top: 25px;
 
 }
 
-.confirmar-negociacao button {
+.confirmar-quitacao button{
+    background-color: var(--verde);
+    color: var(--branco);
+}
 
+.confirmar-negociacao button {
     background-color: var(--verde);
     color: var(--branco);
     width: 100%;
