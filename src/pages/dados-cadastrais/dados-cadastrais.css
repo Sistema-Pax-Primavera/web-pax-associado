@@ -1,6 +1,7 @@
 .container-associados{
     display: flex;
     gap: 10px;
+    width: 100%;
 }
 
 .container{
@@ -32,7 +33,6 @@
     padding: 10px;
     border-radius: 3px;
     gap: 20px;
-    width: 97%;
 }
 
 
@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 20px;
+    gap: 5px;
 }
 
 
@@ -52,7 +52,6 @@
 }
 
 .campos-01 input{
-    width: 100%;
     font-weight: 500;
 }
 
@@ -63,14 +62,15 @@
 }
 
 .campos-02 input{
-    width: 100%;
     font-weight: 500;
 }
 
 .campos-02 select{
     display: flex;
     flex-direction: column;
-    width: 110%;
+    width: 100%;
+    font-weight: 700;
+    padding: 7px;
 }
 
 .campos-03{
@@ -80,7 +80,6 @@
 }
 
 .campos-03 input{
-    width: 100%;
     font-weight: 500;
 }
 
@@ -88,11 +87,6 @@
     width: 8%;
     display: flex;
     flex-direction: column;
-}
-
-.campos-04 input{
-    width: 100%;
-    font-weight: 500;
 }
 
 .icones-nome{
@@ -118,4 +112,10 @@
     background-color: var(--verde);
     width: 20%;
     color: var(--branco);
+}
+
+.campo-info-bairro{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
 }

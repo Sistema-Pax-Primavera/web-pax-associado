@@ -33,7 +33,6 @@ const DadosCadastrais = () => {
     const classes = useStyles();
 
     return (
-        <>
             <div className='container-associados'>
                 <Header />
                 <div className='container'>
@@ -63,7 +62,7 @@ const DadosCadastrais = () => {
                                 <label>Contrato</label>
                                 <input></input>
                             </div>
-                            <div className='campos-04'>
+                            <div className='campo-info-bairro'>
                                 <label>UF</label>
                                 <select></select>
                             </div>
@@ -85,7 +84,7 @@ const DadosCadastrais = () => {
                                 <label>Data do Contrato</label>
                                 <DateMaskInput />
                             </div>
-                            <div className='campos-04'>
+                            <div className='campo-info-bairro'>
                                 <label>Cremação</label>
                                 <Switch {...label} size="small" />
                             </div>
@@ -109,19 +108,19 @@ const DadosCadastrais = () => {
                                 <label>Bairro</label>
                                 <input></input>
                             </div>
-                            <div className='campos-04'>
+                            <div className='campo-info-bairro'>
                                 <label>Quadra</label>
                                 <input></input>
                             </div>
-                            <div className='campos-04'>
+                            <div className='campo-info-bairro'>
                                 <label>Lote</label>
                                 <input></input>
                             </div>
-                            <div className='campos-04'>
+                            <div className='campo-info-bairro'>
                                 <label>Nº</label>
                                 <input></input>
                             </div>
-                            <div className='campos-04'>
+                            <div className='campo-info-bairro'>
                                 <label>Tipo</label>
                                 <select></select>
                             </div>
@@ -176,15 +175,15 @@ const DadosCadastrais = () => {
                                             <label>Quadra</label>
                                             <input></input>
                                         </div>
-                                        <div className='campos-04'>
+                                        <div className='campo-info-bairro'>
                                             <label>Lote</label>
                                             <input></input>
                                         </div>
-                                        <div className='campos-04'>
+                                        <div className='campo-info-bairro'>
                                             <label>Nº</label>
                                             <input></input>
                                         </div>
-                                        <div className='campos-04'>
+                                        <div className='campo-info-bairro'>
                                             <label>Tipo</label>
                                             <select></select>
                                         </div>
@@ -212,7 +211,6 @@ const DadosCadastrais = () => {
 
                 </div>
             </div>
-        </>
 
     );
 };

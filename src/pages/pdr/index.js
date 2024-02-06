@@ -337,29 +337,12 @@ const PDR = () => {
                     </MyAccordion>
 
                     <MyAccordion
-                        title="Carência"
+                        title="Histórico de Recebimento"
                         icon={<AnalyticsIcon />}
                         expandedIcon={<ExpandMoreIcon />}
                     >
                         <div className='layout-linha'>
-                            <div className='container-linha'>
-                                <div className='campos-04'>
-                                    <label>Desconto</label>
-                                    <input></input>
-                                </div>
-                                <div className='campos-02'>
-                                    <label>Valor Total</label>
-                                    <input></input>
-                                </div>
-                                <div className='campos-06'>
-                                    <label>Forma de pagamento</label>
-                                    <select></select>
-                                </div>
-                                <div className='campos-01'>
-                                    <button>CONFIRMAR</button>
-                                </div>
-
-                            </div>
+                            
                             <div className='container-linha'>
                                 <TableContainer component={Paper}>
                                     <Table sx={{ minWidth: 650 }} aria-label="simple table">

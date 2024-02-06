@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import AttributionIcon from '@mui/icons-material/Attribution';
 function createData(name, filiacao, carencia, falecimento, valor, especie) {
     return { name, filiacao, carencia, falecimento, valor, especie };
 }
@@ -144,6 +144,7 @@ const Dependentes = () => {
                                                             <div className='delete-botao'>
                                                                 <button><DeleteForeverIcon fontSize={'small'} /></button>
                                                             </div>
+                                                            
                                                         </div>
                                                     </TableCell>
                                                 </TableRow>
@@ -254,6 +255,9 @@ const Dependentes = () => {
                                                             </div>
                                                             <div className='delete-botao'>
                                                                 <button><DeleteForeverIcon fontSize={'small'} /></button>
+                                                            </div>
+                                                            <div className='promove-dependente'>
+                                                                <button><AttributionIcon fontSize={'small'} /></button>
                                                             </div>
                                                         </div>
                                                     </TableCell>

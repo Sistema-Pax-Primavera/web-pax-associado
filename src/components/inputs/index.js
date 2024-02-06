@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
+import './input.css'
 
 const DateMaskInput = () => {
   const [date, setDate] = useState('');
@@ -9,7 +10,7 @@ const DateMaskInput = () => {
   };
 
   return (
-    <div>
+    <div className='data-input'>
       <InputMask
         mask="99/99/9999"
         maskPlaceholder={null}

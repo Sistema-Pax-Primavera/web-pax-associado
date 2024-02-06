@@ -195,7 +195,7 @@ const Associado = () => {
             {!loading && searchResult.length > 0 && (
                 <div className='tabelas-associados'>
                     <TableContainer component={Paper} className="TableContainer">
-                        <Table sx={{ maxWidth: 1100 }} aria-label='simple table'>
+                        <Table aria-label='simple table'>
                             <TableHead className="TableHead">
                                 <TableRow> 
                                     <TableCell align='center'>Contrato</TableCell>
