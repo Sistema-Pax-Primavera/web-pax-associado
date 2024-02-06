@@ -1,4 +1,4 @@
-.recebimento-associado{
+.recebimento-associado {
     display: flex;
     gap: 10px;
     width: 100%;
@@ -6,74 +6,78 @@
     margin-bottom: 10px;
 }
 
-.recebimento-associado button{
+.recebimento-associado button {
     background-color: var(--verde);
     color: var(--branco);
     width: 85%;
 }
 
-.campos-recebimento button{
+.campos-recebimento button {
     width: 20%;
     margin-top: 15px;
     font-weight: 700;
     font-size: 12px;
 }
 
-.linhas-recebimento{
+.linhas-recebimento {
     display: flex;
     align-items: center;
     gap: 20px;
     width: 100%;
 }
 
-.campos-recebimento{
+.campos-recebimento {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 5px;
 }
 
-.tabela-acerto-recebimento{
+.tabela-acerto-recebimento {
     display: flex;
     flex-direction: column;
 }
 
-.formas-recebimento{
+.formas-recebimento {
     width: 10%;
 }
 
-.recebimento-03{
+.recebimento-03 {
     width: 80%;
 }
 
-.recebimento-01{
-    width: 17%;
+.recebimento-01 {
+    width: 27%;
     display: flex;
-    flex-direction:column ;
-    
+    flex-direction: column;
+
 }
 
-.recebimento-01 select{
+.recebimento-01 select {
     width: 100%;
 }
 
-.recebimento-01 input{
+.recebimento-01 input {
     padding: 8px;
     width: 100%;
+    box-sizing: border-box;
 }
 
-.recebimento-02 input{
+.recebimento-02 input {
     padding: 7px;
     width: 100%;
+    box-sizing: border-box;
 }
-.recebimento-02{
+
+.recebimento-02 {
     width: 10%;
     display: flex;
     flex-direction: column;
 
 }
 
-.container-linhas{
+.container-linhas {
     display: flex;
     gap: 10px;
+    width: 45%;
 }
