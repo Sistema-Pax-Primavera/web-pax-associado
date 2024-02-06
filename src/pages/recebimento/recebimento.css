@@ -48,18 +48,29 @@
 
 .recebimento-01{
     width: 17%;
+    display: flex;
+    flex-direction:column ;
     
+}
+
+.recebimento-01 select{
+    width: 100%;
 }
 
 .recebimento-01 input{
     padding: 8px;
+    width: 100%;
 }
 
 .recebimento-02 input{
     padding: 7px;
+    width: 100%;
 }
 .recebimento-02{
     width: 10%;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .container-linhas{
