@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import Header from '../../components/header/header';
-import './dados-cadastrais.css'
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
 import HomeIcon from '@mui/icons-material/Home';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import { makeStyles } from '@material-ui/core/styles';
-import MyAccordion from '../../components/accordion';
+import Switch from '@mui/material/Switch';
 import DateMaskInput from '../../components/inputs';
-
+import './dados_cadastrais.css';
+import MyAccordion from '../../components/accordion';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { makeStyles } from '@material-ui/core/styles';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
 const useStyles = makeStyles((theme) => ({
     accordionContainer: {
         border: `1px solid rgba(0, 0, 0, 0.1)`, // Adicione uma borda padrão
@@ -28,14 +24,17 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
+
 const DadosCadastrais = () => {
     const [isComercialEnabled, setIsComercialEnabled] = useState(false);
     const classes = useStyles();
 
     return (
+        <>
             <div className='container-associados'>
                 <Header />
-                <div className='container'>
+                <div className='dados-cobranca-associado'>
+
                     <MyAccordion
                         title="Dados do Titular"
                         icon={<AccountCircleIcon />}
@@ -145,74 +144,16 @@ const DadosCadastrais = () => {
                             </div>
                         </div>
                     </MyAccordion>
-                    <div className={classes.accordionContainer}>
-                        <Accordion className={isComercialEnabled ? '' : 'Mui-disabled'}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2-content"
-                                id="panel2-header"
-                            >
-                                <div className='icones-nome'>
-                                    <label> <ApartmentIcon />Endereço Comercial</label>
-                                </div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <div className='layout-linha'>
-                                    <div className='container-linha'>
-                                        <div className='campos-03'>
-                                            <label>CEP</label>
-                                            <input></input>
-                                        </div>
-                                        <div className='campos-02'>
-                                            <label>Município</label>
-                                            <input></input>
-                                        </div>
-                                        <div className='campos-02'>
-                                            <label>Bairro</label>
-                                            <input></input>
-                                        </div>
-                                        <div className='campos-04'>
-                                            <label>Quadra</label>
-                                            <input></input>
-                                        </div>
-                                        <div className='campo-info-bairro'>
-                                            <label>Lote</label>
-                                            <input></input>
-                                        </div>
-                                        <div className='campo-info-bairro'>
-                                            <label>Nº</label>
-                                            <input></input>
-                                        </div>
-                                        <div className='campo-info-bairro'>
-                                            <label>Tipo</label>
-                                            <select></select>
-                                        </div>
-                                    </div>
-                                    <div className='container-linha'>
-                                        <div className='campos-01'>
-                                            <label>Rua</label>
-                                            <input></input>
-                                        </div>
-                                        <div className='campos-02'>
-                                            <label>Complemento</label>
-                                            <input></input>
-                                        </div>
 
-                                    </div>
-                                </div>
 
-                            </AccordionDetails>
-                        </Accordion>
-
-                    </div>
-                    <div className='salva-dependentes'>
+                    <div className='salvar-associado'>
                         <button>SALVAR</button>
                     </div>
-
                 </div>
             </div>
 
-    );
-};
+        </>
+    )
+}
 
 export default DadosCadastrais;
