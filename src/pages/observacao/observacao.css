@@ -4,6 +4,18 @@
     flex-direction: column;
 }
 
+.container-observacao-associado {
+    margin-top: 20px;
+    width: 50%;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    background-color: var(--cinza-leve);
+    gap: 10px;
+}
+
 
 .textarea textarea{
     border: none;

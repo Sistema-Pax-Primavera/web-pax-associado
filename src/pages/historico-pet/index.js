@@ -65,6 +65,7 @@ const HistoricoPET = () => {
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
+                <div className="historico-container-funeraria">
                 <div className='icones-nome'>
                     <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
                 </div>
@@ -82,6 +83,7 @@ const HistoricoPET = () => {
                             </div>
                         </div>
                     ))}
+                </div>
                 </div>
             </div>
 

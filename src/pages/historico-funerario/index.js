@@ -40,23 +40,26 @@ const HistoricoFuneraria = () => {
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
-                <div className='icones-nome'>
-                    <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
-                </div>
-                <div className="historico-container-funeraria">
-                    {historicos.map((historico, index) => (
-                        <div className="historico-card-funeraria" key={index}>
-                            <div className="info-funeraria">
-                                <p><strong>Nome:</strong> {historico.nome}</p>
-                                <p><strong>Data de Nascimento:</strong> {historico.dataNascimento}</p>
-                                <p><strong>Plano:</strong> {historico.plano}</p>
-                                <p><strong>Data de Falecimento:</strong> {historico.dataFalecimento}</p>
-                                <p><strong>Parentesco:</strong> {historico.parentesco}</p>
-                                {historico.cremacao == true && <p><strong>Data da Cremacao:</strong> {historico.dataCremacao}</p>}
+                <div className='fundo-historico'>
+                    <div className='icones-nome'>
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
+                    </div>
+                    <div className="historico-container-funeraria">
+                        {historicos.map((historico, index) => (
+                            <div className="historico-card-funeraria" key={index}>
+                                <div className="info-funeraria">
+                                    <p><strong>Nome:</strong> {historico.nome}</p>
+                                    <p><strong>Data de Nascimento:</strong> {historico.dataNascimento}</p>
+                                    <p><strong>Plano:</strong> {historico.plano}</p>
+                                    <p><strong>Data de Falecimento:</strong> {historico.dataFalecimento}</p>
+                                    <p><strong>Parentesco:</strong> {historico.parentesco}</p>
+                                    {historico.cremacao == true && <p><strong>Data da Cremacao:</strong> {historico.dataCremacao}</p>}
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
+
             </div>
         </>
     )

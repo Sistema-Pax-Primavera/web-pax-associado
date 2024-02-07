@@ -30,7 +30,7 @@ const Observacao = () => {
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
-                <div className='container-contato-associado'>
+                <div className='container-observacao-associado'>
                     <div className='icones-nome'>
                         <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
                     </div>

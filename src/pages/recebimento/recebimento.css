@@ -6,10 +6,73 @@
     margin-bottom: 10px;
 }
 
+.dados-recebimento-associado {
+        margin-top: 20px;
+        border-radius: 5px;
+        height: auto;
+        gap: 5px;
+        width: 83%;
+        display: flex;
+        max-height: 500px;
+        overflow-y: auto;
+        flex-direction: column;
+    
+}
+
+.pag-dupl-men{
+    display: flex;
+    width: 100%;
+}
+
+.duplica-adiciona-recebimento{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    
+}
+
+.forma-pagamento-recebimento{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.conta-bancaria-recebimento {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.muda-linha-recebimento{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5px; 
+    background-color: var(--verde);/* Cor do thumb/scrollbar */
+}
+
+::-webkit-scrollbar {
+    width: 5px; /* Largura do scrollbar */
+}
+
 .recebimento-associado button {
     background-color: var(--verde);
     color: var(--branco);
     width: 85%;
+}
+
+.adicionar-recebimento-forma{
+    margin-top: 15px;
+    width: 10%;
+}
+
+.adicionar-recebimento-forma button{
+    width: 100%;
+    background-color: var(--verde);
+    color: var(--branco);
+    cursor: pointer;
 }
 
 .fundo-recebimento {
@@ -24,8 +87,27 @@
 .campos-recebimento button {
     width: 20%;
     margin-top: 15px;
+    cursor: pointer;
     font-weight: 700;
     font-size: 12px;
+}
+
+.receber-add-recebimento{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.receber-add-recebimento button{
+    color: var(--branco);
+    background-color: var(--verde);
+    width: 10%;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: 700;
 }
 
 .linhas-recebimento {
@@ -34,6 +116,7 @@
     gap: 5px;
     width: 100%;
 }
+
 
 .campos-recebimento {
     display: flex;
@@ -55,10 +138,30 @@
     width: 80%;
 }
 
+.deleta-recebimento-associado{
+    width: 15%;
+}
+
+.deleta-recebimento-associado button{
+    color: var(--branco);
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.acordion-recebimento{
+    width: 50%;
+}
+
+
 .recebimento-01 {
     width: 18%;
     display: flex;
     flex-direction: column;
+}
+
+.recebimento-01 select{
+    font-weight: 700;
 }
 
 .delete-recebimento{
@@ -76,12 +179,14 @@
 
 .recebimento-01 input {
     padding: 8px;
+    font-weight: 700;
     width: 100%;
     box-sizing: border-box;
 }
 
 .recebimento-02 input {
     padding: 7px;
+    font-weight: 700;
     width: 100%;
     box-sizing: border-box;
 }
