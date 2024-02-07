@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../../components/header/header';
 import './historico-funeraria.css';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from 'react-router-dom';
 
 const HistoricoFuneraria = () => {
@@ -40,7 +41,7 @@ const HistoricoFuneraria = () => {
             <div className='container-associados'>
                 <Header cliente={cliente} />
                 <div className='icones-nome'>
-                    <label><AccountCircleIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato} </label>
+                    <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
                 </div>
                 <div className="historico-container-funeraria">
                     {historicos.map((historico, index) => (

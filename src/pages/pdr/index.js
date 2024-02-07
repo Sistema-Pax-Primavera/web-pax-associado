@@ -103,7 +103,7 @@ const PDR = () => {
                 <Header cliente={cliente} />
                 <div className='container'>
                     <MyAccordion
-                        title={`${cliente.nome} Nº do Contrato - ${cliente.contrato}`}
+                        title={`${cliente ? cliente.nome : ''} Nº do Contrato - ${cliente ? cliente.contrato : ''}`}
                         icon={<AccountCircleIcon />}
                         expandedIcon={<ExpandMoreIcon />}
                     >

@@ -75,7 +75,7 @@ const Contato = () => {
                 <div className='container-contato-associado'>
                     <div className='nome-contato-associado'>
                         <div className='icones-nome'>
-                            <label><CallIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato}</label>
+                            <label><CallIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
                         </div>
                         <div>
                             <div className='todos-contatos'>

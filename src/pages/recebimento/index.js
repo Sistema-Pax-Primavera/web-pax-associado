@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { useLocation } from 'react-router-dom';
 
 function createData(parcela, vencimento, valor, status) {
     return { parcela, vencimento, valor, status };
@@ -22,6 +23,8 @@ const rows = [
 ];
 
 const Recebimento = () => {
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
     const [quantidadeMensalidades, setQuantidadeMensalidades] = useState('');
     const [totalPagar, setTotalPagar] = useState('');
     const [desconto, setDesconto] = useState('');
@@ -69,11 +72,11 @@ const Recebimento = () => {
 
     return (
         <div className='container-associados'>
-            <Header />
+            <Header cliente={cliente} />
             <div className='dados-cobranca-associado'>
                 <div className='fundo-recebimento'>
                     <div className='icones-nome'>
-                        <label><AccountCircleIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776 </label>
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
                     </div>
                     <div className='tabela-acerto-recebimento'>
                         <div className='recebimento-associado'>

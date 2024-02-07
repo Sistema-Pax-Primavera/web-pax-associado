@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../../components/header/header';
 import './historico-pet.css';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Pets, Event, Healing, Vaccines } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 
@@ -65,7 +66,7 @@ const HistoricoPET = () => {
             <div className='container-associados'>
                 <Header cliente={cliente} />
                 <div className='icones-nome'>
-                    <label><AccountCircleIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato} </label>
+                    <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
                 </div>
                 <div className="historico-container">
                     {historicos.map((historico, index) => (

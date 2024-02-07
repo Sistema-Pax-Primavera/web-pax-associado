@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../../components/header/header';
-import PaxCart from '../../../assets/pax-horizontal.jpg'
+import PaxCart from '../../../assets/pax-horizontal.jpg';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './carteirinhas.css';
 import { useLocation } from 'react-router-dom';
 
@@ -41,7 +42,7 @@ const Carteirinha = () => {
             <div className='container-associados'>
                 <Header cliente={cliente} />
                 <div className='icones-nome'>
-                    <label><AccountCircleIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato} </label>
+                    <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
                 </div>
                 <div className='carteirinha-container'>
                     <label htmlFor="selectNome">Escolha o nome:</label>
