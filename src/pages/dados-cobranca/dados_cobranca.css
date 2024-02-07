@@ -43,6 +43,7 @@
 
 .campos-cadastrais-02 input {
     width: 100%;
+    
     font-weight: 500;
     background-color: var(--branco);
     box-sizing: border-box;
