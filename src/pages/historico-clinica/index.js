@@ -51,22 +51,24 @@ const HistoricoClinica = () => {
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
-                <div className='icones-nome'>
-                    <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}  </label>
-                </div>
-                <div className="historico-container-clinica">
-                    {historicos.map((historico, index) => (
-                        <div className="historico-card-clinica" key={index}>
-                            <div className="icone-clinica">{getIconByProcedimento(historico.procedimento)}</div>
-                            <div className="info-clinica">
-                                <p><strong>Nome:</strong> {historico.nome}</p>
-                                <p><strong>Data de Nascimento:</strong> {historico.dataNascimento}</p>
-                                <p><strong>Procedimento:</strong> {historico.procedimento}</p>
-                                <p><strong>Data do Procedimento:</strong> {historico.dataProcedimento}</p>
-                                <p><strong>Status:</strong> {historico.status}</p>
+                <div className="historico-clinica-funeraria">
+                    <div className='icones-nome'>
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}  </label>
+                    </div>
+                    <div className="historico-container-clinica">
+                        {historicos.map((historico, index) => (
+                            <div className="historico-card-clinica" key={index}>
+                                <div className="icone-clinica">{getIconByProcedimento(historico.procedimento)}</div>
+                                <div className="info-clinica">
+                                    <p><strong>Nome:</strong> {historico.nome}</p>
+                                    <p><strong>Data de Nascimento:</strong> {historico.dataNascimento}</p>
+                                    <p><strong>Procedimento:</strong> {historico.procedimento}</p>
+                                    <p><strong>Data do Procedimento:</strong> {historico.dataProcedimento}</p>
+                                    <p><strong>Status:</strong> {historico.status}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
 

@@ -3,10 +3,8 @@
 .historico-container-clinica {
     display: flex;
     flex-wrap: wrap;
-    padding: 15px;
     gap: 10px;
     margin-top: 25px;
-    margin-left: 10px;
 }
 
 .historico-card-clinica {
@@ -26,6 +24,13 @@
 
 .historico-card-clinica p {
     font-size: 14px;
+}
+
+.historico-clinica-funeraria{
+    background-color: var(--cinza-leve);
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .historico-card-clinica::before {
