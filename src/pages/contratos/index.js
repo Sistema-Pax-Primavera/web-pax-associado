@@ -8,8 +8,11 @@ import { saveAs } from 'file-saver';  // Importar a função saveAs do file-save
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useLocation } from 'react-router-dom';
 
 const Contrato = () => {
+  const location = useLocation();
+  const cliente = location.state && location.state.cliente;
   const [arquivos, setArquivos] = useState([]);
   const [arquivoSelecionado, setArquivoSelecionado] = useState(null);
 
@@ -37,11 +40,11 @@ const Contrato = () => {
   return (
     <>
       <div className='container-associados'>
-        <Header />
+        <Header cliente={cliente} />
         <div className='container-contrato-associado'>
           <div className='icones-nome'>
             <label>
-              <AssignmentIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776
+              <AssignmentIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato}
             </label>
           </div>
           <div className='container-contratos'>
@@ -65,10 +68,10 @@ const Contrato = () => {
                       <label> {arquivo.name}</label>
                       <div className='baixa-delete-contrato'>
                         <div className='deleta-contrato'>
-                          <button onClick={() => handleExcluirClick(index)}><DeleteIcon fontSize={'small'}/></button>
+                          <button onClick={() => handleExcluirClick(index)}><DeleteIcon fontSize={'small'} /></button>
                         </div>
                         <div className='baixa-contrato'>
-                          <button onClick={() => handleDownloadClick(arquivo)}><DownloadIcon fontSize={'small'}/></button>
+                          <button onClick={() => handleDownloadClick(arquivo)}><DownloadIcon fontSize={'small'} /></button>
                         </div>
                       </div>
                     </div>

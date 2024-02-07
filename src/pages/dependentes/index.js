@@ -17,6 +17,8 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttributionIcon from '@mui/icons-material/Attribution';
+import { useLocation } from 'react-router-dom';
+
 function createData(name, filiacao, carencia, falecimento, valor, especie) {
     return { name, filiacao, carencia, falecimento, valor, especie };
 }
@@ -26,6 +28,8 @@ const rows = [
 ];
 
 const Dependentes = () => {
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
     const [mostrarFormularioPet, setMostrarFormularioPet] = useState(false);
     const [mostrarFormularioCremacao, setMostrarFormularioCremacao] = useState(true);
 
@@ -37,11 +41,11 @@ const Dependentes = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
                 <div className='container-dependentes'>
                     <div className='pet-cremacao-humana'>
 
-                        <p><AccountCircleIcon /> Carlos Henrique Nº do Contrato - 123789</p>
+                        <p><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</p>
                         <button
                             className={mostrarFormularioPet ? '' : 'botao-ativo'}
                             onClick={() => mostrarFormulario('pet')}
@@ -144,7 +148,7 @@ const Dependentes = () => {
                                                             <div className='delete-botao'>
                                                                 <button><DeleteForeverIcon fontSize={'small'} /></button>
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </TableCell>
                                                 </TableRow>

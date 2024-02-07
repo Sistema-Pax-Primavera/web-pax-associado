@@ -2,8 +2,11 @@ import React from 'react'
 import Header from '../../components/header/header';
 import { Pets, Event, Healing, Vaccines, MedicalInformation, Medication } from '@mui/icons-material';
 import './historico-clinica.css';
+import { useLocation } from 'react-router-dom';
 
 const HistoricoClinica = () => {
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
 
     const historicos = [
         {
@@ -46,7 +49,10 @@ const HistoricoClinica = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
+                <div className='icones-nome'>
+                    <label><AccountCircleIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato} </label>
+                </div>
                 <div className="historico-container-clinica">
                     {historicos.map((historico, index) => (
                         <div className="historico-card-clinica" key={index}>

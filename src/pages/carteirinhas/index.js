@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Header from '../../components/header/header';
 import PaxCart from '../../../assets/pax-horizontal.jpg'
 import './carteirinhas.css';
+import { useLocation } from 'react-router-dom';
 
 const Carteirinha = () => {
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
     const [fimMes, setFimMes] = useState('');
     const [clienteNome, setClienteNome] = useState('');  // Estado para armazenar o nome selecionado
 
@@ -36,7 +39,10 @@ const Carteirinha = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
+                <div className='icones-nome'>
+                    <label><AccountCircleIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato} </label>
+                </div>
                 <div className='carteirinha-container'>
                     <label htmlFor="selectNome">Escolha o nome:</label>
                     <select id="selectNome" value={clienteNome} onChange={handleNomeChange}>

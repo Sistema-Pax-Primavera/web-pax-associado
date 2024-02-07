@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/header/header';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import Switch from '@mui/material/Switch';
 import DateMaskInput from '../../components/inputs';
 import './dados_cadastrais.css';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import MyAccordion from '../../components/accordion';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     accordionContainer: {
@@ -28,11 +33,27 @@ const useStyles = makeStyles((theme) => ({
 const DadosCadastrais = () => {
     const [isComercialEnabled, setIsComercialEnabled] = useState(false);
     const classes = useStyles();
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
+
+    useEffect(() => {
+        if (cliente) {
+            console.log('Dados do cliente recebidos no Dados Cadastrais:', cliente);
+        }
+    }, [cliente]);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        // setDadosCliente((prevDadosCliente) => ({
+        //     ...prevDadosCliente,
+        //     [name]: value,
+        // }));
+    };
 
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
                 <div className='dados-cobranca-associado'>
 
                     <MyAccordion
@@ -43,11 +64,11 @@ const DadosCadastrais = () => {
                         <div className='container-linha'>
                             <div className='campos-01'>
                                 <label>Nome</label>
-                                <input></input>
+                                <input type="text" name="nome" value={cliente.nome} onChange={handleChange} />
                             </div>
                             <div className='campos-02'>
                                 <label>CPF</label>
-                                <input></input>
+                                <input type="text" name="cpf" value={cliente.cpf} onChange={handleChange} />
                             </div>
                             <div className='campos-03'>
                                 <label>RG</label>
@@ -59,7 +80,7 @@ const DadosCadastrais = () => {
                             </div>
                             <div className='campos-03'>
                                 <label>Contrato</label>
-                                <input></input>
+                                <input type="text" name="contrato" value={cliente.contrato} onChange={handleChange} />
                             </div>
                             <div className='campo-info-bairro'>
                                 <label>UF</label>
@@ -144,7 +165,63 @@ const DadosCadastrais = () => {
                             </div>
                         </div>
                     </MyAccordion>
+                    <Accordion className={isComercialEnabled ? '' : 'Mui-disabled'}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2-content"
+                            id="panel2-header"
+                        >
+                            <div className='icones-nome'>
+                                <label> <ApartmentIcon />Endereço Comercial</label>
+                            </div>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <div className='layout-linha'>
+                                <div className='container-linha'>
+                                    <div className='campos-03'>
+                                        <label>CEP</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campos-02'>
+                                        <label>Município</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campos-02'>
+                                        <label>Bairro</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campos-04'>
+                                        <label>Quadra</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campo-info-bairro'>
+                                        <label>Lote</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campo-info-bairro'>
+                                        <label>Nº</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campo-info-bairro'>
+                                        <label>Tipo</label>
+                                        <select></select>
+                                    </div>
+                                </div>
+                                <div className='container-linha'>
+                                    <div className='campos-01'>
+                                        <label>Rua</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campos-02'>
+                                        <label>Complemento</label>
+                                        <input></input>
+                                    </div>
 
+                                </div>
+                            </div>
+
+                        </AccordionDetails>
+                    </Accordion>
 
                     <div className='salvar-associado'>
                         <button>SALVAR</button>

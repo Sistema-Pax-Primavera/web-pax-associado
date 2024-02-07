@@ -108,12 +108,12 @@ const clientes = [
     }
 ];
 
-function createData(id, contrato, nome, regiao, ult_pagamento, situacao) {
-    return { id, contrato, nome, regiao, ult_pagamento, situacao };
+function createData(id, contrato, cpf, nome, regiao, ult_pagamento, situacao) {
+    return { id, contrato, cpf, nome, regiao, ult_pagamento, situacao };
 }
 
 const rows = clientes.map(cliente =>
-    createData(cliente.id, cliente.contrato, cliente.nome, cliente.regiao, cliente.ult_pagamento, cliente.situacao)
+    createData(cliente.id, cliente.contrato, cliente.cpf, cliente.nome, cliente.regiao, cliente.ult_pagamento, cliente.situacao)
 );
 
 const getSituacaoLabel = (situacao) => {
@@ -127,6 +127,14 @@ const getSituacaoLabel = (situacao) => {
         default:
             return '';
     }
+};
+
+const formatarCPF = (cpf) => {
+    // Adapte conforme necessário para o formato desejado
+    const parteVisivel = cpf.substring(0, 3); // Primeiros 5 dígitos visíveis
+    const parteOculta = '.***.***'; // Parte oculta
+    const ultimosDigitos = cpf.substring(9); // Últimos 2 dígitos visíveis
+    return `${parteVisivel}${parteOculta}-${ultimosDigitos}`;
 };
 
 const Associado = () => {
@@ -158,12 +166,13 @@ const Associado = () => {
         }, 3000);
     };
 
-    const handleOpenButtonClick = () => {
+    const handleOpenButtonClick = (cliente) => {
         setShowImage(true);
         setSearchResult([]);
         setSearchTerm('');
-        navigate('/dados-cadastrais')
-        localStorage.setItem('page-associado', '/dados-cadastrais')
+        navigate('/dados-cadastrais', { state: { cliente } })
+        localStorage.setItem('page-associado', '/dados-cadastrais');
+        // localStorage.setItem('clienteSelecionado', JSON.stringify(cliente));
     };
 
     return (
@@ -197,9 +206,10 @@ const Associado = () => {
                     <TableContainer component={Paper} className="TableContainer">
                         <Table aria-label='simple table'>
                             <TableHead className="TableHead">
-                                <TableRow> 
+                                <TableRow>
                                     <TableCell align='center'>Contrato</TableCell>
                                     <TableCell align='center'>Nome</TableCell>
+                                    <TableCell align='center'>CPF</TableCell>
                                     <TableCell align='center'>Região</TableCell>
                                     <TableCell align='center'>Ultimo Pagamento</TableCell>
                                     <TableCell align='center'>Situação</TableCell>
@@ -211,12 +221,13 @@ const Associado = () => {
                                     <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                         <TableCell align='center'>{row.contrato}</TableCell>
                                         <TableCell align='center'>{row.nome}</TableCell>
+                                        <TableCell align='center'>{formatarCPF(row.cpf)}</TableCell>
                                         <TableCell align='center'>{row.regiao}</TableCell>
                                         <TableCell align='center'>{row.ult_pagamento}</TableCell>
                                         <TableCell align='center'>{getSituacaoLabel(row.situacao)}</TableCell>
                                         <TableCell align='center'>
                                             <div className='opcao-associado'>
-                                                <button onClick={handleOpenButtonClick}>ABRIR</button>
+                                                <button onClick={() => handleOpenButtonClick(row)}>ABRIR</button>
                                             </div>
                                         </TableCell>
                                     </TableRow>

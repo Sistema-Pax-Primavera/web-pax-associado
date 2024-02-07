@@ -18,6 +18,7 @@ import Recebimento from "./pages/recebimento";
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/associado">
         <Routes>
+            <Route exact path="pax-primavera/associado" element={<Associado />} />
             <Route exact path="/" element={<Associado />} />
             <Route exact path="/dados-cadastrais" element={<DadosCadastrais />} />
             <Route exact path="/dados-cobranca" element={<DadosCobranca />} />

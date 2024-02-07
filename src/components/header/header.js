@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './header.css';
 
-const Header = () => {
+const Header = ({ cliente }) => {
     const [activeRoute, setActiveRoute] = useState("");
     const navigate = useNavigate();
 
     const handleMenuClick = (route) => {
         // Navegar para a rota específica
-        navigate(route);
+        console.log(cliente)
+        navigate(route, { state: { cliente } });
         // Salvar a rota no localStorage
         localStorage.setItem("page-associado", route);
         // Atualizar a rota ativa

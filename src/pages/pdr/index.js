@@ -23,6 +23,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import PrintIcon from '@mui/icons-material/Print';
 import { Select } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 function createData(id, parcela, vencimento, valor, status) {
     return { id, parcela, vencimento, valor, status };
@@ -92,13 +93,17 @@ const PDR = () => {
     const [open3, setOpen3] = React.useState(false);
     const handleOpen3 = () => setOpen3(true);
     const handleClose3 = () => setOpen3(false);
+
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
+
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
                 <div className='container'>
                     <MyAccordion
-                        title="Carlos Henrique Nº do Contrato - 789776"
+                        title={`${cliente.nome} Nº do Contrato - ${cliente.contrato}`}
                         icon={<AccountCircleIcon />}
                         expandedIcon={<ExpandMoreIcon />}
                     >
@@ -342,7 +347,7 @@ const PDR = () => {
                         expandedIcon={<ExpandMoreIcon />}
                     >
                         <div className='layout-linha'>
-                            
+
                             <div className='container-linha'>
                                 <TableContainer component={Paper}>
                                     <Table sx={{ minWidth: 650 }} aria-label="simple table">

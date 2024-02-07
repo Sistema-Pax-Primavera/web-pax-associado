@@ -2,16 +2,20 @@ import React from 'react'
 import Header from '../../components/header/header';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './inativar-contrato.css'
+import { useLocation } from 'react-router-dom';
 
 const InativarContrato = () => {
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
+
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
                 <div className='dados-cobranca-associado'>
                     <div className='fundo-cobranca'>
                         <div className='icones-nome'>
-                            <label><AccountCircleIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776 </label>
+                            <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
                         </div>
                         <div className='container-linha'>
                             <div className='campos-03'>

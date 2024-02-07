@@ -5,12 +5,15 @@ import CallIcon from '@mui/icons-material/Call';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import { useLocation } from 'react-router-dom';
 
 const Contato = () => {
     const [contatos, setContatos] = useState([]);
     const [tipoContato, setTipoContato] = useState('Telefone');
     const [contatoValue, setContatoValue] = useState('');
     const [contatoEditando, setContatoEditando] = useState(null);
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
 
     const adicionarContato = () => {
         if (!contatoValue) {
@@ -64,14 +67,15 @@ const Contato = () => {
                 break;
         }
     };
+
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
                 <div className='container-contato-associado'>
                     <div className='nome-contato-associado'>
                         <div className='icones-nome'>
-                            <label><CallIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776 </label>
+                            <label><CallIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato}</label>
                         </div>
                         <div>
                             <div className='todos-contatos'>

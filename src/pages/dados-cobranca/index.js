@@ -1,21 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../../components/header/header';
 import './dados_cobranca.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Switch from '@mui/material/Switch';
 import DateMaskInput from '../../components/inputs';
+import { useLocation } from 'react-router-dom';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const DadosCobranca = () => {
+  const location = useLocation();
+  const cliente = location.state && location.state.cliente;
+
+  useEffect(() => {
+    if (cliente) {
+      console.log('Dados do cliente recebidos no Dados Cobranca:', cliente);
+    }
+  }, [cliente]);
+
   return (
     <>
       <div className='container-associados'>
-        <Header />
+        <Header cliente={cliente} />
         <div className='dados-cobranca-associado'>
           <div className='fundo-cobranca'>
             <div className='icones-nome'>
-              <label><AccountCircleIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776 </label>
+              <label><AccountCircleIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato} </label>
             </div>
             <div className='container-linha'>
               <div className='campos-cadastrais-02'>

@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { useLocation } from 'react-router-dom';
 
 function createData(name, data, usuario,) {
     return { name, data, usuario, };
@@ -22,14 +23,16 @@ const rows = [
 
 
 const Observacao = () => {
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
+
     return (
         <>
             <div className='container-associados'>
-                <Header />
+                <Header cliente={cliente} />
                 <div className='container-contato-associado'>
                     <div className='icones-nome'>
-                        <label><AccountCircleIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776 </label>
-
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
                     </div>
                     <div className='container-linha'>
                         <div className='campos-01'>
@@ -72,21 +75,21 @@ const Observacao = () => {
                                             key={row.name}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            
-                                                <TableCell component="th" scope="row">
-                                                    {row.name}
-                                                </TableCell>
-                                                <TableCell align="center">{row.data}</TableCell>
-                                                <TableCell align="center">{row.usuario}</TableCell>
-                                                <TableCell align="center">
-                                                    <div className='botao-opcao'>
-                                                        <div className='edit-botao'>
-                                                            <button><RemoveRedEyeIcon fontSize={'small'} /></button>
-                                                        </div>
 
+                                            <TableCell component="th" scope="row">
+                                                {row.name}
+                                            </TableCell>
+                                            <TableCell align="center">{row.data}</TableCell>
+                                            <TableCell align="center">{row.usuario}</TableCell>
+                                            <TableCell align="center">
+                                                <div className='botao-opcao'>
+                                                    <div className='edit-botao'>
+                                                        <button><RemoveRedEyeIcon fontSize={'small'} /></button>
                                                     </div>
-                                                </TableCell>
-                                        
+
+                                                </div>
+                                            </TableCell>
+
 
                                         </TableRow>
                                     ))}
