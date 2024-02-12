@@ -21,6 +21,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import { useLocation } from 'react-router-dom';
+import moment from "moment";
 
 function createData(parcela, datavencimento, valor, datapagamento) {
     return { parcela, datavencimento, valor, datapagamento };
@@ -48,22 +50,168 @@ const Recebimento = () => {
     const [totalPagar, setTotalPagar] = useState('');
     const [valorOriginal, setValorOriginal] = useState('');
     const [desconto, setDesconto] = useState('');
-    const [parcelasAdicionais, setParcelasAdicionais] = useState([{ formaPagamento: '', valor: '' }]);
+    const [parcelasAdicionais, setParcelasAdicionais] = useState([]);
     const [receberDisponivel, setReceberDisponivel] = useState(false);
     const [mensagem, setMensagem] = useState('');
+    const hoje = moment().format("DD/MM/YYYY");
+    const hora = moment().format("HH:mm");
     const [mensagemCor, setMensagemCor] = useState(red[500]);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => { setReceberDisponivel(false); setOpen(false); }
+    const location = useLocation();
+    const cliente = location.state && location.state.cliente;
+    const [novaParcela, setNovaParcela] = useState({
+        formaPagamento: 'Dinheiro',
+        conta: 'Conta 1',
+        valor: '',
+    });
+
+    const imprimirComprovante = async () => {
+        let conteudoComprovante = `
+    <style>
+    
+      @media print {
+        /* Oculta cabeçalho e rodapé padrão do navegador */
+        @page {
+        margin:0;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+        body {
+            
+          padding-top:0; /* Adicione um espaço para a margem superior do comprovante */
+        }
+        /* Adicione outros estilos de impressão personalizados aqui */
+      }
+
+      /* Estilos visíveis na tela */
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        margin: 25px;
+      }
+      .titulo {
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .subtitulo {
+        text-align: center;
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+      .cnpj {
+        text-align: center;
+        font-size: 10px;
+      }
+      .info {
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+      .linha {
+        border-bottom: 1px solid #000;
+        margin-bottom: 5px;
+      }
+      .parcela {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+      .total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .contrato {
+        margin-bottom: 5px;
+      }
+      .cliente {
+        margin-bottom: 5px;
+      }
+      .obs {
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+      .assinatura {
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+    <div class="titulo">PAX PRIMAVERA</div>
+    <div class="cnpj">CNPJ </div>
+    <div class="subtitulo">TELEFONE (67) 3411 - 8200</div>
+    <div class="subtitulo">IMPRESSÃO</div>
+    <br>
+    <div class="info">
+        <div class="parcela">
+            <div>DATA: ${hoje}</div>
+            <div>HORA: ${hora}</div>
+        </div>
+    </div>
+    <div class="info">USUARIO:</div>
+    <div class="linha"></div>
+    <div class="parcela">
+      <div>Parcela</div>
+      <div>VALOR</div>
+    </div>
+    <div class="linha"></div>
+    <div class="parcela">
+    <div class="data-vencimento">Data Vencimento</div>
+    <div class="valor">Valor</div>
+  </div> 
+        </div>
+    <div class="linha"></div>
+    <div class="total">
+      <div>2 Parcelas</div>
+      <div>TOTAL = 300</div>
+    </div>
+    <div class="linha"></div>
+    <div class="contrato">Data Pagamento: ${hoje}</div>
+    <div class="contrato">Contrato: 00000</div>
+    <div class="contrato">Regiao: COBRADOR</div>
+    <div class="cliente">
+    ADERBAL TESTE<br>
+      RUA DOS BOBOS, N 0, BAIRRO DOIDO<br>
+    </div>
+    <div class="linha"></div>
+    <div class="obs">BAIXE NOSSO APLICATIVO PAX PRIMAVERA<br>E CONFIRA NOSSAS PROMOÇÕES!</div>
+    <div class="info">INFORMAÇÕES (67) 99680-8200</div>
+    <br></br>
+    <div class="linha"></div>
+    <div class="assinatura">ADMINISTRADOR</div>
+  `;
+        const janelaImprimir = window.open("", "_blank");
+        janelaImprimir.document.write(conteudoComprovante);
+        janelaImprimir.document.close();
+
+        // Verifica se a janela foi aberta corretamente
+        if (janelaImprimir && !janelaImprimir.closed) {
+            // Chama o método de impressão diretamente na janela atual
+            janelaImprimir.print();
+        } else {
+            // Se não foi possível abrir uma nova janela, imprime na janela atual
+            window.print();
+        }
+    };
 
     const handleQuantidadeChange = (event) => {
         const quantidade = event.target.value;
-        setQuantidadeMensalidades(quantidade);
-        const valorParcela = 100; // Valor fixo por parcela
-        const total = valorParcela * quantidade; // Calcula o valor total
-        setValorOriginal(total.toFixed(2)); // Atualiza o valor original
-        setTotalPagar(total.toFixed(2)); // Atualiza o valor total
-        setDesconto('');
+        const novoValor = parseFloat(quantidade);
+        if (!isNaN(novoValor) && novoValor >= 0) {
+            setQuantidadeMensalidades(quantidade);
+            const valorParcela = 100; // Valor fixo por parcela
+            const total = valorParcela * quantidade; // Calcula o valor total
+            setValorOriginal(total.toFixed(2)); // Atualiza o valor original
+            setTotalPagar(total.toFixed(2)); // Atualiza o valor total
+            setDesconto('');
+        } else {
+            alert('Digite um valor válido (positivo ou zero)')
+            setQuantidadeMensalidades('');
+        }
     };
 
     const handleChange = (index, campo, valor) => {
@@ -83,9 +231,25 @@ const Recebimento = () => {
         setReceberDisponivel(true);
     };
 
-    const handleAdicionarParcela = () => {
-        setParcelasAdicionais([...parcelasAdicionais, { formaPagamento: '', valor: '' }]);
+    const handleNovaParcelaChange = (campo, valor) => {
+        setNovaParcela({
+            ...novaParcela,
+            [campo]: valor,
+        });
+    };
 
+    const handleAdicionarParcela = () => {
+        if (!novaParcela.valor || isNaN(parseFloat(novaParcela.valor))) {
+            alert('Digite um valor válido para a parcela.');
+            return;
+        }
+
+        setParcelasAdicionais([...parcelasAdicionais, { ...novaParcela }]);
+        setNovaParcela({
+            formaPagamento: 'Dinheiro',
+            conta: 'Conta 1',
+            valor: '',
+        });
     };
 
     const handleRemoverParcela = (index) => {
@@ -98,32 +262,98 @@ const Recebimento = () => {
         parcelasAdicionais.forEach(parcela => {
             somaValores -= parseFloat(parcela.valor);
         });
-    
+
         if (somaValores === 0) {
             setMensagem('Pagamento Realizado!');
             setMensagemCor(green[500]);
             // Verifica se a forma de pagamento é PIX
             const isPixPayment = parcelasAdicionais.some(parcela => parcela.formaPagamento === 'PIX');
             if (isPixPayment) {
-                handleOpen(); // Abre a modal se o pagamento for via PIX
+                handleOpen();
+                setParcelasAdicionais([]);
+                setQuantidadeMensalidades('');
+                setValorOriginal('');
+                setDesconto('');
+            } else {
+                setParcelasAdicionais([]);
+                setQuantidadeMensalidades('');
+                setValorOriginal('');
+                setDesconto('');
+                imprimirComprovante();
             }
+        } else if (somaValores > 0) {
+            setMensagem('Pagamento incompleto!');
+            setMensagemCor(red[500]);
+        } else if (somaValores < 0) {
+            setMensagem('Pagamento excede o valor a receber!');
+            setMensagemCor(red[500]);
         } else {
             setMensagem('Pagamento não realizado!');
             setMensagemCor(red[500]);
         }
     };
-    
 
     const handleCloseMensagem = () => {
         setMensagem('');
     };
+
     return (
         <div className='container-associados'>
-            <Header />
+            <Header cliente={cliente} />
             <div className='dados-recebimento-associado'>
                 <div className='fundo-recebimento'>
                     <div className='icones-nome'>
-                        <label><AccountCircleIcon fontSize={'small'} />Carlos Henrique Nº do Contrato - 789776 </label>
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
+                    </div>
+                    <div className="content-formulario-iniciar-atendimento2">
+                        <div className="em-aberto">
+                            <div className="icone-aberto">
+                                <label>EM ABERTO</label>
+                                <input
+                                    placeholder="1"
+                                    disabled={true}
+                                    value={2}
+                                />
+                            </div>
+                        </div>
+                        <div className="em-aberto2">
+                            <div className="icone-aberto">
+                                <label>VALOR</label>
+                                <input
+                                    disabled={true}
+                                    value={300}
+                                />
+                            </div>
+                        </div>
+                        <div className="em-aberto2">
+                            <div className="icone-aberto2">
+                                <label>VALOR PLANO</label>
+                                <input
+                                    disabled={true}
+                                    value={100}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="em-aberto4">
+                            <div className="icone-aberto5">
+                                <label>ULT MÊS PAGO</label>
+                                <input
+                                    value={'10/12/2023'}
+                                    disabled={true}
+
+                                />
+                            </div>
+                        </div>
+                        <div className="em-aberto4">
+                            <div className="icone-aberto5">
+                                <label>ULT PAG</label>
+                                <input
+                                    disabled={true}
+                                    value={'20/11/2023'}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className='tabela-acerto-recebimento'>
                         <div className='recebimento-associado'>
@@ -152,46 +382,64 @@ const Recebimento = () => {
                         <div>
 
                         </div>
-                        <div className='pag-dupl-men'>
-                            <div className='duplica-adiciona-recebimento'>
-                                {parcelasAdicionais.map((parcela, index) => (
-                                    <div key={index} className='muda-linha-recebimento'>
-                                        <div className='recebimento-associado'>
-                                            <div className='campos-recebimento'>
-                                                <div className='linhas-recebimento'>
-                                                    <div className='forma-pagamento-recebimento'>
-                                                        <label>Forma de Pagamento</label>
-                                                        <select value={parcela.formaPagamento} onChange={(e) => handleChange(index, 'formaPagamento', e.target.value)}>
-                                                            <option>Dinheiro</option>
-                                                            <option>Débito</option>
-                                                            <option>Crédito</option>
-                                                            <option>PIX</option>
-                                                            <option>Bancário</option>
-                                                            <option>Cheque</option>
-                                                        </select>
-                                                    </div>
-                                                    {parcela.formaPagamento === 'Bancário' && (
-                                                        <div className='conta-bancaria-recebimento'>
-                                                            <label>Conta</label>
-                                                            <select value={parcela.valor} onChange={(e) => handleChange(index, 'valor', e.target.value)}>
-                                                                <option>Conta 1</option>
-                                                                <option>Conta 2</option>
-                                                                <option>Conta 3</option>
+                        {receberDisponivel ?
+                            <>
+                                <div className='pag-dupl-men'>
+                                    <div className='duplica-adiciona-recebimento'>
+                                        <div key={1} className='muda-linha-recebimento'>
+                                            <div className='recebimento-associado'>
+                                                <div className='campos-recebimento'>
+                                                    <div className='linhas-recebimento'>
+                                                        <div className='forma-pagamento-recebimento'>
+                                                            <label>Forma de Pagamento</label>
+                                                            <select
+                                                                value={novaParcela.formaPagamento}
+                                                                onChange={(e) => handleNovaParcelaChange('formaPagamento', e.target.value)}
+                                                            >
+                                                                <option>Dinheiro</option>
+                                                                <option>Débito</option>
+                                                                <option>Crédito</option>
+                                                                <option>PIX</option>
+
+                                                                <option>Cheque</option>
                                                             </select>
                                                         </div>
-                                                    )}
-                                                    <div className='conta-bancaria-recebimento'>
-                                                        <label>Total a Pagar</label>
-                                                        <input value={parcela.valor} onChange={(e) => handleChange(index, 'valor', e.target.value)} />
-
-                                                    </div>
-
-                                                    <div className='deleta-recebimento-associado'>
-                                                        {index > 0 && (
-                                                            <button onClick={() => handleRemoverParcela(index)}>
-                                                                <HighlightOffIcon fontSize={'small'} />
-                                                            </button>
-
+                                                        {['Dinheiro', 'Débito', 'Crédito'].includes(novaParcela.formaPagamento) ? null : (
+                                                            <div className='conta-bancaria-recebimento'>
+                                                                <label>Conta</label>
+                                                                <select
+                                                                    value={novaParcela.conta}
+                                                                    onChange={(e) => handleNovaParcelaChange('conta', e.target.value)}
+                                                                >
+                                                                    <option>Conta 1</option>
+                                                                    <option>Conta 2</option>
+                                                                    <option>Conta 3</option>
+                                                                </select>
+                                                            </div>
+                                                        )}
+                                                        <div className='conta-bancaria-recebimento'>
+                                                            <label>Valor a Pagar</label>
+                                                            <input
+                                                                type='number'
+                                                                value={novaParcela.valor}
+                                                                onChange={(e) => handleNovaParcelaChange('valor', e.target.value)}
+                                                            />
+                                                        </div>
+                                                        <div className='adicionar-recebimento-forma'>
+                                                            <button onClick={handleAdicionarParcela}><AddCircleOutlineIcon fontSize={'small'} /></button>
+                                                        </div>
+                                                        {parcelasAdicionais.length > 0 && (
+                                                            <div className='lista-parcelas'>
+                                                                <h3>Formas de Pagamento:</h3>
+                                                                <ul>
+                                                                    {parcelasAdicionais.map((parcela, index) => (
+                                                                        <li key={index}>
+                                                                            Forma de Pagamento: {parcela.formaPagamento}, Valor: {parcela.valor}
+                                                                            <button onClick={() => handleRemoverParcela(index)}>Remover</button>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
                                                         )}
                                                     </div>
                                                 </div>
@@ -199,17 +447,19 @@ const Recebimento = () => {
                                         </div>
                                     </div>
 
-                                ))}
 
-                            </div>
-                            <div className='adicionar-recebimento-forma'>
-                                <button onClick={handleAdicionarParcela}><AddCircleOutlineIcon fontSize={'small'} /></button>
-                            </div>
-
-                        </div>
+                                </div>
+                            </>
+                            : <></>
+                        }
                         <div className='receber-add-recebimento'>
+                            {receberDisponivel ? <>
+                                <button onClick={handleReceber} disabled={!receberDisponivel}>RECEBER</button>
 
-                            <button onClick={handleReceber} disabled={!receberDisponivel}>RECEBER</button>
+                            </> :
+                                <></>
+                            }
+
                             <Modal
                                 open={open}
                                 onClose={handleClose}
@@ -225,15 +475,14 @@ const Recebimento = () => {
                                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                         <div>
                                             <label>Aponte para o QR code e realize o pagamento!</label>
+                                            <button onClick={() => imprimirComprovante()}>
+                                                IMPRIMIR COMPROVANTE
+                                            </button>
                                         </div>
                                     </Typography>
                                 </Box>
                             </Modal>
                         </div>
-
-
-
-
                         <Snackbar
                             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                             open={mensagem !== ''}
@@ -247,8 +496,6 @@ const Recebimento = () => {
 
                     </div>
                 </div>
-
-
                 <div className='acordion-recebimento'>
                     <MyAccordion
                         title="Histórico de Pagamento"
@@ -283,7 +530,6 @@ const Recebimento = () => {
                     </MyAccordion>
 
                 </div>
-
             </div>
         </div>
     );

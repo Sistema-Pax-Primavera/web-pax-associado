@@ -34,6 +34,7 @@ const rows = [
     createData(1, '12/02/2024', 90, 'FECHADA',),
 ];
 
+
 function extra(id, valor, mes, formapagamento) {
     return { id, valor, mes, formapagamento };
 }
@@ -373,6 +374,50 @@ const PDR = () => {
                                                     <TableCell align="center">{row.status}</TableCell>
                                                 </TableRow>
                                             ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+
+                            </div>
+                        </div>
+                    </MyAccordion>
+                    <MyAccordion
+                        title="Historico de F9"
+                        icon={<AnalyticsIcon />}
+                        expandedIcon={<ExpandMoreIcon />}
+                    >
+                        <div className='layout-linha'>
+
+                            <div className='container-linha'>
+                                <TableContainer component={Paper}>
+                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Data</TableCell>
+                                                <TableCell align="center">Titulo</TableCell>
+                                                <TableCell align="center">Categoria</TableCell>
+                                                <TableCell align="center">Subcategoria</TableCell>
+                                                <TableCell align="center">Usuario</TableCell>
+                                                <TableCell align="center">Mensagem</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    10/02/2024
+                                                </TableCell>
+                                                <TableCell align="center">CONTATO COM CLIENTE</TableCell>
+                                                <TableCell align="center">PROMOÇÃO</TableCell>
+                                                <TableCell align="center">PROMOÇÃO ANUAL</TableCell>
+                                                <TableCell align="center">ADMIN</TableCell>
+                                                <TableCell align="center">Texto texto texto texto texto
+                                                    texto texto texto texto texto texto texto texto texto
+                                                    texto
+                                                    texto texto texto texto texto</TableCell>
+                                            </TableRow>
+
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
