@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../../components/header/header';
 import PaxCart from '../../../assets/pax-horizontal.jpg';
+import PETCart from '../../../assets/pet-horizontal.jpg';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './carteirinhas.css';
 import { useLocation } from 'react-router-dom';
@@ -9,10 +10,18 @@ const Carteirinha = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
     const [fimMes, setFimMes] = useState('');
-    const [clienteNome, setClienteNome] = useState('');  // Estado para armazenar o nome selecionado
+    const [clienteNome, setClienteNome] = useState('');
+    const [clienteTipo, setClienteTipo] = useState('HUMANO');
 
     const handleNomeChange = (event) => {
-        setClienteNome(event.target.value);
+        const nomeSelecionado = event.target.value;
+        const clienteSelecionado = opcoes.find(item => item.nome === nomeSelecionado);
+        if (clienteSelecionado) {
+            setClienteTipo(clienteSelecionado.tipo);
+        } else {
+            setClienteTipo('HUMANO');
+        }
+        setClienteNome(nomeSelecionado);
     };
 
     useEffect(() => {
@@ -37,14 +46,52 @@ const Carteirinha = () => {
         window.print();
     };
 
+    const opcoes = [
+        {
+            'tipo': 'HUMANO',
+            'nome': 'Diogo',
+        },
+        {
+            'tipo': 'PET',
+            'nome': 'Doguinho'
+        },
+    ];
+
+
     return (
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
-                <div className='icones-nome'>
-                    <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
-                </div>
                 <div className='carteirinha-container'>
+                    <div className='icones-nome'>
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
+                    </div>
+                    <div>
+                        <label htmlFor="selectNome">Escolha o nome:</label>
+                        <select id="selectNome" value={clienteNome} onChange={handleNomeChange}>
+                            <option value="">Selecione uma opção</option>
+                            {opcoes.map((item) => (
+                                <option key={item.tipo} value={item.nome}>
+                                    {item.nome}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="cartao">
+                            <img
+                                src={clienteTipo === 'PET' ? PETCart : PaxCart}
+                                style={clienteTipo === 'PET' ? { width: 400, height: 250 } : {}}
+                                alt='Carteirinha'
+                                className='carteirinha-img'
+                            />
+                        </div>
+                        <div className="informacoes">
+                            <p className='validade'>Validade: {fimMes}</p>
+                            <p className='validade'>Cliente: {clienteNome}</p>
+                        </div>
+                        <button onClick={handleImprimir}>Imprimir</button>
+                    </div>
+                </div>
+                {/* <div className='carteirinha-container'>
                     <label htmlFor="selectNome">Escolha o nome:</label>
                     <select id="selectNome" value={clienteNome} onChange={handleNomeChange}>
                         <option value="">Selecione uma opção</option>
@@ -57,7 +104,7 @@ const Carteirinha = () => {
                     <p className='validade'>Validade: {fimMes}</p>
                     <img src={PaxCart} alt='Carteirinha' className='carteirinha-img' />
                     <button onClick={handleImprimir}>Imprimir</button>
-                </div>
+                </div> */}
             </div>
 
         </>

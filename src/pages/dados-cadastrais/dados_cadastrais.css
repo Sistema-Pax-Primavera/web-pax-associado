@@ -113,9 +113,12 @@
 }
 
 .salvar-associado button {
+    cursor: pointer;
+    font-weight: 500;
     background-color: var(--verde);
     width: 20%;
     color: var(--branco);
+    margin-right: 5%;
 }
 
 .campo-info-bairro {

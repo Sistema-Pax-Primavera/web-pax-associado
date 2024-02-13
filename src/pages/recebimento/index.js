@@ -308,7 +308,7 @@ const Recebimento = () => {
                     <div className="content-formulario-iniciar-atendimento2">
                         <div className="em-aberto">
                             <div className="icone-aberto">
-                                <label>EM ABERTO</label>
+                                <label>EM ABERTO:</label>
                                 <input
                                     placeholder="1"
                                     disabled={true}
@@ -318,7 +318,7 @@ const Recebimento = () => {
                         </div>
                         <div className="em-aberto2">
                             <div className="icone-aberto">
-                                <label>VALOR</label>
+                                <label>VALOR:</label>
                                 <input
                                     disabled={true}
                                     value={300}
@@ -327,27 +327,25 @@ const Recebimento = () => {
                         </div>
                         <div className="em-aberto2">
                             <div className="icone-aberto2">
-                                <label>VALOR PLANO</label>
+                                <label>VALOR PLANO:</label>
                                 <input
                                     disabled={true}
                                     value={100}
                                 />
                             </div>
                         </div>
-
-                        <div className="em-aberto4">
+                        <div className="em-aberto3">
                             <div className="icone-aberto5">
-                                <label>ULT MÊS PAGO</label>
+                                <label>ULT. MÊS PAGO:</label>
                                 <input
                                     value={'10/12/2023'}
                                     disabled={true}
-
                                 />
                             </div>
                         </div>
-                        <div className="em-aberto4">
+                        <div className="em-aberto3">
                             <div className="icone-aberto5">
-                                <label>ULT PAG</label>
+                                <label>ULT. PAGAMENTO:</label>
                                 <input
                                     disabled={true}
                                     value={'20/11/2023'}

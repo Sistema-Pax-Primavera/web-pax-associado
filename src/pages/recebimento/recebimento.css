@@ -208,10 +208,45 @@
 }
 
 .content-formulario-iniciar-atendimento2 {
-    border-radius: 10px;
-    width: 100%;
-    padding: 5px;
     display: flex;
-    gap: 5px;
-    margin-bottom: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    width: 95%;
+    padding: 20px;
+    gap: 10px;
+    background-color: #f0f0f0;
+    /* Adicione uma cor de fundo se desejar */
+}
+
+.em-aberto input,
+.em-aberto2 input,
+.em-aberto3 input {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.em-aberto label {
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.em-aberto2 label {
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.em-aberto3 label {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 5px;
 }

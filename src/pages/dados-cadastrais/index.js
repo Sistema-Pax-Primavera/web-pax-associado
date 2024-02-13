@@ -32,15 +32,33 @@ const useStyles = makeStyles((theme) => ({
 
 const DadosCadastrais = () => {
     const [isComercialEnabled, setIsComercialEnabled] = useState(false);
+    const [cremacaoAtivada, setCremacaoAtivada] = useState(false);
+    const [carenciaAtivada, setCarenciaAtivada] = useState(false);
+    const [nacionalidade, setNacionalidade] = useState(true);
     const classes = useStyles();
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+
+    const handleSwitchChange = () => {
+        // Atualiza o estado do switch
+        setCremacaoAtivada(!cremacaoAtivada);
+    };
+
+    const handleSwitchCarencia = () => {
+        // Atualiza o estado do switch
+        setCarenciaAtivada(!carenciaAtivada);
+    };
+
+    const handleNacionalidade = (event) => {
+        setNacionalidade(JSON.parse(event.target.value));
+    };
 
     useEffect(() => {
         if (cliente) {
             console.log('Dados do cliente recebidos no Dados Cadastrais:', cliente);
         }
     }, [cliente]);
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -63,15 +81,17 @@ const DadosCadastrais = () => {
                     >
                         <div className='container-linha'>
                             <div className='campos-01'>
-                                <label>Nome</label>
+                                <label>Nome<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="nome" value={cliente.nome} onChange={handleChange} />
                             </div>
-                            <div className='campos-02'>
-                                <label>CPF</label>
-                                <input type="text" name="cpf" value={cliente.cpf} onChange={handleChange} />
-                            </div>
+                            {nacionalidade ?
+                                <div className='campos-02'>
+                                    <label>CPF<span className='obrigatorio'> *</span> </label>
+                                    <input type="text" name="cpf" value={cliente.cpf} onChange={handleChange} />
+                                </div>
+                                : <></>}
                             <div className='campos-03'>
-                                <label>RG</label>
+                                <label>RG<span className='obrigatorio'> *</span></label>
                                 <input></input>
                             </div>
                             <div className='campos-02'>
@@ -83,31 +103,77 @@ const DadosCadastrais = () => {
                                 <input type="text" name="contrato" value={cliente.contrato} onChange={handleChange} />
                             </div>
                             <div className='campo-info-bairro'>
+                                <label>Genero</label>
+                                <select></select>
+                            </div>
+                            <div className='campo-info-bairro'>
+                                <label>Religião</label>
+                                <select>
+
+                                </select>
+                            </div>
+                            <div className='campo-info-bairro'>
                                 <label>UF</label>
                                 <select></select>
                             </div>
-                        </div>
-                        <div className='container-linha'>
                             <div className='campos-02'>
                                 <label>Naturalidade</label>
                                 <input></input>
+                            </div>
+                            <div className='campos-02'>
+                                <label>Nacionalidade</label>
+                                <select value={nacionalidade} onChange={handleNacionalidade}>
+                                    <option value={'true'}>Brasileiro(a)</option>
+                                    <option value={'false'}>Estrangueiro(a)</option>
+                                </select>
                             </div>
                             <div className='campos-02'>
                                 <label>Profissão</label>
                                 <select></select>
                             </div>
                             <div className='campos-02'>
-                                <label>Nascionalidade</label>
-                                <input></input>
+                                <label>Estado Civil</label>
+                                <select></select>
                             </div>
                             <div className='campos-02'>
                                 <label>Data do Contrato</label>
                                 <DateMaskInput />
                             </div>
-                            <div className='campo-info-bairro'>
-                                <label>Cremação</label>
-                                <Switch {...label} size="small" />
+                        </div>
+                        <div className='container-linha'>
+                            <div className='campos-02'>
+                                <label>Carência Padrão ?</label>
+                                <Switch
+                                    checked={carenciaAtivada}
+                                    onChange={handleSwitchCarencia}
+                                    size="small" />
                             </div>
+                            {!carenciaAtivada && (
+                                <>
+                                    <div className='campos-02'>
+                                        <label>Data Inicio Carência</label>
+                                        <DateMaskInput />
+                                    </div>
+                                    <div className='campos-02'>
+                                        <label>Data Final Carência</label>
+                                        <DateMaskInput />
+
+                                    </div>
+                                </>
+                            )}
+                            <div className='campo-info-bairro'>
+                                <label>Cremação ?</label>
+                                <Switch
+                                    checked={cremacaoAtivada}
+                                    onChange={handleSwitchChange}
+                                    size="small" />
+                            </div>
+                            {cremacaoAtivada && (
+                                <div className='campos-02'>
+                                    <label>Data da Cremação</label>
+                                    <DateMaskInput />
+                                </div>
+                            )}
                         </div>
                     </MyAccordion>
                     <MyAccordion
@@ -120,10 +186,15 @@ const DadosCadastrais = () => {
                                 <label>CEP</label>
                                 <input></input>
                             </div>
+                            <div className='campo-info-bairro'>
+                                <label>UF</label>
+                                <select></select>
+                            </div>
                             <div className='campos-02'>
                                 <label>Município</label>
                                 <input></input>
                             </div>
+
                             <div className='campos-02'>
                                 <label>Bairro</label>
                                 <input></input>
@@ -182,6 +253,10 @@ const DadosCadastrais = () => {
                                         <label>CEP</label>
                                         <input></input>
                                     </div>
+                                    <div className='campo-info-bairro'>
+                                        <label>UF</label>
+                                        <select></select>
+                                    </div>
                                     <div className='campos-02'>
                                         <label>Município</label>
                                         <input></input>
@@ -225,6 +300,7 @@ const DadosCadastrais = () => {
 
                     <div className='salvar-associado'>
                         <button>SALVAR</button>
+                        <button>REGISTRAR OBITO</button>
                     </div>
                 </div>
             </div>

@@ -32,6 +32,11 @@ const Dependentes = () => {
     const cliente = location.state && location.state.cliente;
     const [mostrarFormularioPet, setMostrarFormularioPet] = useState(false);
     const [mostrarFormularioCremacao, setMostrarFormularioCremacao] = useState(true);
+    const [obito, setObito] = useState(false);
+
+    const handleSwitchObito = () => {
+        setObito(!obito);
+    };
 
     const mostrarFormulario = (tipo) => {
         setMostrarFormularioPet(tipo === 'pet');
@@ -106,11 +111,23 @@ const Dependentes = () => {
                                         <label>Modalidade</label>
                                         <select></select>
                                     </div>
+                                    <div className='campos-02'>
+                                        <label>Baixa de Óbito</label>
+                                        <Switch
+                                            checked={obito}
+                                            onChange={handleSwitchObito}
+                                            size="small" />
+                                    </div>
+                                    {obito && (
+                                        <div className='campos-02'>
+                                            <label> Falecimento</label>
+                                            <DateMaskInput />
+                                        </div>
+                                    )}
                                     <div className='salva-dependentes'>
                                         <button>SALVAR</button>
                                     </div>
                                 </div>
-
                             </div>
                             <div className='container-linha2'>
                                 <TableContainer component={Paper}>
@@ -194,15 +211,19 @@ const Dependentes = () => {
                                         <label>Valor Adicional</label>
                                         <input></input>
                                     </div>
-                                    <div className='campos-01'>
+                                    <div className='campos-02'>
                                         <label>Baixa de Óbito</label>
-                                        <div className='baixa-obito'>
-                                            <Switch {...label} size="small" />
-                                            <label>TITULAR</label>
-                                            <Switch {...label} size="small" />
-                                            <label>DEPENDENTE</label>
-                                        </div>
+                                        <Switch
+                                            checked={obito}
+                                            onChange={handleSwitchObito}
+                                            size="small" />
                                     </div>
+                                    {obito && (
+                                        <div className='campos-02'>
+                                            <label> Falecimento</label>
+                                            <DateMaskInput />
+                                        </div>
+                                    )}
                                     <div className='salva-dependentes'>
                                         <button>SALVAR</button>
                                     </div>
@@ -261,7 +282,7 @@ const Dependentes = () => {
                                                                 <button><DeleteForeverIcon fontSize={'small'} /></button>
                                                             </div>
                                                             <div className='promove-dependente'>
-                                                                <button><AttributionIcon fontSize={'small'} /></button>
+                                                                <button>Promover</button>
                                                             </div>
                                                         </div>
                                                     </TableCell>
