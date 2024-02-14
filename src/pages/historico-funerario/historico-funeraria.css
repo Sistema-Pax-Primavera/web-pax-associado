@@ -8,6 +8,13 @@
     overflow: auto;
 }
 
+.cards-funeraria{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+
 .fundo-historico{
     margin-top: 20px;
     border-radius: 5px;

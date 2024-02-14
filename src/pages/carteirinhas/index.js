@@ -67,15 +67,18 @@ const Carteirinha = () => {
                         <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
                     </div>
                     <div>
-                        <label htmlFor="selectNome">Escolha o nome:</label>
-                        <select id="selectNome" value={clienteNome} onChange={handleNomeChange}>
-                            <option value="">Selecione uma opção</option>
-                            {opcoes.map((item) => (
-                                <option key={item.tipo} value={item.nome}>
-                                    {item.nome}
-                                </option>
-                            ))}
-                        </select>
+                        <div className='nome-carteirinha'>
+                            <label htmlFor="selectNome">Escolha o nome:</label>
+                            <select id="selectNome" value={clienteNome} onChange={handleNomeChange}>
+                                <option value="">Selecione uma opção</option>
+                                {opcoes.map((item) => (
+                                    <option key={item.tipo} value={item.nome}>
+                                        {item.nome}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
                         <div className="cartao">
                             <img
                                 src={clienteTipo === 'PET' ? PETCart : PaxCart}
@@ -88,7 +91,10 @@ const Carteirinha = () => {
                             <p className='validade'>Validade: {fimMes}</p>
                             <p className='validade'>Cliente: {clienteNome}</p>
                         </div>
-                        <button onClick={handleImprimir}>Imprimir</button>
+                        <div className='carteirinha-imprimir'>
+                            <button onClick={handleImprimir}>IMPRIMIR</button>
+                        </div>
+
                     </div>
                 </div>
                 {/* <div className='carteirinha-container'>

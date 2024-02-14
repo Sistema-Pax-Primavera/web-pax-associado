@@ -1,10 +1,30 @@
 .carteirinha-container {
-    margin-top: 25px;
-    margin-left: 25px;
     display: flex;
+    margin-top: 20px;
     gap: 5px;
     width: 40%;
     flex-direction: column;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: var(--cinza-leve);
+}
+
+.nome-carteirinha{
+    display: flex;
+    flex-direction: column;
+}
+
+.nome-carteirinha select{
+    width: 50%;
+    font-weight: 700;
+}
+
+.carteirinha-imprimir{
+    display: flex;
+    width: 100%;
+    margin-right: 250px;
+    align-items: center;
+    justify-content: center;
 }
 
 .cartao {
@@ -14,28 +34,25 @@
 }
 
 .informacoes {
-    position: absolute;
-    top: 68%;
-    left: 32%;
+    z-index: 5;
+    font-weight: 500;
+    margin-top: -70px;
+    position: fixed;
+    margin-left: 100px;
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
-
 .carteirinha-img {
     width: 60%;
     margin: 10px auto;
-
 }
 
 .carteirinha-container button {
-    display: block;
-    margin: 25px auto;
-    /* Centraliza o botão e aplica margens superior e inferior */
     background-color: var(--verde);
+    font-weight: 700;
     color: var(--branco);
-    width: 20%;
-    height: 7%;
+    width: 30%;
 }
 
 .validade {

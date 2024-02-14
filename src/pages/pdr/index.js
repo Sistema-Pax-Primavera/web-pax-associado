@@ -24,6 +24,7 @@ import Modal from '@mui/material/Modal';
 import PrintIcon from '@mui/icons-material/Print';
 import { Select } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import TaskIcon from '@mui/icons-material/Task';
 
 function createData(id, parcela, vencimento, valor, status) {
     return { id, parcela, vencimento, valor, status };
@@ -383,7 +384,7 @@ const PDR = () => {
                     </MyAccordion>
                     <MyAccordion
                         title="Historico de F9"
-                        icon={<AnalyticsIcon />}
+                        icon={<TaskIcon />}
                         expandedIcon={<ExpandMoreIcon />}
                     >
                         <div className='layout-linha'>

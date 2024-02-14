@@ -29,6 +29,9 @@ import PriceChangeIcon from '@mui/icons-material/PriceChange';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import CancelIcon from '@mui/icons-material/Cancel';
+import CreditScoreIcon from '@mui/icons-material/CreditScore';
+import PixIcon from '@mui/icons-material/Pix';
+import SourceIcon from '@mui/icons-material/Source';
 
 function createData(parcela, datavencimento, valor, datapagamento) {
     return { parcela, datavencimento, valor, datapagamento };
@@ -204,6 +207,24 @@ const Recebimento = () => {
         }
     };
 
+    const formaPagamentoIcone = {
+        'Dinheiro': CurrencyExchangeIcon,
+        'Débito': CreditScoreIcon,
+        'Crédito': CreditScoreIcon,
+        'PIX': PixIcon,
+        'Cheque': SourceIcon,
+    };
+
+    const renderizarIconeFormaPagamento = (formaPagamento) => {
+        const Icone = formaPagamentoIcone[formaPagamento];
+        if (Icone) {
+            return <Icone fontSize={'small'} />;
+        } else {
+            return null; // Retornar null se não houver correspondência de ícone
+        }
+    };
+
+
     const handleQuantidadeChange = (event) => {
         const quantidade = event.target.value;
         const novoValor = parseFloat(quantidade);
@@ -248,6 +269,15 @@ const Recebimento = () => {
         if (!novaParcela.valor || isNaN(parseFloat(novaParcela.valor))) {
             alert('Digite um valor válido para a parcela.');
             return;
+        }
+
+        // Verifica se a forma de pagamento é Cheque ou PIX
+        if (['Cheque', 'PIX'].includes(novaParcela.formaPagamento)) {
+            // Se for Cheque ou PIX, verifica se a conta está selecionada
+            if (!novaParcela.conta) {
+                alert('Selecione uma conta para a forma de pagamento Cheque ou PIX.');
+                return;
+            }
         }
 
         setParcelasAdicionais([...parcelasAdicionais, { ...novaParcela }]);
@@ -326,7 +356,7 @@ const Recebimento = () => {
 
                             </div>
                         </div>
-                        <div className="em-aberto2">
+                        <div className="em-aberto">
                             <div className="icone-aberto">
                                 <label>VALOR:</label>
                                 <div className='aberto-recebimento'>
@@ -456,25 +486,30 @@ const Recebimento = () => {
                                                             <div className='tipo-pagamento-recebimento'>
                                                                 <label>Tipo de Pagamento</label>
                                                                 <div className='tipo-pagamento-2'>
-                                                                    <CurrencyExchangeIcon fontSize={'small'} />
+                                                                    {renderizarIconeFormaPagamento(parcela.formaPagamento)}
                                                                     <label>{parcela.formaPagamento}</label>
                                                                 </div>
                                                             </div>
                                                             <div className='tipo-pagamento-recebimento-3'>
                                                                 <h2> Valor $</h2>
                                                                 <label>{parcela.valor}</label>
-
-
                                                             </div>
+                                                            {/* Exibir campo de conta apenas se a forma de pagamento for "PIX" ou "Cheque" */}
+                                                            {['PIX', 'Cheque'].includes(parcela.formaPagamento) && (
+                                                                <div className='tipo-pagamento-recebimento-3'>
+                                                                    <h2> Conta</h2>
+                                                                    <label>{parcela.conta}</label>
+                                                                </div>
+                                                            )}
                                                             <div className='remove-forma-paga'>
-                                                                <button onClick={() => handleRemoverParcela(index)}><CancelIcon/></button>
+                                                                <button onClick={() => handleRemoverParcela(index)}><CancelIcon /></button>
                                                             </div>
-
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
                                         )}
+
                                     </div>
                                 </div>
 
