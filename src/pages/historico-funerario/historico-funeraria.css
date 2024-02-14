@@ -3,8 +3,9 @@
 .historico-container-funeraria {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 25px;
     gap: 10px;
+    overflow: auto;
 }
 
 .fundo-historico{

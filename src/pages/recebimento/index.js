@@ -23,6 +23,12 @@ import Modal from '@mui/material/Modal';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { useLocation } from 'react-router-dom';
 import moment from "moment";
+import AddAlertIcon from '@mui/icons-material/AddAlert';
+import PaidIcon from '@mui/icons-material/Paid';
+import PriceChangeIcon from '@mui/icons-material/PriceChange';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 function createData(parcela, datavencimento, valor, datapagamento) {
     return { parcela, datavencimento, valor, datapagamento };
@@ -309,47 +315,64 @@ const Recebimento = () => {
                         <div className="em-aberto">
                             <div className="icone-aberto">
                                 <label>EM ABERTO:</label>
-                                <input
-                                    placeholder="1"
-                                    disabled={true}
-                                    value={2}
-                                />
+                                <div className='aberto-recebimento'>
+                                    <AddAlertIcon fontSize='small' />
+                                    <input
+                                        placeholder="1"
+                                        disabled={true}
+                                        value={2}
+                                    />
+                                </div>
+
                             </div>
                         </div>
                         <div className="em-aberto2">
                             <div className="icone-aberto">
                                 <label>VALOR:</label>
-                                <input
-                                    disabled={true}
-                                    value={300}
-                                />
+                                <div className='aberto-recebimento'>
+                                    <PaidIcon fontSize='small' />
+                                    <input
+                                        disabled={true}
+                                        value={300}
+                                    />
+                                </div>
+
                             </div>
                         </div>
                         <div className="em-aberto2">
-                            <div className="icone-aberto2">
+                            <div className="icone-aberto">
                                 <label>VALOR PLANO:</label>
-                                <input
-                                    disabled={true}
-                                    value={100}
-                                />
+                                <div className='aberto-recebimento'>
+                                    <PriceChangeIcon fontSize='small' />
+                                    <input
+                                        disabled={true}
+                                        value={100}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="em-aberto3">
                             <div className="icone-aberto5">
                                 <label>ULT. MÊS PAGO:</label>
-                                <input
-                                    value={'10/12/2023'}
-                                    disabled={true}
-                                />
+                                <div className='aberto-recebimento'>
+                                    <CalendarMonthIcon fontSize='small' />
+                                    <input
+                                        value={'10/12/2023'}
+                                        disabled={true}
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="em-aberto3">
                             <div className="icone-aberto5">
                                 <label>ULT. PAGAMENTO:</label>
-                                <input
-                                    disabled={true}
-                                    value={'20/11/2023'}
-                                />
+                                <div className='aberto-recebimento'>
+                                    <EventAvailableIcon fontSize='small' />
+                                    <input
+                                        disabled={true}
+                                        value={'20/11/2023'}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -385,68 +408,76 @@ const Recebimento = () => {
                                 <div className='pag-dupl-men'>
                                     <div className='duplica-adiciona-recebimento'>
                                         <div key={1} className='muda-linha-recebimento'>
-                                            <div className='recebimento-associado'>
-                                                <div className='campos-recebimento'>
-                                                    <div className='linhas-recebimento'>
-                                                        <div className='forma-pagamento-recebimento'>
-                                                            <label>Forma de Pagamento</label>
-                                                            <select
-                                                                value={novaParcela.formaPagamento}
-                                                                onChange={(e) => handleNovaParcelaChange('formaPagamento', e.target.value)}
-                                                            >
-                                                                <option>Dinheiro</option>
-                                                                <option>Débito</option>
-                                                                <option>Crédito</option>
-                                                                <option>PIX</option>
+                                            <div className='forma-pagamento-recebimento'>
+                                                <label>Forma de Pagamento</label>
+                                                <select
+                                                    value={novaParcela.formaPagamento}
+                                                    onChange={(e) => handleNovaParcelaChange('formaPagamento', e.target.value)}
+                                                >
+                                                    <option>Dinheiro</option>
+                                                    <option>Débito</option>
+                                                    <option>Crédito</option>
+                                                    <option>PIX</option>
 
-                                                                <option>Cheque</option>
-                                                            </select>
-                                                        </div>
-                                                        {['Dinheiro', 'Débito', 'Crédito'].includes(novaParcela.formaPagamento) ? null : (
-                                                            <div className='conta-bancaria-recebimento'>
-                                                                <label>Conta</label>
-                                                                <select
-                                                                    value={novaParcela.conta}
-                                                                    onChange={(e) => handleNovaParcelaChange('conta', e.target.value)}
-                                                                >
-                                                                    <option>Conta 1</option>
-                                                                    <option>Conta 2</option>
-                                                                    <option>Conta 3</option>
-                                                                </select>
+                                                    <option>Cheque</option>
+                                                </select>
+                                            </div>
+                                            {['Dinheiro', 'Débito', 'Crédito'].includes(novaParcela.formaPagamento) ? null : (
+                                                <div className='conta-bancaria-recebimento'>
+                                                    <label>Conta</label>
+                                                    <select
+                                                        value={novaParcela.conta}
+                                                        onChange={(e) => handleNovaParcelaChange('conta', e.target.value)}
+                                                    >
+                                                        <option>Conta 1</option>
+                                                        <option>Conta 2</option>
+                                                        <option>Conta 3</option>
+                                                    </select>
+                                                </div>
+                                            )}
+                                            <div className='conta-bancaria-recebimento'>
+                                                <label>Valor a Pagar</label>
+                                                <input
+                                                    type='number'
+                                                    value={novaParcela.valor}
+                                                    onChange={(e) => handleNovaParcelaChange('valor', e.target.value)}
+                                                />
+                                            </div>
+                                            <div className='adicionar-recebimento-forma'>
+                                                <button onClick={handleAdicionarParcela}><AddCircleOutlineIcon fontSize={'small'} /></button>
+                                            </div>
+
+                                        </div>
+                                        {parcelasAdicionais.length > 0 && (
+                                            <div className='lista-parcelas'>
+                                                <div>
+                                                    {parcelasAdicionais.map((parcela, index) => (
+                                                        <div className='container-linha-recebimento' key={index}>
+                                                            <div className='tipo-pagamento-recebimento'>
+                                                                <label>Tipo de Pagamento</label>
+                                                                <div className='tipo-pagamento-2'>
+                                                                    <CurrencyExchangeIcon fontSize={'small'} />
+                                                                    <label>{parcela.formaPagamento}</label>
+                                                                </div>
                                                             </div>
-                                                        )}
-                                                        <div className='conta-bancaria-recebimento'>
-                                                            <label>Valor a Pagar</label>
-                                                            <input
-                                                                type='number'
-                                                                value={novaParcela.valor}
-                                                                onChange={(e) => handleNovaParcelaChange('valor', e.target.value)}
-                                                            />
-                                                        </div>
-                                                        <div className='adicionar-recebimento-forma'>
-                                                            <button onClick={handleAdicionarParcela}><AddCircleOutlineIcon fontSize={'small'} /></button>
-                                                        </div>
-                                                        {parcelasAdicionais.length > 0 && (
-                                                            <div className='lista-parcelas'>
-                                                                <h3>Formas de Pagamento:</h3>
-                                                                <ul>
-                                                                    {parcelasAdicionais.map((parcela, index) => (
-                                                                        <li key={index}>
-                                                                            Forma de Pagamento: {parcela.formaPagamento}, Valor: {parcela.valor}
-                                                                            <button onClick={() => handleRemoverParcela(index)}>Remover</button>
-                                                                        </li>
-                                                                    ))}
-                                                                </ul>
+                                                            <div className='tipo-pagamento-recebimento-3'>
+                                                                <h2> Valor $</h2>
+                                                                <label>{parcela.valor}</label>
+
+
                                                             </div>
-                                                        )}
-                                                    </div>
+                                                            <div className='remove-forma-paga'>
+                                                                <button onClick={() => handleRemoverParcela(index)}><CancelIcon/></button>
+                                                            </div>
+
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
-                                        </div>
+                                        )}
                                     </div>
-
-
                                 </div>
+
                             </>
                             : <></>
                         }

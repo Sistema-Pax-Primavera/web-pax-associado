@@ -46,6 +46,13 @@
     width: 100%;
 }
 
+.data-contrato {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin-right: 3px;
+}
+
 .negociar-pdr {
     display: flex;
     flex-direction: column;
@@ -144,12 +151,10 @@
 }
 .campos-necociacao {
     width: 33%;
-
+    display: flex;
+    flex-direction: column;
 }
 
-.campos-necociacao input{
-    width: 100%;
-}
 
 .campos-necociacao2 {
     width: 65%;

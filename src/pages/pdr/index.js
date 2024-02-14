@@ -61,7 +61,7 @@ const style2 = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 450,
+    width: 500,
     bgcolor: 'background.paper',
     borderRadius: 5,
     p: 4,
@@ -329,7 +329,7 @@ const PDR = () => {
                                         <label>Região</label>
                                         <input></input>
                                     </div>
-                                    <div className='campos-02'>
+                                    <div className='data-contrato'>
                                         <label>Data Contrato</label>
                                         <DateMaskInput />
                                     </div>

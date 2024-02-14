@@ -8,6 +8,8 @@
     margin-top: 20px;
     width: 50%;
     padding: 15px;
+    overflow: auto;
+    max-height: 500px;
     border-radius: 5px;
     display: flex;
     height: auto;
@@ -16,6 +18,9 @@
     gap: 10px;
 }
 
+.data-observacao{
+    width: 25%;
+}
 
 .textarea textarea{
     border: none;

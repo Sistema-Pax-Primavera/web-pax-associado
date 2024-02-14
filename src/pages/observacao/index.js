@@ -39,7 +39,7 @@ const Observacao = () => {
                             <label>Assunto</label>
                             <input></input>
                         </div>
-                        <div className='campos-03'>
+                        <div className='data-observacao'>
                             <label>Data</label>
                             <DateMaskInput />
                         </div>

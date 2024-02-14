@@ -4,6 +4,7 @@
     display: inline-flex;
     flex-wrap: wrap;
     gap: 5px;
+    overflow: auto;
     margin-top: 25px;
 }
 

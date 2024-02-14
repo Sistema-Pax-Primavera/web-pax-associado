@@ -76,7 +76,7 @@ const Dependentes = () => {
                                         <label>Data Nascimento</label>
                                         <DateMaskInput />
                                     </div>
-                                    <div className='campos-03'>
+                                    <div className='data-filiacao-03'>
                                         <label>Data Filiação</label>
                                         <DateMaskInput />
                                     </div>
@@ -188,7 +188,7 @@ const Dependentes = () => {
                                         <label>Data Nascimento</label>
                                         <DateMaskInput />
                                     </div>
-                                    <div className='campos-03'>
+                                    <div className='data-filiacao-03'>
                                         <label>Data Filiação</label>
                                         <DateMaskInput />
                                     </div>

@@ -72,7 +72,7 @@ const DadosCadastrais = () => {
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
-                <div className='dados-cobranca-associado'>
+                <div className='dados-cadastrais-associado'>
 
                     <MyAccordion
                         title="Dados do Titular"
@@ -150,11 +150,11 @@ const DadosCadastrais = () => {
                             </div>
                             {!carenciaAtivada && (
                                 <>
-                                    <div className='campos-02'>
+                                    <div className='data-inicio-carencia'>
                                         <label>Data Inicio Carência</label>
                                         <DateMaskInput />
                                     </div>
-                                    <div className='campos-02'>
+                                    <div className='data-fim-carencia'>
                                         <label>Data Final Carência</label>
                                         <DateMaskInput />
 

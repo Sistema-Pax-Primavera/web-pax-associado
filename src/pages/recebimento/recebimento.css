@@ -27,25 +27,26 @@
 .duplica-adiciona-recebimento {
     display: flex;
     flex-direction: column;
-    width: 45%;
+    width: 100%;
 
 }
 
 .forma-pagamento-recebimento {
-    width: 70%;
+    width: 17%;
     display: flex;
     flex-direction: column;
 }
 
 .conta-bancaria-recebimento {
-    width: 30%;
+    width: 15%;
     display: flex;
     flex-direction: column;
 }
 
 .muda-linha-recebimento {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 5px;
     width: 100%;
 }
 
@@ -75,7 +76,84 @@
     width: 100%;
     background-color: var(--verde);
     color: var(--branco);
+    padding: 4px;
     cursor: pointer;
+}
+
+.lista-parcelas{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tipo-pagamento-2{
+    display: flex;
+    color: var(--verde);
+    align-items: center;
+    gap: 10px;
+}
+
+.tipo-pagamento-2 label{
+    color: var(--verde);
+    font-weight: 700;
+}
+
+.tipo-pagamento-recebimento{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    background-color: var(--branco);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tipo-pagamento-recebimento-3{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    background-color: var(--branco);
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.remove-forma-paga button{
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border-radius: 50px;
+    background-color: var(--vermelho);
+    color: var(--branco);
+}
+
+.tipo-pagamento-recebimento-3 h2{
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.tipo-pagamento-recebimento-3 h3{
+    font-weight: 00;
+    font-size: 13px;
+    gap: 10px;
+}
+
+.tipo-pagamento-recebimento-3 label{
+    color: var(--verde);
+    font-weight: 800;
+    gap: 10px;
+}
+
+ul, ol {
+    list-style-type: none;
 }
 
 .fundo-recebimento {
@@ -110,6 +188,7 @@
     font-size: 15px;
     cursor: pointer;
     padding: 5px;
+    margin-top: 10px;
     font-weight: 700;
 }
 
@@ -201,6 +280,15 @@
 
 }
 
+.container-linha-recebimento {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
 .container-linhas {
     display: flex;
     gap: 10px;
@@ -220,12 +308,42 @@
     /* Adicione uma cor de fundo se desejar */
 }
 
-.em-aberto input,
+.em-aberto input{
+    width: 5%;
+}
+
+.icone-aberto{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.aberto-recebimento{
+    display: flex;
+    color: var(--verde);
+    align-items: center;
+    justify-content: center;
+    gap: 10cv px;
+    padding-left: 10px;
+    background-color: var(--branco);
+    border-radius: 5px;
+    width: 70%;
+}
+
+.aberto-recebimento input{
+    width: 100%;
+    background-color: var(--branco);
+}
+
+.em-aberto{
+    width: 20%;
+}
+
 .em-aberto2 input,
 .em-aberto3 input {
-    width: 60%;
+    width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
