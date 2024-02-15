@@ -4,6 +4,10 @@ import './historico-pet.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Pets, Event, Healing, Vaccines } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
+import CardePet from '../../components/card-pet';
+import PetImage from '../../../assets/pet.png'; // Importe a imagem padrão
+import ConsultaImage from '../../../assets/consulta.png'; // Importe a imagem para consulta
+import Castracao from '../../../assets/castracao.png';
 
 const HistoricoPET = () => {
     const location = useLocation();
@@ -11,39 +15,43 @@ const HistoricoPET = () => {
     const historicos = [
         {
             nome: 'Rex',
-            dataNascimento: '01/01/2018',
+            datanascimento: '01/01/2018',
             procedimento: 'Consulta de rotina',
-            dataProcedimento: '10/02/2022',
+            dataprocedimento: '10/02/2022',
             status: 'ativo',
+            imagem: ConsultaImage, // Defina a imagem para consulta
         },
         {
             nome: 'Rex',
-            dataNascimento: '01/01/2018',
+            datanascimento: '01/01/2018',
             procedimento: 'Vacinação',
-            dataProcedimento: '15/02/2022',
+            dataprocedimento: '15/02/2022',
             status: 'ativo',
+            imagem: PetImage, // Defina a imagem padrão para vacinação
         },
         {
             nome: 'Bob',
-            dataNascimento: '05/03/2019',
+            datanascimento: '05/03/2019',
             procedimento: 'Vacinação',
-            dataProcedimento: '15/03/2022',
+            dataprocedimento: '15/03/2022',
             status: 'inativo',
-            dataFalecimento: '20/03/2023',
+            imagem: PetImage,
         },
         {
             nome: 'Marie',
-            dataNascimento: '05/03/2020',
+            datanascimento: '05/03/2020',
             procedimento: 'Consulta de rotina',
-            dataProcedimento: '16/01/2022',
+            dataprocedimento: '16/01/2022',
             status: 'ativo',
+            imagem: ConsultaImage,
         },
         {
             nome: 'Marie',
-            dataNascimento: '05/03/2020',
+            datanascimento: '05/03/2020',
             procedimento: 'Castração',
-            dataProcedimento: '15/01/2022',
+            dataprocedimento: '15/01/2022',
             status: 'ativo',
+            imagem: Castracao,
         },
     ];
 
@@ -66,24 +74,23 @@ const HistoricoPET = () => {
             <div className='container-associados'>
                 <Header cliente={cliente} />
                 <div className='fundo-historico'>
-                <div className='icones-nome'>
-                    <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
-                </div>
-                <div className="historico-container">
-                    {historicos.map((historico, index) => (
-                        <div className="historico-card" key={index}>
-                            <div className="icone">{getIconByProcedimento(historico.procedimento)}</div>
-                            <div className="info">
-                                <p><strong>Nome:</strong> {historico.nome}</p>
-                                <p><strong>Data de Nascimento:</strong> {historico.dataNascimento}</p>
-                                <p><strong>Procedimento:</strong> {historico.procedimento}</p>
-                                <p><strong>Data do Procedimento:</strong> {historico.dataProcedimento}</p>
-                                {historico.status === 'inativo' && <p><strong>Data de Falecimento:</strong> {historico.dataFalecimento}</p>}
-                                <p><strong>Status:</strong> {historico.status}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                    <div className='icones-nome'>
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
+                    </div>
+                    <div className='cards-funeraria'>
+                        {historicos.map((cliente, index) => (
+                            <CardePet
+
+                                key={index}
+                                imagem={cliente.imagem}
+                                nome={cliente.nome}
+                                procedimento={cliente.procedimento}
+                                datanascimento={cliente.datanascimento}
+                                dataprocedimento={cliente.dataprocedimento}
+                                status={cliente.status}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
 

@@ -4,6 +4,10 @@ import { Pets, Event, Healing, Vaccines, MedicalInformation, Medication } from '
 import './historico-clinica.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from 'react-router-dom';
+import CardeClinica from '../../components/card-clinica';
+import Dentista from '../../../assets/destista.png';
+import Estetica from '../../../assets/estetica.png';
+import Exame from '../../../assets/exame.png';
 
 const HistoricoClinica = () => {
     const location = useLocation();
@@ -12,24 +16,27 @@ const HistoricoClinica = () => {
     const historicos = [
         {
             nome: 'Joao',
-            dataNascimento: '01/01/2018',
+            datanascimento: '01/01/2018',
             procedimento: 'Exame de sangue',
-            dataProcedimento: '10/02/2022',
+            dataprocedimento: '10/02/2022',
             status: 'ativo',
+            imagem: Exame,
         },
         {
             nome: 'Maria',
-            dataNascimento: '05/03/2001',
+            datanascimento: '05/03/2001',
             procedimento: 'Estetica',
-            dataProcedimento: '15/03/2022',
+            dataprocedimento: '15/03/2022',
             status: 'ativo',
+            imagem: Estetica,
         },
         {
             nome: 'Lucas',
-            dataNascimento: '05/03/2005',
+            datanascimento: '05/03/2005',
             procedimento: 'Dentista',
-            dataProcedimento: '15/01/2022',
+            dataprocedimento: '15/01/2022',
             status: 'ativo',
+            imagem: Dentista,
         },
     ];
 
@@ -56,17 +63,17 @@ const HistoricoClinica = () => {
                         <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}  </label>
                     </div>
                     <div className="historico-container-clinica">
-                        {historicos.map((historico, index) => (
-                            <div className="historico-card-clinica" key={index}>
-                                <div className="icone-clinica">{getIconByProcedimento(historico.procedimento)}</div>
-                                <div className="info-clinica">
-                                    <p><strong>Nome:</strong> {historico.nome}</p>
-                                    <p><strong>Data de Nascimento:</strong> {historico.dataNascimento}</p>
-                                    <p><strong>Procedimento:</strong> {historico.procedimento}</p>
-                                    <p><strong>Data do Procedimento:</strong> {historico.dataProcedimento}</p>
-                                    <p><strong>Status:</strong> {historico.status}</p>
-                                </div>
-                            </div>
+                        {historicos.map((cliente, index) => (
+                            <CardeClinica
+
+                                key={index}
+                                imagem={cliente.imagem}
+                                nome={cliente.nome}
+                                procedimento={cliente.procedimento}
+                                datanascimento={cliente.datanascimento}
+                                dataprocedimento={cliente.dataprocedimento}
+                                status={cliente.status}
+                            />
                         ))}
                     </div>
                 </div>

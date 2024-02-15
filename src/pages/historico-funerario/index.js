@@ -2,11 +2,13 @@ import React from 'react';
 import Header from '../../components/header/header';
 import './historico-funeraria.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Carde from '../../components/card';
+import Carde from '../../components/card-funeraria';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 const HistoricoFuneraria = () => {
     const historicos = [
         {
+            icone: <EmojiPeopleIcon/>,
             nome: 'Joao',
             datanascimento: '01/01/2018',
             plano: 'Luxo',
@@ -46,7 +48,9 @@ const HistoricoFuneraria = () => {
                 <div className='cards-funeraria'>
                 {historicos.map((cliente, index) => (
                     <Carde
+
                         key={index}
+                        icone={cliente.icone}
                         nome={cliente.nome}
                         datanascimento={cliente.datanascimento}
                         plano={cliente.plano}
