@@ -42,6 +42,11 @@ const Header = ({ cliente }) => {
                 className={activeRoute === "/pdr" ? "active" : ""}
             >PDR
             </button>
+            <button
+                onClick={() => handleMenuClick("/contato")}
+                className={activeRoute === "/contato" ? "active" : ""}
+            >Contato
+            </button>
             <label>Ações</label>
             <button
                 onClick={() => handleMenuClick("/recebimento")}
@@ -54,9 +59,29 @@ const Header = ({ cliente }) => {
             >Inativar Contrato
             </button>
             <button
-                onClick={() => handleMenuClick("/contato")}
-                className={activeRoute === "/contato" ? "active" : ""}
-            >Contato
+                onClick={() => handleMenuClick("/registrar-obito")}
+                className={activeRoute === "/registrar-obito" ? "active" : ""}
+            >Registrar Obito
+            </button>
+            <button
+                onClick={() => handleMenuClick("/cancelar-contrato")}
+                className={activeRoute === "/cancelar-contrato" ? "active" : ""}
+            >Cancelar Contrato
+            </button>
+            <button
+                onClick={() => handleMenuClick("/quitar")}
+                className={activeRoute === "/quitar" ? "active" : ""}
+            >Quitar
+            </button>
+            <button
+                onClick={() => handleMenuClick("/extrato")}
+                className={activeRoute === "/extrato" ? "active" : ""}
+            >Extrato
+            </button>
+            <button
+                onClick={() => handleMenuClick("/negociar")}
+                className={activeRoute === "/negociar" ? "active" : ""}
+            >Negociação
             </button>
             <button
                 onClick={() => handleMenuClick("/contrato")}

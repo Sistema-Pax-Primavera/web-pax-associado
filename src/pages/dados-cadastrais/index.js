@@ -300,7 +300,6 @@ const DadosCadastrais = () => {
 
                     <div className='salvar-associado'>
                         <button>SALVAR</button>
-                        <button>REGISTRAR OBITO</button>
                     </div>
                 </div>
             </div>

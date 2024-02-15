@@ -476,7 +476,40 @@ const Recebimento = () => {
                                             <div className='adicionar-recebimento-forma'>
                                                 <button onClick={handleAdicionarParcela}><AddCircleOutlineIcon fontSize={'small'} /></button>
                                             </div>
+                                            <div className='acordion-recebimento'>
+                                                <MyAccordion
+                                                    title="Histórico de Pagamento"
+                                                    icon={<AssessmentIcon />}
+                                                    expandedIcon={<ExpandMoreIcon />}
+                                                >
+                                                    <div>
+                                                        <TableContainer component={Paper}>
+                                                            <Table sx={{ minWidth: 200 }} aria-label="simple table">
+                                                                <TableHead>
+                                                                    <TableRow>
+                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>DATA VENCIMENTO</TableCell>
+                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>VALOR</TableCell>
+                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>DATA PAGAMENTO</TableCell>
+                                                                    </TableRow>
+                                                                </TableHead>
+                                                                <TableBody>
+                                                                    {rows.map((row) => (
+                                                                        <TableRow
+                                                                            key={row.parcela}
+                                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                                        >
+                                                                            <TableCell align="center" sx={{ fontSize: 12 }}>{row.datavencimento}</TableCell>
+                                                                            <TableCell align="center" sx={{ fontSize: 12 }}>{row.valor}</TableCell>
+                                                                            <TableCell align="center" sx={{ fontSize: 12 }}>{row.datapagamento}</TableCell>
+                                                                        </TableRow>
+                                                                    ))}
+                                                                </TableBody>
+                                                            </Table>
+                                                        </TableContainer>
+                                                    </div>
+                                                </MyAccordion>
 
+                                            </div>
                                         </div>
                                         {parcelasAdicionais.length > 0 && (
                                             <div className='lista-parcelas'>
@@ -560,40 +593,7 @@ const Recebimento = () => {
 
                     </div>
                 </div>
-                <div className='acordion-recebimento'>
-                    <MyAccordion
-                        title="Histórico de Pagamento"
-                        icon={<AssessmentIcon />}
-                        expandedIcon={<ExpandMoreIcon />}
-                    >
-                        <div>
-                            <TableContainer component={Paper}>
-                                <Table sx={{ minWidth: 200 }} aria-label="simple table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell align="center" sx={{ fontSize: 12 }}>DATA VENCIMENTO</TableCell>
-                                            <TableCell align="center" sx={{ fontSize: 12 }}>VALOR</TableCell>
-                                            <TableCell align="center" sx={{ fontSize: 12 }}>DATA PAGAMENTO</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {rows.map((row) => (
-                                            <TableRow
-                                                key={row.parcela}
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                                <TableCell align="center" sx={{ fontSize: 12 }}>{row.datavencimento}</TableCell>
-                                                <TableCell align="center" sx={{ fontSize: 12 }}>{row.valor}</TableCell>
-                                                <TableCell align="center" sx={{ fontSize: 12 }}>{row.datapagamento}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </div>
-                    </MyAccordion>
 
-                </div>
             </div>
         </div>
     );

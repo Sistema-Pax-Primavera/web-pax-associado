@@ -12,7 +12,9 @@ import Paper from '@mui/material/Paper';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { useLocation } from 'react-router-dom';
-
+import MyAccordion from '../../components/accordion';
+import TaskIcon from '@mui/icons-material/Task';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 function createData(name, data, usuario) {
     return { name, data, usuario };
 }
@@ -102,39 +104,58 @@ const Observacao = () => {
                         <button onClick={handleSaveClick}>SALVAR</button>
                     </div>
                     <div className='container-linha2'>
-                        <TableContainer component={Paper}>
-                            <Table sx={{ maxWidth: 900 }} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Assunto</TableCell>
-                                        <TableCell align="center">Data</TableCell>
-                                        <TableCell align="center">Usuário</TableCell>
-                                        <TableCell align="center">Opções</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.map((row) => (
-                                        <TableRow
-                                            key={row.name}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell component="th" scope="row">
-                                                {row.name}
-                                            </TableCell>
-                                            <TableCell align="center">{row.data}</TableCell>
-                                            <TableCell align="center">{row.usuario}</TableCell>
-                                            <TableCell align="center">
-                                                <div className='botao-opcao'>
-                                                    <div className='edit-botao'>
-                                                        <button onClick={() => handleViewClick(row)}><RemoveRedEyeIcon fontSize={'small'} /></button>
-                                                    </div>
-                                                </div>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                        <MyAccordion
+                            title="Historico de F9"
+                            icon={<TaskIcon />}
+                            expandedIcon={<ExpandMoreIcon />}
+                        >
+                            <div className='layout-linha'>
+
+                                <div className='container-linha'>
+                                    <TableContainer component={Paper}>
+                                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                            <TableHead>
+                                                <TableRow>
+                                                    <TableCell>Data</TableCell>
+                                                    <TableCell align="center">Titulo</TableCell>
+                                                    <TableCell align="center">Categoria</TableCell>
+                                                    <TableCell align="center">Subcategoria</TableCell>
+                                                    <TableCell align="center">Usuario</TableCell>
+                                                    <TableCell align="center">Mensagem</TableCell>
+                                                    <TableCell align="center">Opções</TableCell>
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                <TableRow
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                >
+                                                    <TableCell component="th" scope="row">
+                                                        10/02/2024
+                                                    </TableCell>
+                                                    <TableCell align="center">CONTATO COM CLIENTE</TableCell>
+                                                    <TableCell align="center">PROMOÇÃO</TableCell>
+                                                    <TableCell align="center">PROMOÇÃO ANUAL</TableCell>
+                                                    <TableCell align="center">ADMIN</TableCell>
+                                                    <TableCell align="center">Texto texto texto texto texto
+                                                        texto texto texto texto texto texto texto texto texto
+                                                        texto
+                                                        texto texto texto texto texto</TableCell>
+                                                    <TableCell align="center">
+                                                        <div className='botao-opcao'>
+                                                            <div className='edit-botao'>
+                                                                <button onClick={() => handleViewClick()}><RemoveRedEyeIcon fontSize={'small'} /></button>
+                                                            </div>
+                                                        </div>
+                                                    </TableCell>
+                                                </TableRow>
+
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+
+                                </div>
+                            </div>
+                        </MyAccordion>
                     </div>
                 </div>
             </div>

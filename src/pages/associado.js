@@ -23,7 +23,9 @@ const clientes = [
         "contrato": 9876,
         "regiao": "BOLETO",
         "situacao": 1,
-        "ult_pagamento": "10/10/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "10/10/2023",
+        "dependente": "ADERBAL"
     },
     {
         "id": 2,
@@ -32,7 +34,9 @@ const clientes = [
         "contrato": 6543,
         "regiao": "COB",
         "situacao": 2,
-        "ult_pagamento": "15/09/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "15/09/2023",
+        "dependente": "ADERBAL"
     },
     {
         "id": 3,
@@ -41,7 +45,9 @@ const clientes = [
         "contrato": 1234,
         "regiao": "BOLETO",
         "situacao": 3,
-        "ult_pagamento": "22/08/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "22/08/2023",
+        "dependente": "ADERBAL"
     },
     {
         "id": 4,
@@ -50,7 +56,9 @@ const clientes = [
         "contrato": 5678,
         "regiao": "COB",
         "situacao": 1,
-        "ult_pagamento": "05/07/2023"
+        "tipo": "DEPENDENTE",
+        "ult_pagamento": "05/07/2023",
+        "dependente": "-"
     },
     {
         "id": 5,
@@ -59,7 +67,9 @@ const clientes = [
         "contrato": 4321,
         "regiao": "BOLETO",
         "situacao": 2,
-        "ult_pagamento": "18/06/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "18/06/2023",
+        "dependente": "-"
     },
     {
         "id": 6,
@@ -68,7 +78,9 @@ const clientes = [
         "contrato": 8765,
         "regiao": "COB",
         "situacao": 3,
-        "ult_pagamento": "30/05/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "30/05/2023",
+        "dependente": "ADERBAL"
     },
     {
         "id": 7,
@@ -77,7 +89,9 @@ const clientes = [
         "contrato": 9876,
         "regiao": "BOLETO",
         "situacao": 1,
-        "ult_pagamento": "12/04/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "12/04/2023",
+        "dependente": "ADERBAL"
     },
     {
         "id": 8,
@@ -86,7 +100,9 @@ const clientes = [
         "contrato": 5432,
         "regiao": "COB",
         "situacao": 2,
-        "ult_pagamento": "25/03/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "25/03/2023",
+        "dependente": " - "
     },
     {
         "id": 9,
@@ -95,7 +111,9 @@ const clientes = [
         "contrato": 1234,
         "regiao": "BOLETO",
         "situacao": 3,
-        "ult_pagamento": "08/02/2023"
+        "tipo": "TITULAR",
+        "ult_pagamento": "08/02/2023",
+        "dependente": "ADERBAL"
     },
     {
         "id": 10,
@@ -104,16 +122,21 @@ const clientes = [
         "contrato": 5678,
         "regiao": "COB",
         "situacao": 1,
-        "ult_pagamento": "20/01/2023"
+        "tipo": "DEPENDENTE",
+        "ult_pagamento": "20/01/2023",
+        "dependente": "ADERBAL"
     }
 ];
 
-function createData(id, contrato, cpf, nome, regiao, ult_pagamento, situacao) {
-    return { id, contrato, cpf, nome, regiao, ult_pagamento, situacao };
+function createData(id, contrato, cpf, tipo, nome, regiao, ult_pagamento, dependente, situacao) {
+    return { id, contrato, cpf, tipo, nome, regiao, ult_pagamento, dependente, situacao };
 }
 
 const rows = clientes.map(cliente =>
-    createData(cliente.id, cliente.contrato, cliente.cpf, cliente.nome, cliente.regiao, cliente.ult_pagamento, cliente.situacao)
+    createData(
+        cliente.id, cliente.contrato, cliente.cpf,
+        cliente.tipo, cliente.nome, cliente.regiao,
+        cliente.ult_pagamento, cliente.dependente, cliente.situacao)
 );
 
 const getSituacaoLabel = (situacao) => {
@@ -210,8 +233,10 @@ const Associado = () => {
                                     <TableCell align='center'>Contrato</TableCell>
                                     <TableCell align='center'>Nome</TableCell>
                                     <TableCell align='center'>CPF</TableCell>
+                                    <TableCell align='center'>Tipo</TableCell>
                                     <TableCell align='center'>Região</TableCell>
                                     <TableCell align='center'>Ultimo Pagamento</TableCell>
+                                    <TableCell align='center'>Dependente</TableCell>
                                     <TableCell align='center'>Situação</TableCell>
                                     <TableCell align='center'>Opções</TableCell>
                                 </TableRow>
@@ -222,8 +247,10 @@ const Associado = () => {
                                         <TableCell align='center'>{row.contrato}</TableCell>
                                         <TableCell align='center'>{row.nome}</TableCell>
                                         <TableCell align='center'>{formatarCPF(row.cpf)}</TableCell>
+                                        <TableCell align='center'>{row.tipo}</TableCell>
                                         <TableCell align='center'>{row.regiao}</TableCell>
                                         <TableCell align='center'>{row.ult_pagamento}</TableCell>
+                                        <TableCell align='center'>{row.dependente}</TableCell>
                                         <TableCell align='center'>{getSituacaoLabel(row.situacao)}</TableCell>
                                         <TableCell align='center'>
                                             <div className='opcao-associado'>

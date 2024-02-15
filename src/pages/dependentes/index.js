@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/header';
 import './dependentes.css'
 import DateMaskInput from '../../components/inputs';
@@ -31,7 +31,7 @@ const Dependentes = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
     const [mostrarFormularioPet, setMostrarFormularioPet] = useState(false);
-    const [mostrarFormularioCremacao, setMostrarFormularioCremacao] = useState(true);
+    const [mostrarFormularioCremacao, setMostrarFormularioCremacao] = useState('');
     const [obito, setObito] = useState(false);
 
     const handleSwitchObito = () => {
@@ -42,6 +42,10 @@ const Dependentes = () => {
         setMostrarFormularioPet(tipo === 'pet');
         setMostrarFormularioCremacao(tipo === 'cremacao');
     };
+
+    useEffect(() => {
+
+    }, []);
 
     return (
         <>
@@ -111,19 +115,12 @@ const Dependentes = () => {
                                         <label>Modalidade</label>
                                         <select></select>
                                     </div>
+
                                     <div className='campos-02'>
-                                        <label>Baixa de Óbito</label>
-                                        <Switch
-                                            checked={obito}
-                                            onChange={handleSwitchObito}
-                                            size="small" />
+                                        <label> Falecimento</label>
+                                        <DateMaskInput />
                                     </div>
-                                    {obito && (
-                                        <div className='campos-02'>
-                                            <label> Falecimento</label>
-                                            <DateMaskInput />
-                                        </div>
-                                    )}
+
                                     <div className='salva-dependentes'>
                                         <button>SALVAR</button>
                                     </div>
@@ -212,18 +209,10 @@ const Dependentes = () => {
                                         <input></input>
                                     </div>
                                     <div className='campos-02'>
-                                        <label>Baixa de Óbito</label>
-                                        <Switch
-                                            checked={obito}
-                                            onChange={handleSwitchObito}
-                                            size="small" />
+                                        <label> Falecimento</label>
+                                        <DateMaskInput />
                                     </div>
-                                    {obito && (
-                                        <div className='campos-02'>
-                                            <label> Falecimento</label>
-                                            <DateMaskInput />
-                                        </div>
-                                    )}
+
                                     <div className='salva-dependentes'>
                                         <button>SALVAR</button>
                                     </div>

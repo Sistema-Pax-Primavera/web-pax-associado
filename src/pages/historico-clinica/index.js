@@ -40,27 +40,13 @@ const HistoricoClinica = () => {
         },
     ];
 
-    const getIconByProcedimento = (procedimento) => {
-        switch (procedimento) {
-            case 'Estetica':
-                return <MedicalInformation />;
-            case 'Exame de sangue':
-                return <MedicalInformation />;
-            case 'Dentista':
-                return <MedicalInformation />;
-            // Adicione mais casos conforme necessário
-            default:
-                return null;
-        }
-    };
-
     return (
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
                 <div className="historico-clinica-funeraria">
                     <div className='icones-nome'>
-                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}  </label>
+                        <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
                     </div>
                     <div className="historico-container-clinica">
                         {historicos.map((cliente, index) => (

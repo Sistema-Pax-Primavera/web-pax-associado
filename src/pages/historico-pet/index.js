@@ -55,27 +55,13 @@ const HistoricoPET = () => {
         },
     ];
 
-    const getIconByProcedimento = (procedimento) => {
-        switch (procedimento) {
-            case 'Consulta de rotina':
-                return <Pets />;
-            case 'Vacinação':
-                return <Vaccines />;
-            case 'Castração':
-                return <Healing />;
-            // Adicione mais casos conforme necessário
-            default:
-                return null;
-        }
-    };
-
     return (
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
                 <div className='fundo-historico'>
                     <div className='icones-nome'>
-                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
+                        <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
                     </div>
                     <div className='cards-funeraria'>
                         {historicos.map((cliente, index) => (

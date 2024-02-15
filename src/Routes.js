@@ -14,6 +14,11 @@ import HistoricoClinica from "./pages/historico-clinica";
 import InativarContrato from "./pages/inativar-contrato";
 import PDR from "./pages/pdr";
 import Recebimento from "./pages/recebimento";
+import RegistrarObito from "./pages/registrar-obito";
+import CancelarContrato from "./pages/cancelar";
+import Quitar from "./pages/quitar";
+import Negociar from "./pages/negociar";
+import Extrato from "./pages/extrato";
 
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/associado">
@@ -26,7 +31,12 @@ const RoutesApp = () => (
             <Route exact path="/pdr" element={<PDR />} />
             <Route exact path="/recebimento" element={<Recebimento />} />
             <Route exact path="/inativar-contrato" element={<InativarContrato />} />
+            <Route exact path="/cancelar-contrato" element={<CancelarContrato />} />
+            <Route exact path="/registrar-obito" element={<RegistrarObito />} />
+            <Route exact path="/quitar" element={<Quitar />} />
+            <Route exact path="/extrato" element={<Extrato />} />
             <Route exact path="/contato" element={<Contato />} />
+            <Route exact path="/negociar" element={<Negociar />} />
             <Route exact path="/contrato" element={<Contrato />} />
             <Route exact path="/carteirinha" element={<Carteirinha />} />
             <Route exact path="/observacao" element={<Observacao />} />

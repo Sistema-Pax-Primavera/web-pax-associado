@@ -21,7 +21,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import PrintIcon from '@mui/icons-material/Print';
+
 import { Select } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import TaskIcon from '@mui/icons-material/Task';
@@ -36,44 +36,12 @@ const rows = [
 ];
 
 
-function extra(id, valor, mes, formapagamento) {
-    return { id, valor, mes, formapagamento };
-}
-
-const extrato = [
-    extra(50, '05/02/2023', 'DINHEIRO'),
-    extra(50, '05/03/2023', 'DINHEIRO'),
-];
-
-
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 650,
-    bgcolor: 'background.paper',
-    borderRadius: 5,
-    p: 4,
-};
-
-const style2 = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 500,
-    bgcolor: 'background.paper',
-    borderRadius: 5,
-    p: 4,
-};
-
-const style3 = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
     borderRadius: 5,
     p: 4,
@@ -110,201 +78,6 @@ const PDR = () => {
                         expandedIcon={<ExpandMoreIcon />}
                     >
                         <div className='divisao-align-itens'>
-                            <div className='divisao-flex-direction'>
-                                <button onClick={handleOpen}><AddchartIcon fontSize={'small'} /> EXTRATO</button>
-
-                                <Modal
-                                    open={open}
-                                    onClose={handleClose}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            <div className='icones-nome-fechar'>
-                                                <div className='pdr-icones'>
-                                                    <label><AddchartIcon fontSize={'small'} />EXTRATO</label>
-                                                </div>
-                                                <div className='fecha-modal'>
-                                                    <button onClick={handleClose}><CancelIcon fontSize={'small'} /></button>
-                                                </div>
-
-                                            </div>
-                                        </Typography>
-                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                            <div>
-                                                <TableContainer component={Paper}>
-                                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                                        <TableHead>
-                                                            <TableRow>
-                                                                <TableCell>VALOR</TableCell>
-                                                                <TableCell align="center">MÊS</TableCell>
-                                                                <TableCell align="center">FORMA DE PAGAMENTO</TableCell>
-                                                                <TableCell align="center">IMPRIMIR</TableCell>
-                                                            </TableRow>
-                                                        </TableHead>
-                                                        <TableBody>
-                                                            {extrato.map((extratos) => (
-                                                                <TableRow
-                                                                    key={extratos.id}
-                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                                >
-                                                                    <TableCell component="th" scope="row">
-                                                                        {extratos.valor}
-                                                                    </TableCell>
-                                                                    <TableCell align="center">{extratos.mes}</TableCell>
-                                                                    <TableCell align="center">{extratos.formapagamento}</TableCell>
-                                                                    <TableCell align="center">{
-                                                                        <div className='icones-nome-imprimir'>
-                                                                            <label><PrintIcon fontSize={'small'} /> </label>
-                                                                        </div>
-                                                                    }</TableCell>
-                                                                </TableRow>
-                                                            ))}
-                                                        </TableBody>
-                                                    </Table>
-                                                </TableContainer>
-                                                <div className='imprimir-anual'>
-                                                    <button>IMPRIMIR ANUAL</button>
-                                                </div>
-                                            </div>
-                                        </Typography>
-                                    </Box>
-                                </Modal>
-                                <button onClick={handleOpen1}><CurrencyExchangeIcon fontSize={'small'} /> QUITAR</button>
-                                <Modal
-                                    open={open1}
-                                    onClose={handleClose1}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style2}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-
-                                            <div className='icones-nome-fechar'>
-                                                <div className='pdr-icones'>
-                                                    <label><AddchartIcon fontSize={'small'} />QUITAR</label>
-                                                </div>
-                                                <div className='fecha-modal'>
-                                                    <button onClick={handleClose1}><CancelIcon fontSize={'small'} /></button>
-                                                </div>
-
-                                            </div>
-                                        </Typography>
-                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                            <div className='quitar-pdr'>
-                                                <div className='quitar-01'>
-                                                    <label>Data</label>
-                                                    <input></input>
-                                                </div>
-                                                <div className='quitar-02'>
-                                                    <label>Motivo da Quitação</label>
-                                                    <select></select>
-                                                </div>
-                                                <div className='confirmar-quitacao'>
-                                                    <button>CONFIRMAR</button>
-                                                </div>
-                                            </div>
-
-
-                                        </Typography>
-                                    </Box>
-                                </Modal>
-                                <button onClick={handleOpen2}><CreditScoreIcon fontSize={'small'} /> NEGOCIAR</button>
-                                <Modal
-                                    open={open2}
-                                    onClose={handleClose2}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style3}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-
-                                            <div className='icones-nome-fechar'>
-                                                <div className='pdr-icones'>
-                                                    <label><CreditScoreIcon fontSize={'small'} />NEGOCIAR</label>
-                                                </div>
-                                                <div className='fecha-modal'>
-                                                    <button onClick={handleClose2}><CancelIcon fontSize={'small'} /></button>
-                                                </div>
-
-                                            </div>
-                                        </Typography>
-                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                            <div className='negociar-pdr'>
-                                                <div className='container-linha'>
-                                                    <div className='campos-necociacao'>
-                                                        <label>Quant. Parcelas</label>
-                                                        <input></input>
-                                                    </div>
-                                                    <div className='campos-necociacao2'>
-                                                        <label>Motivo da Negociação</label>
-                                                        <select></select>
-                                                    </div>
-                                                </div>
-
-                                                <div className='container-linha'>
-                                                    <div className='campos-necociacao'>
-                                                        <label>Valor Total</label>
-                                                        <input></input>
-                                                    </div>
-                                                    <div className='campos-necociacao'>
-                                                        <label>Valor Acertado</label>
-                                                        <input></input>
-                                                    </div>
-                                                    <div className='confirmar-tipo-negociacao'>
-                                                        <button>CONFIRMAR</button>
-                                                    </div>
-                                                </div>
-
-
-
-
-                                            </div>
-                                        </Typography>
-                                    </Box>
-                                </Modal>
-                                <button onClick={handleOpen3}><CancelIcon fontSize={'small'} /> CANCELAR</button>
-                                <Modal
-                                    open={open3}
-                                    onClose={handleClose3}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style2}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-
-                                            <div className='icones-nome-fechar'>
-                                                <div className='pdr-icones'>
-                                                    <label><CancelIcon fontSize={'small'} />CANCELAR</label>
-                                                </div>
-                                                <div className='fecha-modal'>
-                                                    <button onClick={handleClose3}><CancelIcon fontSize={'small'} /></button>
-                                                </div>
-
-                                            </div>
-                                        </Typography>
-                                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                            <div className='quitar-pdr'>
-                                                <div className='quitar-01'>
-                                                    <label>Data</label>
-                                                    <input></input>
-                                                </div>
-                                                <div className='quitar-02'>
-                                                    <label>Motivo do Cancelamento</label>
-                                                    <select></select>
-                                                </div>
-                                                <div className='confirmar-tipo-negociacao'>
-                                                    <button>CONFIRMAR</button>
-                                                </div>
-                                            </div>
-
-
-                                        </Typography>
-                                    </Box>
-                                </Modal>
-                            </div>
-
                             <div className='layout-linha'>
                                 <div className='container-linha'>
                                     <div className='campos-01'>
@@ -323,13 +96,6 @@ const PDR = () => {
                                         <label>Plano</label>
                                         <input></input>
                                     </div>
-
-                                </div>
-                                <div className='container-linha'>
-                                    <div className='campos-01'>
-                                        <label>Região</label>
-                                        <input></input>
-                                    </div>
                                     <div className='data-contrato'>
                                         <label>Data Contrato</label>
                                         <DateMaskInput />
@@ -338,11 +104,17 @@ const PDR = () => {
                                         <label>Dia Pagamento</label>
                                         <DateMaskInput />
                                     </div>
+                                    <div className='campos-01'>
+                                        <label>Região</label>
+                                        <input></input>
+                                    </div>
+                                </div>
+                                <div className='container-linha'>
+
                                 </div>
                             </div>
                         </div>
                     </MyAccordion>
-
                     <MyAccordion
                         title="Histórico de Recebimento"
                         icon={<AnalyticsIcon />}
@@ -382,50 +154,7 @@ const PDR = () => {
                             </div>
                         </div>
                     </MyAccordion>
-                    <MyAccordion
-                        title="Historico de F9"
-                        icon={<TaskIcon />}
-                        expandedIcon={<ExpandMoreIcon />}
-                    >
-                        <div className='layout-linha'>
 
-                            <div className='container-linha'>
-                                <TableContainer component={Paper}>
-                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Data</TableCell>
-                                                <TableCell align="center">Titulo</TableCell>
-                                                <TableCell align="center">Categoria</TableCell>
-                                                <TableCell align="center">Subcategoria</TableCell>
-                                                <TableCell align="center">Usuario</TableCell>
-                                                <TableCell align="center">Mensagem</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            <TableRow
-                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                                <TableCell component="th" scope="row">
-                                                    10/02/2024
-                                                </TableCell>
-                                                <TableCell align="center">CONTATO COM CLIENTE</TableCell>
-                                                <TableCell align="center">PROMOÇÃO</TableCell>
-                                                <TableCell align="center">PROMOÇÃO ANUAL</TableCell>
-                                                <TableCell align="center">ADMIN</TableCell>
-                                                <TableCell align="center">Texto texto texto texto texto
-                                                    texto texto texto texto texto texto texto texto texto
-                                                    texto
-                                                    texto texto texto texto texto</TableCell>
-                                            </TableRow>
-
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-
-                            </div>
-                        </div>
-                    </MyAccordion>
                     <div className='salvar-associado'>
                         <button>SALVAR</button>
                     </div>
