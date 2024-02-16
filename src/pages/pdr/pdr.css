@@ -167,7 +167,10 @@
     width: 65%;
     display: flex;
     flex-direction: column;
+}
 
+.campos-necociacao2 select{
+    font-weight: 500;
 }
 
 .imprimir-anual {
