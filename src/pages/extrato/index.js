@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import PrintIcon from '@mui/icons-material/Print';
 import { useLocation } from 'react-router-dom';
+import './extrato.css'
 
 const Extrato = () => {
     const location = useLocation();
@@ -33,6 +34,23 @@ const Extrato = () => {
                     <div className='fundo-cobranca'>
                         <div className='icones-nome'>
                             <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
+                        </div>
+                        <div>
+                            <div>
+                                <div className='container-linha'>
+                                    <div className='campos-03'>
+                                        <label>De</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='campos-03'>
+                                        <label>Até</label>
+                                        <input></input>
+                                    </div>
+                                    <div className='filtro-extrato'>
+                                        <button>FILTRAR</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className='container-linha'>
                             <TableContainer component={Paper}>
@@ -66,7 +84,7 @@ const Extrato = () => {
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                            <div className='imprimir-anual'>
+                            <div className='imprimir-anual-extrato'>
                                 <button>IMPRIMIR ANUAL</button>
                             </div>
                         </div>

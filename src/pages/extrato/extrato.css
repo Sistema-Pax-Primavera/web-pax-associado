@@ -1,0 +1,12 @@
+.imprimir-anual-extrato button {
+    background-color: var(--verde);
+    font-weight: 700;
+    color: var(--branco);
+}
+
+.filtro-extrato button{
+    background-color: var(--verde);
+    color: var(--branco);
+    margin-top: 15px;
+    font-weight: 700;
+}

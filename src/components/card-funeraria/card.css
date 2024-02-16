@@ -20,5 +20,7 @@
 
 .informacoes-funeraria label{
     color: var(--preto);
+    display: flex;
+    align-items: center;
     font-weight: 600;
 }

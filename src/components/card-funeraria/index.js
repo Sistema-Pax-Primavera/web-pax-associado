@@ -9,7 +9,7 @@ import './card.css'
 const Carde = ({ nome, datanascimento, plano, datafalecimento, parentesco, datacremacao, icone }) => {
     return (
         <div className='todos-cards'>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, height: 270 }}>
                 <CardMedia>
                     <div className='luto-img'>
                         <img src={Luto}></img>

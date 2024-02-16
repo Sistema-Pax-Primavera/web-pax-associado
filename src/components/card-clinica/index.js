@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 const CardeClinica = ({ nome, datanascimento, procedimento, dataprocedimento, status, imagem }) => {
     return (
         <div className='todos-cards'>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345, height: 250 }}>
                 <CardMedia>
                     <div className='luto-img'>
                         <img src={imagem} alt={procedimento} />

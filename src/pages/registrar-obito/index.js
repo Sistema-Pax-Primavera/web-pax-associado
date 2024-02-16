@@ -18,7 +18,7 @@ const RegistrarObito = () => {
                             <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
                         </div>
                         <div className='container-linha'>
-                            <div className='campos-03'>
+                            <div className='data-obito-registro'>
                                 <label>Data do Obito</label>
                                 <input></input>
                             </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/header/header';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from 'react-router-dom';
+import './negociar.css'
 
 const Negociar = () => {
     const location = useLocation();
@@ -11,7 +12,7 @@ const Negociar = () => {
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} />
-                <div className='dados-cobranca-associado'>
+                <div className='dados-negociar-associado'>
                     <div className='fundo-cobranca'>
                         <div className='icones-nome'>
                             <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>

@@ -38,9 +38,11 @@ function createData(parcela, datavencimento, valor, datapagamento) {
 }
 
 const rows = [
+    createData('04', '23/12/2023', '100,00', '19/02/2024'),
     createData('03', '15/02/2024', '100,00', '18/02/2024'),
     createData('02', '15/01/2024', '100,00', '18/04/2024'),
     createData('01', '15/12/2023', '100,00', '16/02/2024'),
+    
 ];
 
 const style = {
@@ -434,152 +436,156 @@ const Recebimento = () => {
 
                         </div>
                         {receberDisponivel ?
-                            <>
-                                <div className='pag-dupl-men'>
-                                    <div className='duplica-adiciona-recebimento'>
-                                        <div key={1} className='muda-linha-recebimento'>
-                                            <div className='forma-pagamento-recebimento'>
-                                                <label>Forma de Pagamento</label>
-                                                <select
-                                                    value={novaParcela.formaPagamento}
-                                                    onChange={(e) => handleNovaParcelaChange('formaPagamento', e.target.value)}
-                                                >
-                                                    <option>Dinheiro</option>
-                                                    <option>Débito</option>
-                                                    <option>Crédito</option>
-                                                    <option>PIX</option>
 
-                                                    <option>Cheque</option>
-                                                </select>
-                                            </div>
-                                            {['Dinheiro', 'Débito', 'Crédito'].includes(novaParcela.formaPagamento) ? null : (
-                                                <div className='conta-bancaria-recebimento'>
-                                                    <label>Conta</label>
+                            <div className='pag-dupl-men'>
+                                <div className='duplica-adiciona-recebimento'>
+                                    <div className='container-linha-recebimento'>
+                                        <div className='resultado-forma-pagamento'>
+                                            <div key={1} className='pag-forma-valor-rec'>
+                                                <div className='forma-pagamento-recebimento'>
+                                                    <label>Forma de Pagamento</label>
                                                     <select
-                                                        value={novaParcela.conta}
-                                                        onChange={(e) => handleNovaParcelaChange('conta', e.target.value)}
+                                                        value={novaParcela.formaPagamento}
+                                                        onChange={(e) => handleNovaParcelaChange('formaPagamento', e.target.value)}
                                                     >
-                                                        <option>Conta 1</option>
-                                                        <option>Conta 2</option>
-                                                        <option>Conta 3</option>
+                                                        <option>Dinheiro</option>
+                                                        <option>Débito</option>
+                                                        <option>Crédito</option>
+                                                        <option>PIX</option>
+
+                                                        <option>Cheque</option>
                                                     </select>
                                                 </div>
-                                            )}
-                                            <div className='conta-bancaria-recebimento'>
-                                                <label>Valor a Pagar</label>
-                                                <input
-                                                    type='number'
-                                                    value={novaParcela.valor}
-                                                    onChange={(e) => handleNovaParcelaChange('valor', e.target.value)}
-                                                />
-                                            </div>
-                                            <div className='adicionar-recebimento-forma'>
-                                                <button onClick={handleAdicionarParcela}><AddCircleOutlineIcon fontSize={'small'} /></button>
-                                            </div>
-                                            <div className='acordion-recebimento'>
-                                                <MyAccordion
-                                                    title="Histórico de Pagamento"
-                                                    icon={<AssessmentIcon />}
-                                                    expandedIcon={<ExpandMoreIcon />}
-                                                >
-                                                    <div>
-                                                        <TableContainer component={Paper}>
-                                                            <Table sx={{ minWidth: 200 }} aria-label="simple table">
-                                                                <TableHead>
-                                                                    <TableRow>
-                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>DATA VENCIMENTO</TableCell>
-                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>VALOR</TableCell>
-                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>DATA PAGAMENTO</TableCell>
-                                                                    </TableRow>
-                                                                </TableHead>
-                                                                <TableBody>
-                                                                    {rows.map((row) => (
-                                                                        <TableRow
-                                                                            key={row.parcela}
-                                                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                                        >
-                                                                            <TableCell align="center" sx={{ fontSize: 12 }}>{row.datavencimento}</TableCell>
-                                                                            <TableCell align="center" sx={{ fontSize: 12 }}>{row.valor}</TableCell>
-                                                                            <TableCell align="center" sx={{ fontSize: 12 }}>{row.datapagamento}</TableCell>
-                                                                        </TableRow>
-                                                                    ))}
-                                                                </TableBody>
-                                                            </Table>
-                                                        </TableContainer>
+                                                {['Dinheiro', 'Débito', 'Crédito'].includes(novaParcela.formaPagamento) ? null : (
+                                                    <div className='conta-bancaria-recebimento'>
+                                                        <label>Conta</label>
+                                                        <select
+                                                            value={novaParcela.conta}
+                                                            onChange={(e) => handleNovaParcelaChange('conta', e.target.value)}
+                                                        >
+                                                            <option>Conta 1</option>
+                                                            <option>Conta 2</option>
+                                                            <option>Conta 3</option>
+                                                        </select>
                                                     </div>
-                                                </MyAccordion>
-
-                                            </div>
-                                        </div>
-                                        {parcelasAdicionais.length > 0 && (
-                                            <div className='lista-parcelas'>
-                                                <div>
-                                                    {parcelasAdicionais.map((parcela, index) => (
-                                                        <div className='container-linha-recebimento' key={index}>
-                                                            <div className='tipo-pagamento-recebimento'>
-                                                                <label>Tipo de Pagamento</label>
-                                                                <div className='tipo-pagamento-2'>
-                                                                    {renderizarIconeFormaPagamento(parcela.formaPagamento)}
-                                                                    <label>{parcela.formaPagamento}</label>
-                                                                </div>
-                                                            </div>
-                                                            <div className='tipo-pagamento-recebimento-3'>
-                                                                <h2> Valor $</h2>
-                                                                <label>{parcela.valor}</label>
-                                                            </div>
-                                                            {/* Exibir campo de conta apenas se a forma de pagamento for "PIX" ou "Cheque" */}
-                                                            {['PIX', 'Cheque'].includes(parcela.formaPagamento) && (
-                                                                <div className='tipo-pagamento-recebimento-3'>
-                                                                    <h2> Conta</h2>
-                                                                    <label>{parcela.conta}</label>
-                                                                </div>
-                                                            )}
-                                                            <div className='remove-forma-paga'>
-                                                                <button onClick={() => handleRemoverParcela(index)}><CancelIcon /></button>
-                                                            </div>
-                                                        </div>
-                                                    ))}
+                                                )}
+                                                <div className='conta-bancaria-recebimento'>
+                                                    <label>Valor a Pagar</label>
+                                                    <input
+                                                        type='number'
+                                                        value={novaParcela.valor}
+                                                        onChange={(e) => handleNovaParcelaChange('valor', e.target.value)}
+                                                    />
                                                 </div>
+                                                <div className='adicionar-recebimento-forma'>
+                                                    <button onClick={handleAdicionarParcela}><AddCircleOutlineIcon fontSize={'small'} /></button>
+                                                </div>
+
                                             </div>
-                                        )}
+                                            {parcelasAdicionais.length > 0 && (
+                                                <div className='lista-parcelas'>
+                                                    <div>
+                                                        {parcelasAdicionais.map((parcela, index) => (
+                                                            <div className='container-valores-recebimento' key={index}>
+                                                                <div className='tipo-pagamento-recebimento'>
+                                                                    <div className='tipo-pagamento-2'>
+                                                                        {renderizarIconeFormaPagamento(parcela.formaPagamento)}
+                                                                        <label>{parcela.formaPagamento}</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='tipo-pagamento-recebimento-3'>
+                                                                    <h2> Valor $</h2>
+                                                                    <label>{parcela.valor}</label>
+                                                                </div>
+                                                                {/* Exibir campo de conta apenas se a forma de pagamento for "PIX" ou "Cheque" */}
+                                                                {['PIX', 'Cheque'].includes(parcela.formaPagamento) && (
+                                                                    <div className='tipo-pagamento-recebimento-3'>
+                                                                        <h2> Conta</h2>
+                                                                        <label>{parcela.conta}</label>
+                                                                    </div>
+                                                                )}
+                                                                <div className='remove-forma-paga'>
+                                                                    <button onClick={() => handleRemoverParcela(index)}><CancelIcon /></button>
+                                                                </div>
+                                                            </div>
 
+                                                        ))}
+                                                        <div className='receber-add-recebimento'>
+                                                            {receberDisponivel ? <>
+                                                                <button onClick={handleReceber} disabled={!receberDisponivel}>RECEBER</button>
+
+                                                            </> :
+                                                                <></>
+                                                            }
+
+                                                            <Modal
+                                                                open={open}
+                                                                onClose={handleClose}
+                                                                aria-labelledby="modal-modal-title"
+                                                                aria-describedby="modal-modal-description"
+                                                            >
+                                                                <Box sx={style}>
+                                                                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                                        <div className='icones-nome'>
+                                                                            <label><CurrencyExchangeIcon fontSize={'small'} />Acertar pagamento</label>
+                                                                        </div>
+                                                                    </Typography>
+                                                                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                                                        <div>
+                                                                            <label>Aponte para o QR code e realize o pagamento!</label>
+                                                                            <button onClick={() => imprimirComprovante()}>
+                                                                                IMPRIMIR COMPROVANTE
+                                                                            </button>
+                                                                        </div>
+                                                                    </Typography>
+                                                                </Box>
+                                                            </Modal>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className='acordion-recebimento'>
+                                            
+                                                <div>
+                                                    <TableContainer component={Paper} style={{ maxHeight: 210,  }} >
+                                                        <Table sx={{ minWidth: 200, }} aria-label="simple table">
+                                                            <TableHead  >
+                                                                <TableRow sx={{backgroundColor: '#006b33', }}>
+                                                                    <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>DATA VENCIMENTO</TableCell>
+                                                                    <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>VALOR</TableCell>
+                                                                    <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>DATA PAGAMENTO</TableCell>
+                                                                </TableRow>
+                                                            </TableHead>
+                                                            <TableBody>
+                                                                {rows.map((row) => (
+                                                                    <TableRow
+                                                                        key={row.parcela}
+                                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                                    >
+                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>{row.datavencimento}</TableCell>
+                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>{row.valor}</TableCell>
+                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>{row.datapagamento}</TableCell>
+                                                                    </TableRow>
+                                                                ))}
+                                                            </TableBody>
+                                                        </Table>
+                                                    </TableContainer>
+                                                </div>
+                                            
+
+                                        </div>
                                     </div>
-                                </div>
 
-                            </>
+
+                                </div>
+                            </div>
+
+
                             : <></>
                         }
-                        <div className='receber-add-recebimento'>
-                            {receberDisponivel ? <>
-                                <button onClick={handleReceber} disabled={!receberDisponivel}>RECEBER</button>
 
-                            </> :
-                                <></>
-                            }
-
-                            <Modal
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="modal-modal-title"
-                                aria-describedby="modal-modal-description"
-                            >
-                                <Box sx={style}>
-                                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                                        <div className='icones-nome'>
-                                            <label><CurrencyExchangeIcon fontSize={'small'} />Acertar pagamento</label>
-                                        </div>
-                                    </Typography>
-                                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                        <div>
-                                            <label>Aponte para o QR code e realize o pagamento!</label>
-                                            <button onClick={() => imprimirComprovante()}>
-                                                IMPRIMIR COMPROVANTE
-                                            </button>
-                                        </div>
-                                    </Typography>
-                                </Box>
-                            </Modal>
-                        </div>
                         <Snackbar
                             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                             open={mensagem !== ''}
