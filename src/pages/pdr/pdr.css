@@ -52,6 +52,9 @@
     width: 15%;
     margin-right: 3px;
 }
+.data-contrato input{
+    font-weight: 500
+}
 
 .negociar-pdr {
     display: flex;
@@ -155,6 +158,10 @@
     flex-direction: column;
 }
 
+.campos-necociacao input{
+    font-weight: 500;
+}
+
 
 .campos-necociacao2 {
     width: 65%;
@@ -204,6 +211,9 @@
     display: flex;
     flex-direction: column;
     width: 18%;
+}
+.campos-06 input{
+    font-weight: 500;
 }
 
 .campos-01 button:hover {

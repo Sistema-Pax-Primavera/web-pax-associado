@@ -50,10 +50,18 @@
     flex-direction: column;
 }
 
+.forma-pagamento-recebimento select{
+    font-weight: 500;
+}
+
 .conta-bancaria-recebimento {
     width: 22%;
     display: flex;
     flex-direction: column;
+}
+
+.conta-bancaria-recebimento input{
+    font-weight: 500;
 }
 
 .muda-linha-recebimento {
@@ -266,8 +274,12 @@ ul, ol {
     flex-direction: column;
 }
 
+.recebimento-01 input {
+    font-weight: 500;
+}
+
 .recebimento-01 select {
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .delete-recebimento {
@@ -285,14 +297,13 @@ ul, ol {
 
 .recebimento-01 input {
     padding: 8px;
-    font-weight: 700;
     width: 100%;
     box-sizing: border-box;
 }
 
 .recebimento-02 input {
     padding: 7px;
-    font-weight: 700;
+    font-weight: 500;
     width: 100%;
     box-sizing: border-box;
 }

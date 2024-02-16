@@ -13,9 +13,12 @@
     flex-direction: column;
     width: 23%;
 }
+.campos-02-contato input{
+    font-weight: 500;
+}
 
 .campos-02-contato select{
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .nome-contato-associado{

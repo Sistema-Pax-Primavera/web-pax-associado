@@ -94,6 +94,10 @@
     flex-direction: column;
 }
 
+.campos-04 input{
+    font-weight: 500;
+}
+
 .icones-nome {
     color: var(--verde);
     display: flex;
