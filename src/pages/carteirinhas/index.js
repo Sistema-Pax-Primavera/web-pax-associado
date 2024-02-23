@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 const Carteirinha = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
-    const [fimMes, setFimMes] = useState('');
+    const [fimMes, setFimMes] = useState(''); 
     const [clienteNome, setClienteNome] = useState('');
     const [clienteTipo, setClienteTipo] = useState('HUMANO');
 
