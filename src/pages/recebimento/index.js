@@ -42,7 +42,7 @@ const rows = [
     createData('03', '15/02/2024', '100,00', '18/02/2024'),
     createData('02', '15/01/2024', '100,00', '18/04/2024'),
     createData('01', '15/12/2023', '100,00', '16/02/2024'),
-    
+
 ];
 
 const style = {
@@ -72,6 +72,8 @@ const Recebimento = () => {
     const handleClose = () => { setReceberDisponivel(false); setOpen(false); }
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
+
     const [novaParcela, setNovaParcela] = useState({
         formaPagamento: 'Dinheiro',
         conta: 'Conta 1',
@@ -337,7 +339,7 @@ const Recebimento = () => {
 
     return (
         <div className='container-associados'>
-            <Header cliente={cliente} />
+            <Header cliente={cliente} idioma={idioma} />
             <div className='dados-recebimento-associado'>
                 <div className='fundo-recebimento'>
                     <div className='icones-nome'>
@@ -547,33 +549,33 @@ const Recebimento = () => {
                                         </div>
 
                                         <div className='acordion-recebimento'>
-                                            
-                                                <div>
-                                                    <TableContainer component={Paper} style={{ maxHeight: 210,  }} >
-                                                        <Table sx={{ minWidth: 200, }} aria-label="simple table">
-                                                            <TableHead  >
-                                                                <TableRow sx={{backgroundColor: '#006b33', }}>
-                                                                    <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>DATA VENCIMENTO</TableCell>
-                                                                    <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>VALOR</TableCell>
-                                                                    <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>DATA PAGAMENTO</TableCell>
+
+                                            <div>
+                                                <TableContainer component={Paper} style={{ maxHeight: 210, }} >
+                                                    <Table sx={{ minWidth: 200, }} aria-label="simple table">
+                                                        <TableHead  >
+                                                            <TableRow sx={{ backgroundColor: '#006b33', }}>
+                                                                <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>DATA VENCIMENTO</TableCell>
+                                                                <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>VALOR</TableCell>
+                                                                <TableCell align="center" sx={{ fontSize: 12, color: '#ffff', paddingY: 1 }}>DATA PAGAMENTO</TableCell>
+                                                            </TableRow>
+                                                        </TableHead>
+                                                        <TableBody>
+                                                            {rows.map((row) => (
+                                                                <TableRow
+                                                                    key={row.parcela}
+                                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                                >
+                                                                    <TableCell align="center" sx={{ fontSize: 12 }}>{row.datavencimento}</TableCell>
+                                                                    <TableCell align="center" sx={{ fontSize: 12 }}>{row.valor}</TableCell>
+                                                                    <TableCell align="center" sx={{ fontSize: 12 }}>{row.datapagamento}</TableCell>
                                                                 </TableRow>
-                                                            </TableHead>
-                                                            <TableBody>
-                                                                {rows.map((row) => (
-                                                                    <TableRow
-                                                                        key={row.parcela}
-                                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                                    >
-                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>{row.datavencimento}</TableCell>
-                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>{row.valor}</TableCell>
-                                                                        <TableCell align="center" sx={{ fontSize: 12 }}>{row.datapagamento}</TableCell>
-                                                                    </TableRow>
-                                                                ))}
-                                                            </TableBody>
-                                                        </Table>
-                                                    </TableContainer>
-                                                </div>
-                                            
+                                                            ))}
+                                                        </TableBody>
+                                                    </Table>
+                                                </TableContainer>
+                                            </div>
+
 
                                         </div>
                                     </div>

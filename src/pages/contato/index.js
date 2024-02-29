@@ -14,6 +14,7 @@ const Contato = () => {
     const [contatoEditando, setContatoEditando] = useState(null);
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
 
     const adicionarContato = () => {
         if (!contatoValue) {
@@ -71,7 +72,7 @@ const Contato = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='container-contato-associado'>
                     <div className='nome-contato-associado'>
                         <div className='icones-nome'>

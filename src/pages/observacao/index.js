@@ -22,6 +22,7 @@ function createData(name, data, usuario) {
 const Observacao = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
 
     const [formData, setFormData] = useState({
         assunto: '',
@@ -75,7 +76,7 @@ const Observacao = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='container-observacao-associado'>
                     <div className='icones-nome'>
                         <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>

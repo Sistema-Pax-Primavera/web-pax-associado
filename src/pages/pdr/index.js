@@ -66,11 +66,12 @@ const PDR = () => {
 
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
 
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='container'>
                     <MyAccordion
                         title={`${cliente ? cliente.nome : ''} Nº do Contrato - ${cliente ? cliente.contrato : ''}`}

@@ -12,7 +12,7 @@ import Exame from '../../../assets/exame.png';
 const HistoricoClinica = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
-
+    const idioma = location.state && location.state.idioma;
     const historicos = [
         {
             nome: 'Joao',
@@ -43,7 +43,7 @@ const HistoricoClinica = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className="historico-clinica-funeraria">
                     <div className='icones-nome'>
                         <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>

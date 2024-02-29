@@ -9,7 +9,8 @@ import { useLocation } from 'react-router-dom';
 const Carteirinha = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
-    const [fimMes, setFimMes] = useState(''); 
+    const idioma = location.state && location.state.idioma;
+    const [fimMes, setFimMes] = useState('');
     const [clienteNome, setClienteNome] = useState('');
     const [clienteTipo, setClienteTipo] = useState('HUMANO');
 
@@ -61,7 +62,7 @@ const Carteirinha = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='carteirinha-container'>
                     <div className='icones-nome'>
                         <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>

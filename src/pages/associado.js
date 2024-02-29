@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './associado.css';
 import Pesquisar from '../../assets/pesquisar.png';
 import Table from '@mui/material/Table';
@@ -14,6 +14,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+import idiomas from '../utils/info';
 
 const clientes = [
     {
@@ -166,6 +167,8 @@ const Associado = () => {
     const [searchResult, setSearchResult] = useState([]);
     const [showImage, setShowImage] = useState(true);
     const navigate = useNavigate();
+    const [idioma, setIdioma] = useState(false);
+    const [isIdioma, setIsIdioma] = useState(true);
 
     const handleSearch = () => {
         setLoading(true);
@@ -198,11 +201,41 @@ const Associado = () => {
         // localStorage.setItem('clienteSelecionado', JSON.stringify(cliente));
     };
 
+    useEffect(() => {
+        const savedUsuario = localStorage.getItem("usuario");
+        if (savedUsuario) {
+            const usuarioObj = JSON.parse(savedUsuario);
+            setIdioma(usuarioObj.idioma == 'BR' ? false : true);
+        }
+    }, []);
+
+    const verificaIdioma = () => {
+        const savedUsuario = localStorage.getItem("usuario");
+        if (savedUsuario) {
+            const usuarioObj = JSON.parse(savedUsuario)
+            setIdioma(usuarioObj.idioma === 'BR' ? false : true);
+        }
+
+        setIsIdioma(false)
+    }
+
+    const TableIdioma = idiomas[idioma ? 'es_PY' : 'pt_BR'].table;
+    const colunas = Object.keys(TableIdioma);
+
+    useEffect(() => {
+        const intervalId = setInterval(verificaIdioma, 100);
+
+        // Certificar-se de limpar o intervalo quando o componente for desmontado
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
     return (
         <div className='container-associado'>
             <div className='pesquisa-associado'>
                 <input
-                    placeholder='Informe o Nome, CPF ou Nº de Contrato'
+                    placeholder={idioma ? idiomas.es_PY.pesquisa.texto : idiomas.pt_BR.pesquisa.texto}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -216,7 +249,7 @@ const Associado = () => {
                     <Box sx={{ display: 'flex' }}>
                         <CircularProgress color='success' />
                     </Box>
-                    <p>Carregando...</p>
+                    <p>{idioma ? 'Cargando' : 'Carregando'}...</p>
                 </div>
             )}
             {showImage && !loading && searchResult.length === 0 && (
@@ -230,7 +263,10 @@ const Associado = () => {
                         <Table aria-label='simple table'>
                             <TableHead className="TableHead">
                                 <TableRow>
-                                    <TableCell align='center'>Contrato</TableCell>
+                                    {colunas.map((coluna) => (
+                                        <TableCell align='center' key={coluna}>{TableIdioma[coluna]}</TableCell>
+                                    ))}
+                                    {/* <TableCell align='center'>Contrato</TableCell>
                                     <TableCell align='center'>Nome</TableCell>
                                     <TableCell align='center'>CPF</TableCell>
                                     <TableCell align='center'>Tipo</TableCell>
@@ -238,7 +274,7 @@ const Associado = () => {
                                     <TableCell align='center'>Ultimo Pagamento</TableCell>
                                     <TableCell align='center'>Dependente</TableCell>
                                     <TableCell align='center'>Situação</TableCell>
-                                    <TableCell align='center'>Opções</TableCell>
+                                    <TableCell align='center'>Opções</TableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody className="TableBody">
@@ -254,7 +290,9 @@ const Associado = () => {
                                         <TableCell align='center'>{getSituacaoLabel(row.situacao)}</TableCell>
                                         <TableCell align='center'>
                                             <div className='opcao-associado'>
-                                                <button onClick={() => handleOpenButtonClick(row)}>ABRIR</button>
+                                                <button onClick={() => handleOpenButtonClick(row)}>
+                                                    {idioma ? idiomas.es_PY.botaoTable.texto : idiomas.pt_BR.botaoTable.texto}
+                                                </button>
                                             </div>
                                         </TableCell>
                                     </TableRow>

@@ -7,11 +7,12 @@ import { useLocation } from 'react-router-dom';
 const InativarContrato = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
 
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='dados-cobranca-associado'>
                     <div className='fundo-cobranca'>
                         <div className='icones-nome'>

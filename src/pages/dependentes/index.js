@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/header';
 import './dependentes.css'
 import DateMaskInput from '../../components/inputs';
-import Switch from '@mui/material/Switch';
 import PetsIcon from '@mui/icons-material/Pets';
 import PersonIcon from '@mui/icons-material/Person';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
@@ -30,6 +29,8 @@ const rows = [
 const Dependentes = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
+
     const [mostrarFormularioPet, setMostrarFormularioPet] = useState(false);
     const [mostrarFormularioCremacao, setMostrarFormularioCremacao] = useState('');
     const [obito, setObito] = useState(false);
@@ -50,7 +51,7 @@ const Dependentes = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='container-dependentes'>
                     <div className='pet-cremacao-humana'>
 

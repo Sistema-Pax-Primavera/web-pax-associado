@@ -38,6 +38,8 @@ const DadosCadastrais = () => {
     const classes = useStyles();
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const [idioma, setIdioma] = useState(false);
+    const [isIdioma, setIsIdioma] = useState(true);
 
     const handleSwitchChange = () => {
         // Atualiza o estado do switch
@@ -53,11 +55,24 @@ const DadosCadastrais = () => {
         setNacionalidade(JSON.parse(event.target.value));
     };
 
-    useEffect(() => {
-        if (cliente) {
-            console.log('Dados do cliente recebidos no Dados Cadastrais:', cliente);
+    const verificaIdioma = () => {
+        const savedUsuario = localStorage.getItem("usuario");
+        if (savedUsuario) {
+            const usuarioObj = JSON.parse(savedUsuario)
+            setIdioma(usuarioObj.idioma === 'BR' ? false : true);
         }
-    }, [cliente]);
+
+        setIsIdioma(false)
+    }
+
+    useEffect(() => {
+        const intervalId = setInterval(verificaIdioma, 100);
+
+        // Certificar-se de limpar o intervalo quando o componente for desmontado
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
 
 
     const handleChange = (event) => {
@@ -71,7 +86,7 @@ const DadosCadastrais = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='dados-cadastrais-associado'>
 
                     <MyAccordion

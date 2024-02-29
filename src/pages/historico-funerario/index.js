@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 const HistoricoFuneraria = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
     const historicos = [
         {
             icone: <EmojiPeopleIcon />,
@@ -42,7 +43,7 @@ const HistoricoFuneraria = () => {
 
     return (
         <div className='container-associados'>
-            <Header cliente={cliente} />
+            <Header cliente={cliente} idioma={idioma} />
             <div className='fundo-historico'>
                 <div className='icones-nome'>
                     <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>

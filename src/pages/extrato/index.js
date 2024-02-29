@@ -15,6 +15,7 @@ import './extrato.css'
 const Extrato = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
+    const idioma = location.state && location.state.idioma;
 
     function extra(id, valor, mes, formapagamento) {
         return { id, valor, mes, formapagamento };
@@ -29,7 +30,7 @@ const Extrato = () => {
     return (
         <>
             <div className='container-associados'>
-                <Header cliente={cliente} />
+                <Header cliente={cliente} idioma={idioma} />
                 <div className='dados-cobranca-associado'>
                     <div className='fundo-cobranca'>
                         <div className='icones-nome'>
