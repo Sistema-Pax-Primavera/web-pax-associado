@@ -49,6 +49,7 @@
 
 .salva-observacao button {
     background-color: var(--verde);
+    cursor: pointer;
     color: var(--branco);
     width: 20%
 }

@@ -45,13 +45,14 @@
 .tipo-contato{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .tipo-contato button{
     padding: 4px;
     padding-left: 15px;
     padding-right: 15px;
+    cursor: pointer;
     margin-top: 15px;
     background-color: var(--verde);
     color: var(--branco);

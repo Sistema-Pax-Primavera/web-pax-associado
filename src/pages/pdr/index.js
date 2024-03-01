@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../../components/header/header';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AddchartIcon from '@mui/icons-material/Addchart';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import './pdr.css'
-import CreditScoreIcon from '@mui/icons-material/CreditScore';
-import CancelIcon from '@mui/icons-material/Cancel';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import DateMaskInput from '../../components/inputs';
 import Table from '@mui/material/Table';
@@ -17,14 +13,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import MyAccordion from '../../components/accordion';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-
-import { Select } from '@mui/material';
 import { useLocation } from 'react-router-dom';
-import TaskIcon from '@mui/icons-material/Task';
 
 function createData(id, parcela, vencimento, valor, status) {
     return { id, parcela, vencimento, valor, status };
@@ -36,34 +25,7 @@ const rows = [
 ];
 
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 650,
-    bgcolor: 'background.paper',
-    borderRadius: 5,
-    p: 4,
-};
-
 const PDR = () => {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const [open1, setOpen1] = React.useState(false);
-    const handleOpen1 = () => setOpen1(true);
-    const handleClose1 = () => setOpen1(false);
-
-    const [open2, setOpen2] = React.useState(false);
-    const handleOpen2 = () => setOpen2(true);
-    const handleClose2 = () => setOpen2(false);
-
-    const [open3, setOpen3] = React.useState(false);
-    const handleOpen3 = () => setOpen3(true);
-    const handleClose3 = () => setOpen3(false);
-
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
     const idioma = location.state && location.state.idioma;
@@ -85,7 +47,7 @@ const PDR = () => {
                                         <label>Endereço</label>
                                         <input></input>
                                     </div>
-                                    <div className='campos-06'>
+                                    <div className='campos-06-pdr'>
                                         <label>Último Pagamento</label>
                                         <input></input>
                                     </div>

@@ -2,7 +2,6 @@ import React from 'react'
 import Header from '../../components/header/header';
 import './historico-pet.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Pets, Event, Healing, Vaccines } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import CardePet from '../../components/card-pet';
 import PetImage from '../../../assets/pet.png'; // Importe a imagem padrão

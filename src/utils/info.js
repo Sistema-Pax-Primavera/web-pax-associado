@@ -45,6 +45,97 @@ const idiomas = {
                 historicoPET: "Historico PET",
                 historicoClinica: "Historico Clinica",
             }
+        },
+        associadosAccordioCadastro:{
+            accordion1:{
+                titulo:"Dados do Titular",
+                nome:"Nome",
+                titulo:"Dados do Titular",
+                nome:"Nome",
+                cpf:"CPF",
+                rg:"RG",
+                dataNascimento: "Data Nascimento",
+                contrato: "Contrato",
+                genero:"Gênero",
+                religiao:"Religião",
+                uf:"UF",
+                naturalidade:"Naturalidade",
+                profissao:"Profissão",
+                estadoCivil:"Estado Civil",
+                dataContrato:"Data do Contrato",
+                carenciaPadrao: "Carência Padrão",
+                dataInicioCarencia: "Data Inicio Carência",
+                dataFinalCarencia: "Data Final Carência",
+                cremacao: "Cremação",
+            },
+            accordion2:{
+                titulo: "Dados Residenciais",
+                cep: "CEP",
+                uf: "UF",
+                municipio: "Município",
+                bairro: "Bairro",
+                quadra: "Quadra",
+                lote: "Lote",
+                n: "Nº",
+                tipo: "Tipo",
+                rua: "Rua",
+                complemento: "Complemento",
+                enderecoComercial: "Endereço Comercial",
+
+            },
+            accordion3:{
+                titulo: "Endereço Comercial",
+                cep: "CEP",
+                uf: "UF",
+                municipio: "Município",
+                bairro: "Bairro",
+                quadra: "Quadra",
+                lote: "Lote",
+                n: "Nº",
+                tipo: "Tipo",
+                rua: "Rua",
+                complemento: "Complemento",
+                enderecoComercial: "Endereço Comercial",
+
+            },
+        },
+        associadoDadosCobranca:{
+            diaPagamento: "Dia de Pagamento",
+            primeiraParcela: "Primeira Parcela",
+            ordemRota: "Ordem Rota",
+            contrato: "Contrato",
+            plano: "Plano",
+            regiao: "Região",
+            transferido: "Transferido",
+            pagarAdesao: "Pagar Adesão",
+        },
+        associadoDependentes:{
+            cardPet:{
+                nome: "Nome",
+                dataNascimento: "Data Nascimento",
+                dataFiliacao: "Data Filiação",
+                peso: "Peso",
+                altura: "Altura",
+                cor: "Cor",
+                especie: "Espécie",
+                raca: "Raça",
+                porte: "Porte",
+                modalidade: "Modalidade",
+                falecimento: "Falecimento",
+                emCarencia: "Em Carência",
+                falecido: "Falecido",
+                filhoCom21Anos: "Filho com 21 Anos",
+                inativoOuPromovido: "Inativo ou Promotivo",
+                ativo: "Ativo"
+            },
+            cardCremacaoHumana:{
+                nome: "Nome",
+                dataNascimento: "Data Nascimento",
+                dataFiliacao: "Data Filiação",
+                cpf: "CPF",
+                parentesco: "Parentesco",
+                status: 'Status',
+            }
         }
     },
     es_PY: {
@@ -94,6 +185,7 @@ const idiomas = {
                 historicoClinica: "Historial Clinico",
             }
         }
+       
     },
 };
 

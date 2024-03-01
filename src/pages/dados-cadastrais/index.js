@@ -118,7 +118,7 @@ const DadosCadastrais = () => {
                                 <input type="text" name="contrato" value={cliente.contrato} onChange={handleChange} />
                             </div>
                             <div className='campo-info-bairro'>
-                                <label>Genero</label>
+                                <label>Gênero</label>
                                 <select></select>
                             </div>
                             <div className='campo-info-bairro'>

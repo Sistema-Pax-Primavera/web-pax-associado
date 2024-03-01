@@ -22,7 +22,7 @@
     background-color: var(--cinza-leve);
     width: 40%;
     padding: 12px;
-    font-weight: 700
+    font-weight: 500;
 }
 
 .pesquisa-associado button {

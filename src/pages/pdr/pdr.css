@@ -219,6 +219,15 @@
     font-weight: 500;
 }
 
+.campos-06-pdr {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+.campos-06-pdr input{
+    font-weight: 500;
+}
+
 .campos-01 button:hover {
     transform: none;
 }

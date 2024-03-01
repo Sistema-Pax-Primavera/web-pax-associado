@@ -2,6 +2,8 @@
     background-color: var(--verde);
     color: var(--branco);
     margin-top: 15px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .data-obito-registro {

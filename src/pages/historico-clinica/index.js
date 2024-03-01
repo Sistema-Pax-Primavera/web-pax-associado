@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from '../../components/header/header';
-import { Pets, Event, Healing, Vaccines, MedicalInformation, Medication } from '@mui/icons-material';
 import './historico-clinica.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from 'react-router-dom';

@@ -54,6 +54,7 @@
     font-weight: 700;
     color: var(--branco);
     width: 30%;
+    cursor: pointer;
 }
 
 .validade {
