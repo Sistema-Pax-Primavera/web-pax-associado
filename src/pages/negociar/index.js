@@ -16,7 +16,7 @@ const Negociar = () => {
                 <div className='dados-negociar-associado'>
                     <div className='fundo-cobranca'>
                         <div className='icones-nome'>
-                            <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
+                            <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''}</label>
                         </div>
                         <div className='container-linha'>
                             <div className='campos-necociacao'>

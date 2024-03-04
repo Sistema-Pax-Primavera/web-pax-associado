@@ -45,7 +45,7 @@ const HistoricoClinica = () => {
                 <Header cliente={cliente} idioma={idioma} />
                 <div className="historico-clinica-funeraria">
                     <div className='icones-nome'>
-                        <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
+                        <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''}</label>
                     </div>
                     <div className="historico-container-clinica">
                         {historicos.map((cliente, index) => (

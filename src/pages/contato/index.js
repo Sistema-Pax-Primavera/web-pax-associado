@@ -105,7 +105,7 @@ const Contato = () => {
                                 </div>
                                 {contatos.map((contato, index) => (
                                     <div className='container-linha' key={index}>
-                                        <div className='campos-02'>
+                                        <div className='campos-02-auto'>
                                             <label>{contato.tipo}</label>
                                             <input value={contato.valor} readOnly />
                                         </div>

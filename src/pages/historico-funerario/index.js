@@ -46,7 +46,7 @@ const HistoricoFuneraria = () => {
             <Header cliente={cliente} idioma={idioma} />
             <div className='fundo-historico'>
                 <div className='icones-nome'>
-                    <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
+                    <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''}</label>
                 </div>
 
                 <div className='cards-funeraria'>

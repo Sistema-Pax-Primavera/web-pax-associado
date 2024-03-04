@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import '../../pages/associado.css';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel }) => {
     const [orderedBy, setOrderedBy] = useState(null)
@@ -61,7 +62,7 @@ const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel }) => {
                 <button
                     key="view"
                     onClick={() => actionCalls.view(row)} >
-                    Abrir
+                    <VisibilityIcon fontSize="small"/>
                 </button>
             ),
             promote: (

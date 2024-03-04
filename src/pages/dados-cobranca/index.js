@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/header/header';
 import './dados_cobranca.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -10,17 +10,27 @@ const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const DadosCobranca = () => {
   const location = useLocation();
-  const cliente = location.state && location.state.cliente;
+  const clienteInicial = location.state && location.state.cliente;
   const idioma = location.state && location.state.idioma;
-  const [transferidoAtivada, setTransferidoAtivada] = useState(cliente.is_transferido);
-  const [pagarAdesaoAtivada, setpagarAdesaoAtivada] = useState(cliente.is_pagou_adesao);
+  
+  const [cliente, setCliente] = useState(clienteInicial);
+  const [transferidoAtivada, setTransferidoAtivada] = useState(clienteInicial.is_transferido);
+  const [pagarAdesaoAtivada, setPagarAdesaoAtivada] = useState(clienteInicial.is_pagou_adesao);
+  
   const SwitchTransferido = () => {
-    // Atualiza o estado do switch
     setTransferidoAtivada(!transferidoAtivada);
+    setCliente(prevCliente => ({
+      ...prevCliente,
+      is_transferido: !prevCliente.is_transferido
+    }));
   };
+  
   const SwitchAdesao = () => {
-    // Atualiza o estado do switch
-    setpagarAdesaoAtivada(!pagarAdesaoAtivada);
+    setPagarAdesaoAtivada(!pagarAdesaoAtivada);
+    setCliente(prevCliente => ({
+      ...prevCliente,
+      is_pagou_adesao: !prevCliente.is_pagou_adesao
+    }));
   };
 
   useEffect(() => {
@@ -28,6 +38,14 @@ const DadosCobranca = () => {
       console.log('Dados do cliente recebidos no Dados Cobranca:', cliente);
     }
   }, [cliente]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCliente(prevCliente => ({
+      ...prevCliente,
+      [name]: value
+    }));
+  };
 
   return (
     <>
@@ -39,31 +57,31 @@ const DadosCobranca = () => {
               <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''} </label>
             </div>
             <div className='container-linha'>
-              <div className='campos-cadastrais-02'>
-                <label>Dia de Pagamento </label>
-                <input value={cliente.dia_pagamento} />
+              <div className='campos-02-cobranca'>
+                <label>Dia de Pagamento<span className='obrigatorio'> *</span></label>
+                <input name="dia_pagamento" value={cliente.dia_pagamento} onChange={handleChange} />
               </div>
               <div className='campos-cadastrais-02'>
-                <label>Primeria Parcela</label>
-                <DateMaskInput data={cliente.data_primeira_parcela} />
+                <label>Primeria Parcela<span className='obrigatorio'> *</span></label>
+                <DateMaskInput name="data_primeira_parcela" data={cliente.data_primeira_parcela} onChange={handleChange} />
               </div>
-              <div className='campos-cadastrais-03'>
-                <label>Ordem Rota</label>
-                <input value={cliente.ordem_rota} />
+              <div className='campos-03-cobranca'>
+                <label>Ordem Rota<span className='obrigatorio'> *</span></label>
+                <input name="ordem_rota" value={cliente.ordem_rota} onChange={handleChange} />
               </div>
               <div className='campos-cadastrais-04'>
-                <label>Contrato</label>
-                <input value={cliente.n_contrato} />
+                <label>Contrato<span className='obrigatorio'> *</span></label>
+                <input name="n_contrato" value={cliente.n_contrato} onChange={handleChange} />
               </div>
               <div className='campos-cadastrais-02'>
-                <label>Plano</label>
-                <select value={cliente.plano}>
+                <label>Plano<span className='obrigatorio'> *</span></label>
+                <select name="plano" value={cliente.plano} onChange={handleChange}>
                   <option value={cliente.plano}>{cliente.plano}</option>
                 </select>
               </div>
               <div className='campos-cadastrais-06'>
-                <label>Região</label>
-                <select value={cliente.regiao}>
+                <label>Região<span className='obrigatorio'> *</span></label>
+                <select name="regiao" value={cliente.regiao} onChange={handleChange}>
                   <option value={'Norte'}>Norte</option>
                   <option value={'Sul'}>Sul</option>
                   <option value={'Sudeste'}>Sudeste</option>
@@ -93,12 +111,7 @@ const DadosCobranca = () => {
             <button>SALVAR</button>
           </div>
         </div>
-
-
-
-
       </div>
-
     </>
   )
 }

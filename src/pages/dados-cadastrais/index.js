@@ -32,15 +32,21 @@ const useStyles = makeStyles((theme) => ({
 
 const DadosCadastrais = () => {
 
+    const [cliente, setCliente] = useState({}); // Definindo o estado cliente
     const [nacionalidade, setNacionalidade] = useState(true);
     const classes = useStyles();
     const location = useLocation();
-    const cliente = location.state && location.state.cliente;
-    const [carenciaAtivada, setCarenciaAtivada] = useState(cliente.is_carencia);
-    const [cremacaoAtivada, setCremacaoAtivada] = useState(cliente.is_cremacao);
-    const [isComercialEnabled, setIsComercialEnabled] = useState(cliente.is_endereco_comercial);
+    const [clienteEditado, setClienteEditado] = useState({});
+    const [clienteInicial, setClienteInicial] = useState({}); 
+    const [carenciaAtivada, setCarenciaAtivada] = useState(clienteInicial.is_carencia);
+    const [cremacaoAtivada, setCremacaoAtivada] = useState(clienteInicial.is_cremacao);
+    const [isComercialEnabled, setIsComercialEnabled] = useState(clienteInicial.is_endereco_comercial);
     const [idioma, setIdioma] = useState(false);
     const [isIdioma, setIsIdioma] = useState(true);
+
+    useEffect(() => {
+        setCliente(clienteInicial); // Inicializando o estado cliente com os dados iniciais
+    }, [clienteInicial]);
 
     const handleSwitchChange = () => {
         // Atualiza o estado do switch
@@ -75,21 +81,39 @@ const DadosCadastrais = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const savedCliente = location.state && location.state.cliente;
+        setCliente(savedCliente);
+        setClienteInicial(savedCliente); // Definindo os dados iniciais ao montar o componente
+    }, [location.state]);
+
+    useEffect(() => {
+        setCliente(clienteInicial);
+        setClienteEditado(clienteInicial); // Inicialize o cliente editado com os dados iniciais
+        setCarenciaAtivada(clienteInicial.is_carencia);
+        setCremacaoAtivada(clienteInicial.is_cremacao);
+        setIsComercialEnabled(clienteInicial.is_endereco_comercial);
+    }, [clienteInicial]);
+
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        // setDadosCliente((prevDadosCliente) => ({
-        //     ...prevDadosCliente,
-        //     [name]: value,
-        // }));
+        setClienteEditado((prevCliente) => ({
+            ...prevCliente,
+            [name]: value,
+        }));
     };
 
+    const handleSave = () => {
+        setCliente(clienteEditado); // Atualize o cliente com os dados editados
+        // Aqui você pode enviar os dados do cliente para salvar no servidor
+    };
     return (
         <>
             <div className='container-associados'>
                 <Header cliente={cliente} idioma={idioma} />
                 <div className='dados-cadastrais-associado'>
-
+ 
                     <MyAccordion
                         title="Dados do Titular"
                         icon={<AccountCircleIcon />}
@@ -98,7 +122,8 @@ const DadosCadastrais = () => {
                         <div className='container-linha'>
                             <div className='campos-01'>
                                 <label>Nome<span className='obrigatorio'> *</span></label>
-                                <input type="text" name="nome" value={cliente.nome} onChange={handleChange} />
+                                <input type="text" name="nome" value={clienteEditado.nome} onChange={handleChange} />
+
                             </div>
                             {nacionalidade ?
                                 <div className='campos-02'>
@@ -111,15 +136,15 @@ const DadosCadastrais = () => {
                                 <input type="text" name="cpf" value={cliente.rg} />
                             </div>
                             <div className='campos-02'>
-                                <label>Data Nascimento</label>
+                                <label>Data Nascimento<span className='obrigatorio'> *</span></label>
                                 <DateMaskInput data={cliente.data_nascimento} />
                             </div>
                             <div className='campos-03'>
-                                <label>Contrato</label>
+                                <label>Contrato<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="contrato" value={cliente.n_contrato} onChange={handleChange} />
                             </div>
-                            <div className='campo-info-bairro'>
-                                <label>Gênero</label>
+                            <div className='campos-02'>
+                                <label>Gênero<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.genero}>
                                     <option value={'Masculino'}>Masculino</option>
                                     <option value={'Feminino'}>Feminino</option>
@@ -128,13 +153,13 @@ const DadosCadastrais = () => {
                                 </select>
                             </div>
                             <div className='campo-info-bairro'>
-                                <label>Religião</label>
+                                <label>Religião<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.religiao}>
                                     <option value={cliente.religiao}>{cliente.religiao}</option>
                                 </select>
                             </div>
                             <div className='campo-info-bairro'>
-                                <label>UF</label>
+                                <label>UF<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.uf}>
                                     <option value={'MS'}>Mato Grosso do Sul</option>
                                     <option value={'SP'}>São Paulo</option>
@@ -143,30 +168,30 @@ const DadosCadastrais = () => {
                                 </select>
                             </div>
                             <div className='campos-02'>
-                                <label>Naturalidade</label>
+                                <label>Naturalidade<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="contrato" value={cliente.naturalidade} />
                             </div>
                             <div className='campos-02'>
-                                <label>Nacionalidade</label>
+                                <label>Nacionalidade<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.nacionalidade} onChange={handleNacionalidade}>
                                     <option value={'Brasileiro'}>Brasileiro(a)</option>
                                     <option value={'Estrangueiro'}>Estrangueiro(a)</option>
                                 </select>
                             </div>
                             <div className='campos-02'>
-                                <label>Profissão</label>
+                                <label>Profissão<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.profissao}>
                                     <option value={cliente.profissao}>{cliente.profissao}</option>
                                 </select>
                             </div>
                             <div className='campos-02'>
-                                <label>Estado Civil</label>
+                                <label>Estado Civil<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.estado_civil}>
                                     <option value={cliente.estado_civil}>{cliente.estado_civil}</option>
                                 </select>
                             </div>
                             <div className='campos-02'>
-                                <label>Data do Contrato</label>
+                                <label>Data do Contrato<span className='obrigatorio'> *</span></label>
                                 <DateMaskInput data={cliente.data_contrato} />
                             </div>
                         </div>
@@ -213,11 +238,11 @@ const DadosCadastrais = () => {
                     >
                         <div className='container-linha'>
                             <div className='campos-03'>
-                                <label>CEP</label>
+                                <label>CEP<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="cep" value={cliente.cep_residencial} />
                             </div>
                             <div className='campo-info-bairro'>
-                                <label>UF</label>
+                                <label>UF<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.uf_residencial}>
                                     <option value={'MS'}>Mato Grosso do Sul</option>
                                     <option value={'SP'}>São Paulo</option>
@@ -226,28 +251,28 @@ const DadosCadastrais = () => {
                                 </select>
                             </div>
                             <div className='campos-02'>
-                                <label>Município</label>
+                                <label>Município<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="municipio" value={cliente.municipio_residencial} />
                             </div>
 
                             <div className='campos-02'>
-                                <label>Bairro</label>
+                                <label>Bairro<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="bairro" value={cliente.bairro_residencial} />
                             </div>
                             <div className='campo-info-bairro'>
-                                <label>Quadra</label>
+                                <label>Quadra<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="quadra" value={cliente.quadra_residencial} />
                             </div>
                             <div className='campo-info-bairro'>
-                                <label>Lote</label>
+                                <label>Lote<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="lote" value={cliente.lote_residencial} />
                             </div>
                             <div className='campo-info-bairro'>
-                                <label>Nº</label>
+                                <label>Nº<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="nResidencia" value={cliente.numero_residencial} />
                             </div>
-                            <div className='campo-info-bairro'>
-                                <label>Tipo</label>
+                            <div className='campos-02'>
+                                <label>Tipo<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.tipo_endereco_residencial}>
                                     <option value={cliente.tipo_endereco_residencial}>{cliente.tipo_endereco_residencial}</option>
                                 </select>
@@ -255,11 +280,11 @@ const DadosCadastrais = () => {
                         </div>
                         <div className='container-linha'>
                             <div className='campos-01'>
-                                <label>Rua</label>
+                                <label>Rua<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="rua" value={cliente.rua_residencial} />
                             </div>
                             <div className='campos-02'>
-                                <label>Complemento</label>
+                                <label>Complemento<span className='obrigatorio'> *</span></label>
                                 <input type="text" name="complemento" value={cliente.complemento_residencial} />
                             </div>
                             <div className='campos-01'>
@@ -286,11 +311,11 @@ const DadosCadastrais = () => {
                             <div className='layout-linha'>
                                 <div className='container-linha'>
                                     <div className='campos-03'>
-                                        <label>CEP</label>
+                                        <label>CEP<span className='obrigatorio'> *</span></label>
                                         <input type="text" name="cepComercial" value={cliente.cep_comercial} />
                                     </div>
                                     <div className='campo-info-bairro'>
-                                        <label>UF</label>
+                                        <label>UF<span className='obrigatorio'> *</span></label>
                                         <select value={cliente.uf_comercial}>
                                             <option value={'MS'}>Mato Grosso do Sul</option>
                                             <option value={'SP'}>São Paulo</option>
@@ -299,15 +324,15 @@ const DadosCadastrais = () => {
                                         </select>
                                     </div>
                                     <div className='campos-02'>
-                                        <label>Município</label>
+                                        <label>Município<span className='obrigatorio'> *</span></label>
                                         <input type="text" name="municipioComercial" value={cliente.municipio_comercial} />
                                     </div>
                                     <div className='campos-02'>
-                                        <label>Bairro</label>
+                                        <label>Bairro<span className='obrigatorio'> *</span></label>
                                         <input type="text" name="bairroComercial" value={cliente.bairro_comercial} />
                                     </div>
                                     <div className='campos-04'>
-                                        <label>Quadra</label>
+                                        <label>Quadra<span className='obrigatorio'> *</span></label>
                                         <input type="text" name="quadraComercial" value={cliente.quadra_comercial} />
                                     </div>
                                     <div className='campo-info-bairro'>
@@ -315,11 +340,11 @@ const DadosCadastrais = () => {
                                         <input type="text" name="loteComercial" value={cliente.lote_comercial} />
                                     </div>
                                     <div className='campo-info-bairro'>
-                                        <label>Nº</label>
+                                        <label>Nº<span className='obrigatorio'> *</span></label>
                                         <input type="text" name="numeroComercial" value={cliente.numero_comercial} />
                                     </div>
                                     <div className='campo-info-bairro'>
-                                        <label>Tipo</label>
+                                        <label>Tipo<span className='obrigatorio'> *</span></label>
                                         <select value={cliente.tipo_endereco_comercial}>
                                             <option value={cliente.tipo_endereco_comercial}>{cliente.tipo_endereco_comercial}</option>
                                         </select>
@@ -327,11 +352,11 @@ const DadosCadastrais = () => {
                                 </div>
                                 <div className='container-linha'>
                                     <div className='campos-01'>
-                                        <label>Rua</label>
+                                        <label>Rua<span className='obrigatorio'> *</span></label>
                                         <input type="text" name="ruaComercial" value={cliente.rua_comercial} />
                                     </div>
                                     <div className='campos-02'>
-                                        <label>Complemento</label>
+                                        <label>Complemento<span className='obrigatorio'> *</span></label>
                                         <input type="text" name="complementoComercial" value={cliente.complemento_comercial} />
                                     </div>
 

@@ -16,7 +16,7 @@ const InativarContrato = () => {
                 <div className='dados-cobranca-associado'>
                     <div className='fundo-cobranca'>
                         <div className='icones-nome'>
-                            <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</label>
+                            <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''}</label>
                         </div>
                         <div className='container-linha'>
                             <div className='campos-03'>

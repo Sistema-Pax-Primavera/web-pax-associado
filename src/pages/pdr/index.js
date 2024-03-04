@@ -1,36 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/header/header';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './pdr.css'
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import DateMaskInput from '../../components/inputs';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import MyAccordion from '../../components/accordion';
 import { useLocation } from 'react-router-dom';
 import TableComponent from '../../components/table/table';
 import { headerPDR } from '../../entities/headers/header-pdr';
 
-function createData(id, parcela, vencimento, valor, status) {
-    return { id, parcela, vencimento, valor, status };
-}
-
-const rows = [
-    createData(1, '10/02/2024', 90, 'ABERTA',),
-    createData(1, '12/02/2024', 90, 'FECHADA',),
-];
-
-
 const PDR = () => {
     const location = useLocation();
-    const cliente = location.state && location.state.cliente;
+    const clienteInicial = location.state && location.state.cliente;
     const idioma = location.state && location.state.idioma;
+  
+    const [cliente, setCliente] = useState(clienteInicial);
+
+    useEffect(() => {
+        if (cliente) {
+            console.log('Dados do cliente recebidos no PDR:', cliente);
+        }
+    }, [cliente]);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setCliente(prevCliente => ({
+            ...prevCliente,
+            [name]: value
+        }));
+    };
 
     return (
         <>
@@ -49,32 +48,62 @@ const PDR = () => {
                                         <label>Endereço</label>
                                         <input
                                             type='text'
+                                            name='endereco'
                                             value={cliente.rua_residencial + ', Bairro:' + cliente.bairro_residencial + ', Nº:' + cliente.numero_residencial}
+                                            onChange={handleChange}
                                         />
                                     </div>
                                     <div className='campos-06-pdr'>
                                         <label>Último Pagamento</label>
-                                        <DateMaskInput data={cliente.ultimo_pagamento} />
+                                        <DateMaskInput
+                                            name='ultimo_pagamento'
+                                            data={cliente.ultimo_pagamento}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                     <div className='campos-03'>
                                         <label>Status</label>
-                                        <input type='text' value={cliente.plano} />
+                                        <input
+                                            type='text'
+                                            name='status'
+                                            value={cliente.plano}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Plano</label>
-                                        <input type='text' value={cliente.plano} />
+                                        <input
+                                            type='text'
+                                            name='plano'
+                                            value={cliente.plano}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                     <div className='data-contrato'>
                                         <label>Data Contrato</label>
-                                        <DateMaskInput data={cliente.data_contrato} />
+                                        <DateMaskInput
+                                            name='data_contrato'
+                                            data={cliente.data_contrato}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Dia Pagamento</label>
-                                        <input type='text' value={cliente.dia_pagamento} />
+                                        <input
+                                            type='text'
+                                            name='dia_pagamento'
+                                            value={cliente.dia_pagamento}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                     <div className='campos-01'>
                                         <label>Região</label>
-                                        <input type='text' value={cliente.regiao} />
+                                        <input
+                                            type='text'
+                                            name='regiao'
+                                            value={cliente.regiao}
+                                            onChange={handleChange}
+                                        />
                                     </div>
                                 </div>
                                 <div className='container-linha'>
@@ -89,42 +118,19 @@ const PDR = () => {
                         expandedIcon={<ExpandMoreIcon />}
                     >
                         <div className='layout-linha'>
-
                             <div className='container-linha'>
-                                <TableComponent headers={headerPDR} rows={cliente.historico_recebimento} actionsLabel={["Ações", "Acciones"]} actionCalls={{
-                                    //delete: (e) => console.log(e),
-                                    //edit: (e) => handleEditDependente(e),
-                                    //view: (e) => handleOpenButtonClick(e),
-                                    //promote: (e) => console.log('promover'),
-                                }} />
-                                {/* <TableContainer component={Paper}>
-                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Nº da Parcela</TableCell>
-                                                <TableCell align="center">Vencimento</TableCell>
-                                                <TableCell align="center">Valor</TableCell>
-                                                <TableCell align="center">STATUS</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {rows.map((row) => (
-                                                <TableRow
-                                                    key={row.id}
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {row.parcela}
-                                                    </TableCell>
-                                                    <TableCell align="center">{row.vencimento}</TableCell>
-                                                    <TableCell align="center">{row.valor}</TableCell>
-                                                    <TableCell align="center">{row.status}</TableCell>
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer> */}
-
+                                <TableComponent
+                                    headers={headerPDR}
+                                    rows={cliente.historico_recebimento}
+                                    actionsLabel={["Ações", "Acciones"]}
+                                    actionCalls={{
+                                        //delete: (e) => console.log(e),
+                                        //edit: (e) => handleEditDependente(e),
+                                        //view: (e) => handleOpenButtonClick(e),
+                                        //promote: (e) => console.log('promover'),
+                                    }}
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                     </MyAccordion>
@@ -133,13 +139,11 @@ const PDR = () => {
                         <button>SALVAR</button>
                     </div>
 
-                </div >
-            </div >
+                </div>
+            </div>
 
         </>
     );
 };
 
 export default PDR;
-
-

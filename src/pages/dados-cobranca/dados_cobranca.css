@@ -7,6 +7,27 @@
     height: 200px;
 }
 
+.campos-02-cobranca {
+    display: flex;
+    flex-direction: column;
+    width: 16%;
+}
+
+.campos-03-cobranca {
+    display: flex;
+    flex-direction: column;
+    width: 13%;
+}
+
+.campos-03-cobranca input{
+    font-weight: 500;
+}
+
+
+.campos-02-cobranca input{
+    font-weight: 500;
+}
+
 .fundo-cobranca {
     background-color: var(--cinza-leve);
     padding: 15px;

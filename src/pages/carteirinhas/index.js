@@ -65,7 +65,7 @@ const Carteirinha = () => {
                 <Header cliente={cliente} idioma={idioma} />
                 <div className='carteirinha-container'>
                     <div className='icones-nome'>
-                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
+                        <label><AccountCircleIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''} </label>
                     </div>
                     <div>
                         <div className='nome-carteirinha'>

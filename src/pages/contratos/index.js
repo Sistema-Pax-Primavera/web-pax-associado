@@ -45,7 +45,7 @@ const Contrato = () => {
         <div className='container-contrato-associado'>
           <div className='icones-nome'>
             <label>
-              <AssignmentIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.contrato}
+              <AssignmentIcon fontSize={'small'} />{cliente.nome} Nº do Contrato - {cliente.n_contrato}
             </label>
           </div>
           <div className='container-contratos'>

@@ -14,6 +14,16 @@
     width: 30%;
 }
 
+.campos-02-auto {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.campos-02-auto input{
+    font-weight: 500
+}
+
 .campos-02-contato input {
     font-weight: 500;
 }
