@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/header';
 import './contato.css'
 import CallIcon from '@mui/icons-material/Call';
@@ -8,13 +8,13 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { useLocation } from 'react-router-dom';
 
 const Contato = () => {
-    const [contatos, setContatos] = useState([]);
     const [tipoContato, setTipoContato] = useState('Telefone');
     const [contatoValue, setContatoValue] = useState('');
     const [contatoEditando, setContatoEditando] = useState(null);
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
     const idioma = location.state && location.state.idioma;
+    const [contatos, setContatos] = useState(cliente.contatos);
 
     const adicionarContato = () => {
         if (!contatoValue) {
@@ -76,7 +76,7 @@ const Contato = () => {
                 <div className='container-contato-associado'>
                     <div className='nome-contato-associado'>
                         <div className='icones-nome'>
-                            <label><CallIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''} </label>
+                            <label><CallIcon fontSize={'small'} />{cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''} </label>
                         </div>
                         <div>
                             <div className='todos-contatos'>
@@ -131,8 +131,6 @@ const Contato = () => {
                                         </div>
                                     </div>
                                 ))}
-
-
                             </div>
                         </div>
                     </div>

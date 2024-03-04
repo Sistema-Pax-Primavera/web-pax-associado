@@ -16,6 +16,8 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from 'react-router-dom';
+import TableComponent from '../../components/table/table';
+import { headerDependente } from '../../entities/headers/header-dependente';
 
 function createData(name, filiacao, carencia, falecimento, valor, especie) {
     return { name, filiacao, carencia, falecimento, valor, especie };
@@ -29,10 +31,10 @@ const Dependentes = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
     const idioma = location.state && location.state.idioma;
-
     const [mostrarFormularioPet, setMostrarFormularioPet] = useState(false);
-    const [mostrarFormularioCremacao, setMostrarFormularioCremacao] = useState('');
+    const [mostrarFormularioCremacao, setMostrarFormularioCremacao] = useState(false);
     const [obito, setObito] = useState(false);
+    const [dependente, setDependente] = useState(null);
 
     const handleSwitchObito = () => {
         setObito(!obito);
@@ -43,9 +45,20 @@ const Dependentes = () => {
         setMostrarFormularioCremacao(tipo === 'cremacao');
     };
 
-    useEffect(() => {
+    const handleEditDependente = (dependente) => {
+        if (dependente.tipo == 'Humano') {
+            setDependente(dependente);
+            setMostrarFormularioCremacao(true);
+        } else {
+            setDependente(dependente);
+            setMostrarFormularioCremacao(false);
+            setMostrarFormularioPet(true);
+        }
+    };
 
-    }, []);
+    const handleSalvarDependente = (id) => {
+        console.log(id);
+    };
 
     return (
         <>
@@ -54,7 +67,7 @@ const Dependentes = () => {
                 <div className='container-dependentes'>
                     <div className='pet-cremacao-humana'>
 
-                        <p><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.contrato : ''}</p>
+                        <p><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''}</p>
                         <button
                             className={mostrarFormularioPet ? '' : 'botao-ativo'}
                             onClick={() => mostrarFormulario('pet')}
@@ -65,7 +78,7 @@ const Dependentes = () => {
                             className={mostrarFormularioCremacao ? '' : 'botao-ativo'}
                             onClick={() => mostrarFormulario('cremacao')}
                         >
-                            <PersonIcon fontSize={'small'} /> CREMAÇÃO HUMANA
+                            <PersonIcon fontSize={'small'} /> HUMANO
                         </button>
                     </div>
                     {mostrarFormularioPet && (
@@ -74,51 +87,59 @@ const Dependentes = () => {
                                 <div className='container-linha'>
                                     <div className='campos-01'>
                                         <label>Nome</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.nome : ''} />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Data Nascimento</label>
-                                        <DateMaskInput />
+                                        <DateMaskInput data={dependente ? dependente.data_nascimento : ''} />
                                     </div>
                                     <div className='data-filiacao-03'>
                                         <label>Data Filiação</label>
-                                        <DateMaskInput />
+                                        <DateMaskInput data={dependente ? dependente.data_filiacao : ''} />
                                     </div>
                                     <div className='campos-03'>
                                         <label>Peso</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.peso : ''} />
                                     </div>
                                     <div className='campos-03'>
                                         <label>Altura</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.altura : ''} />
                                     </div>
                                     <div className='campos-03'>
                                         <label>Cor</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.cor : ''} />
                                     </div>
 
                                 </div>
                                 <div className='container-linha'>
                                     <div className='campos-02'>
                                         <label>Espécie</label>
-                                        <select></select>
+                                        <select value={dependente ? dependente.especie : ''}>
+                                            <option value={dependente ? dependente.especie : ''}>{dependente ? dependente.especie : ''}</option>
+                                        </select>
                                     </div>
                                     <div className='campos-02'>
                                         <label>Raça</label>
-                                        <select></select>
+                                        <select value={dependente ? dependente.raca : ''}>
+                                            <option value={dependente ? dependente.raca : ''}>{dependente ? dependente.raca : ''}</option>
+                                        </select>
                                     </div>
                                     <div className='campos-02'>
                                         <label>Porte</label>
-                                        <select></select>
+                                        <select value={dependente ? dependente.porte : ''}>
+                                            <option value={dependente ? dependente.porte : ''}>{dependente ? dependente.porte : ''}</option>
+                                        </select>
                                     </div>
                                     <div className='campos-02'>
                                         <label>Modalidade</label>
-                                        <select></select>
+                                        <select value={dependente ? dependente.modalidade : ''}>
+                                            <option value={dependente ? dependente.modalidade : ''}>{dependente ? dependente.modalidade : ''}</option>
+                                        </select>
                                     </div>
 
                                     <div className='campos-02'>
                                         <label> Falecimento</label>
-                                        <DateMaskInput />
+                                        <DateMaskInput data={dependente ? dependente.data_falecimento : ''} />
                                     </div>
 
                                     <div className='salva-dependentes'>
@@ -126,7 +147,7 @@ const Dependentes = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='container-linha2'>
+                            {/* <div className='container-linha2'>
                                 <TableContainer component={Paper}>
                                     <Table sx={{ maxWidth: 900 }} aria-label="simple table">
                                         <TableHead>
@@ -170,7 +191,7 @@ const Dependentes = () => {
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-                            </div>
+                            </div> */}
                         </div>
                     )}
                     {mostrarFormularioCremacao && (
@@ -179,42 +200,45 @@ const Dependentes = () => {
                                 <div className='container-linha'>
                                     <div className='campos-01'>
                                         <label>Nome</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.nome : ''} />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Data Nascimento</label>
-                                        <DateMaskInput />
+                                        <DateMaskInput data={dependente ? dependente.data_nascimento : ''} />
                                     </div>
                                     <div className='data-filiacao-03'>
                                         <label>Data Filiação</label>
-                                        <DateMaskInput />
+                                        <DateMaskInput data={dependente ? dependente.data_filiacao : ''} />
                                     </div>
                                     <div className='campos-02'>
                                         <label>CPF</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.cpf : ''} />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Parentesco</label>
-                                        <select></select>
+                                        <select value={dependente ? dependente.parentesco : ''}>
+                                            <option value={dependente ? dependente.parentesco : ''}>{dependente ? dependente.parentesco : ''}</option>
+                                        </select>
                                     </div>
 
                                 </div>
                                 <div className='container-linha'>
                                     <div className='campos-04'>
                                         <label>Status</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.status : ''} />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Valor Adicional</label>
-                                        <input></input>
+                                        <input type='text' value={dependente ? dependente.adicao : ''} />
                                     </div>
                                     <div className='campos-02'>
                                         <label> Falecimento</label>
-                                        <DateMaskInput />
+                                        <DateMaskInput data={dependente ? dependente.data_falecimento : ''} />
                                     </div>
 
                                     <div className='salva-dependentes'>
-                                        <button>SALVAR</button>
+                                        {/* <button
+                                            onClick={handleSalvarDependente(dependente.id)}>SALVAR</button> */}
                                     </div>
 
                                 </div>
@@ -236,8 +260,16 @@ const Dependentes = () => {
                                 </div>
 
                             </div>
-                            <div className='container-linha2'>
-                                <TableContainer component={Paper}>
+                        </div>
+                    )}
+                    <div className='container-linha2'>
+                        <TableComponent headers={headerDependente} rows={cliente.dependentes} actionsLabel={["Ações", "Acciones"]} actionCalls={{
+                            delete: (e) => console.log(e),
+                            edit: (e) => handleEditDependente(e),
+                            //view: (e) => handleOpenButtonClick(e),
+                            promote: (e) => console.log('promover'),
+                        }} />
+                        {/* <TableContainer component={Paper}>
                                     <Table sx={{ maxWidth: 900 }} aria-label="simple table">
                                         <TableHead>
                                             <TableRow>
@@ -279,10 +311,8 @@ const Dependentes = () => {
                                             ))}
                                         </TableBody>
                                     </Table>
-                                </TableContainer>
-                            </div>
-                        </div>
-                    )}
+                                </TableContainer> */}
+                    </div>
                 </div>
 
             </div>

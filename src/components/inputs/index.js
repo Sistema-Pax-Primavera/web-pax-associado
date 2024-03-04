@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import './input.css'
 
-const DateMaskInput = () => {
-  const [date, setDate] = useState('');
+const DateMaskInput = ({ data }) => {
+  const [date, setDate] = useState(data);
 
   const handleDateChange = (event) => {
     setDate(event.target.value);

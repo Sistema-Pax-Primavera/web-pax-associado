@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './associado.css';
 import Pesquisar from '../../assets/pesquisar.png';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -15,6 +8,9 @@ import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import idiomas from '../utils/info';
+import { useAssociado } from '../services/api';
+import TableComponent from '../components/table/table';
+import { headers } from '../entities/headers/header-associado';
 
 const clientes = [
     {
@@ -169,27 +165,17 @@ const Associado = () => {
     const navigate = useNavigate();
     const [idioma, setIdioma] = useState(false);
     const [isIdioma, setIsIdioma] = useState(true);
+    const { getAssociados } = useAssociado();
 
     const handleSearch = () => {
         setLoading(true);
-        setTimeout(() => {
-            const result = rows.filter(
-                (row) =>
-                    row.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    row.cpf.includes(searchTerm) ||
-                    row.numerocontrato.includes(searchTerm)
-            );
+        getAssociados().then((data) => {
+            setSearchResult(data);
+        });
 
+        if (searchResult != null) {
             setLoading(false);
-            setSearchResult(result);
-
-            if (result.length === 0) {
-                toast.warning('Associado não encontrado.');
-                setShowImage(true);
-            } else {
-                setShowImage(false);
-            }
-        }, 3000);
+        }
     };
 
     const handleOpenButtonClick = (cliente) => {
@@ -207,6 +193,8 @@ const Associado = () => {
             const usuarioObj = JSON.parse(savedUsuario);
             setIdioma(usuarioObj.idioma == 'BR' ? false : true);
         }
+
+
     }, []);
 
     const verificaIdioma = () => {
@@ -259,48 +247,12 @@ const Associado = () => {
             )}
             {!loading && searchResult.length > 0 && (
                 <div className='tabelas-associados'>
-                    <TableContainer component={Paper} className="TableContainer">
-                        <Table aria-label='simple table'>
-                            <TableHead className="TableHead">
-                                <TableRow>
-                                    {colunas.map((coluna) => (
-                                        <TableCell align='center' key={coluna}>{TableIdioma[coluna]}</TableCell>
-                                    ))}
-                                    {/* <TableCell align='center'>Contrato</TableCell>
-                                    <TableCell align='center'>Nome</TableCell>
-                                    <TableCell align='center'>CPF</TableCell>
-                                    <TableCell align='center'>Tipo</TableCell>
-                                    <TableCell align='center'>Região</TableCell>
-                                    <TableCell align='center'>Ultimo Pagamento</TableCell>
-                                    <TableCell align='center'>Dependente</TableCell>
-                                    <TableCell align='center'>Situação</TableCell>
-                                    <TableCell align='center'>Opções</TableCell> */}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody className="TableBody">
-                                {searchResult.map((row) => (
-                                    <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                        <TableCell align='center'>{row.contrato}</TableCell>
-                                        <TableCell align='center'>{row.nome}</TableCell>
-                                        <TableCell align='center'>{formatarCPF(row.cpf)}</TableCell>
-                                        <TableCell align='center'>{row.tipo}</TableCell>
-                                        <TableCell align='center'>{row.regiao}</TableCell>
-                                        <TableCell align='center'>{row.ult_pagamento}</TableCell>
-                                        <TableCell align='center'>{row.dependente}</TableCell>
-                                        <TableCell align='center'>{getSituacaoLabel(row.situacao)}</TableCell>
-                                        <TableCell align='center'>
-                                            <div className='opcao-associado'>
-                                                <button onClick={() => handleOpenButtonClick(row)}>
-                                                    {idioma ? idiomas.es_PY.botaoTable.texto : idiomas.pt_BR.botaoTable.texto}
-                                                </button>
-                                            </div>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-
+                    <TableComponent headers={headers} rows={searchResult} actionsLabel={["Ações", "Acciones"]} actionCalls={{
+                        // delete: (e) =>
+                        //     console.log(e),
+                        // edit: (e) => console.log('edit'),
+                        view: (e) => handleOpenButtonClick(e)
+                    }} />
                 </div>
             )}
         </div>

@@ -14,6 +14,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import MyAccordion from '../../components/accordion';
 import { useLocation } from 'react-router-dom';
+import TableComponent from '../../components/table/table';
+import { headerPDR } from '../../entities/headers/header-pdr';
 
 function createData(id, parcela, vencimento, valor, status) {
     return { id, parcela, vencimento, valor, status };
@@ -36,7 +38,7 @@ const PDR = () => {
                 <Header cliente={cliente} idioma={idioma} />
                 <div className='container'>
                     <MyAccordion
-                        title={`${cliente ? cliente.nome : ''} Nº do Contrato - ${cliente ? cliente.contrato : ''}`}
+                        title={`${cliente ? cliente.nome : ''} Nº do Contrato - ${cliente ? cliente.n_contrato : ''}`}
                         icon={<AccountCircleIcon />}
                         expandedIcon={<ExpandMoreIcon />}
                     >
@@ -45,31 +47,34 @@ const PDR = () => {
                                 <div className='container-linha'>
                                     <div className='campos-01'>
                                         <label>Endereço</label>
-                                        <input></input>
+                                        <input
+                                            type='text'
+                                            value={cliente.rua_residencial + ', Bairro:' + cliente.bairro_residencial + ', Nº:' + cliente.numero_residencial}
+                                        />
                                     </div>
                                     <div className='campos-06-pdr'>
                                         <label>Último Pagamento</label>
-                                        <input></input>
+                                        <DateMaskInput data={cliente.ultimo_pagamento} />
                                     </div>
                                     <div className='campos-03'>
                                         <label>Status</label>
-                                        <input></input>
+                                        <input type='text' value={cliente.plano} />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Plano</label>
-                                        <input></input>
+                                        <input type='text' value={cliente.plano} />
                                     </div>
                                     <div className='data-contrato'>
                                         <label>Data Contrato</label>
-                                        <DateMaskInput />
+                                        <DateMaskInput data={cliente.data_contrato} />
                                     </div>
                                     <div className='campos-02'>
                                         <label>Dia Pagamento</label>
-                                        <DateMaskInput />
+                                        <input type='text' value={cliente.dia_pagamento} />
                                     </div>
                                     <div className='campos-01'>
                                         <label>Região</label>
-                                        <input></input>
+                                        <input type='text' value={cliente.regiao} />
                                     </div>
                                 </div>
                                 <div className='container-linha'>
@@ -86,7 +91,13 @@ const PDR = () => {
                         <div className='layout-linha'>
 
                             <div className='container-linha'>
-                                <TableContainer component={Paper}>
+                                <TableComponent headers={headerPDR} rows={cliente.historico_recebimento} actionsLabel={["Ações", "Acciones"]} actionCalls={{
+                                    //delete: (e) => console.log(e),
+                                    //edit: (e) => handleEditDependente(e),
+                                    //view: (e) => handleOpenButtonClick(e),
+                                    //promote: (e) => console.log('promover'),
+                                }} />
+                                {/* <TableContainer component={Paper}>
                                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                         <TableHead>
                                             <TableRow>
@@ -112,7 +123,7 @@ const PDR = () => {
                                             ))}
                                         </TableBody>
                                     </Table>
-                                </TableContainer>
+                                </TableContainer> */}
 
                             </div>
                         </div>

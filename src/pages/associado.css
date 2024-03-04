@@ -164,3 +164,17 @@ body {
 .obrigatorio {
     color: red;
 }
+
+.edit-botao button {
+    border-radius: 5px;
+    color: var(--branco);
+    background-color: var(--verde);
+    padding: 5px;
+}
+
+.delete-botao button {
+    border-radius: 5px;
+    color: var(--branco);
+    background-color: var(--vermelho);
+    padding: 5px;
+}
