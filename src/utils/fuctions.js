@@ -21,3 +21,16 @@ export function formatCEP(cep) {
     const formattedCEP = cepDigits.replace(/(\d{5})(\d{3})/, '$1-$2');
     return formattedCEP;
 }
+
+// Função para formatar um número de telefone
+export function formatarTelefone(telefone) {
+    const numeroLimpo = telefone.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+
+    if (numeroLimpo.length === 10) {
+        return `(${numeroLimpo.slice(0, 2)}) ${numeroLimpo.slice(2, 6)}-${numeroLimpo.slice(6)}`;
+    } else if (numeroLimpo.length === 11) {
+        return `(${numeroLimpo.slice(0, 2)}) ${numeroLimpo[2]} ${numeroLimpo.slice(3, 7)}-${numeroLimpo.slice(7)}`;
+    } else {
+        return telefone; // Retorna o número original se não for um número de telefone válido
+    }
+}

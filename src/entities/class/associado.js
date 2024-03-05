@@ -92,4 +92,31 @@ export const Associado = (data) => ({
         descricao: obs?.descricao,
         data_criacao: obs?.data
     })),
+    historico_funerario: data?.historicoFunerario.map(hist => ({
+        id: hist?.id,
+        nome: hist?.nome,
+        data_nascimento: hist?.dataNascimento,
+        data_falecimento: hist?.dataFalecimento,
+        plano: hist?.plano,
+        parentesco: hist?.parentesco,
+        data_cremacao: hist?.dataCremacao
+    })),
+    historico_clinico: data?.historicoClinico.map(hist => ({
+        id: hist?.id,
+        nome: hist?.nome,
+        data_nascimento: hist?.dataNascimento,
+        procedimento: hist?.procedimento,
+        data_procedimento: hist?.dataProcedimento,
+        parentesco: hist?.parentesco,
+        status: hist?.status
+    })),
+    historico_pet: data?.historicoPET.map(hist => ({
+        id: hist?.id,
+        nome: hist?.nome,
+        data_nascimento: hist?.dataNascimento,
+        procedimento: hist?.procedimento,
+        data_procedimento: hist?.dataProcedimento,
+        data_falecimento: hist?.dataFalecimento,
+        status: hist?.status
+    }))
 })

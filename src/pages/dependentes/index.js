@@ -47,6 +47,11 @@ const Dependentes = () => {
 
     const handleEditDependente = (dependente) => {
         if (dependente.tipo == 'Humano') {
+            if (dependente != null) {
+                setMostrarFormularioPet(false)
+                setMostrarFormularioCremacao(false);
+                setDependente(dependente);
+            }
             setDependente(dependente);
             setMostrarFormularioCremacao(true);
         } else {
@@ -220,7 +225,6 @@ const Dependentes = () => {
                                             <option value={dependente ? dependente.parentesco : ''}>{dependente ? dependente.parentesco : ''}</option>
                                         </select>
                                     </div>
-
                                 </div>
                                 <div className='container-linha'>
                                     <div className='campos-04'>
@@ -237,10 +241,9 @@ const Dependentes = () => {
                                     </div>
 
                                     <div className='salva-dependentes'>
-                                        {/* <button
-                                            onClick={handleSalvarDependente(dependente.id)}>SALVAR</button> */}
+                                        <button
+                                            onClick={handleSalvarDependente(dependente.id)}>SALVAR</button>
                                     </div>
-
                                 </div>
                                 <div className='container-linha'>
                                     <div className='campos-legenda'>
@@ -263,55 +266,15 @@ const Dependentes = () => {
                         </div>
                     )}
                     <div className='container-linha2'>
-                        <TableComponent headers={headerDependente} rows={cliente.dependentes} actionsLabel={["Ações", "Acciones"]} actionCalls={{
-                            delete: (e) => console.log(e),
-                            edit: (e) => handleEditDependente(e),
-                            //view: (e) => handleOpenButtonClick(e),
-                            promote: (e) => console.log('promover'),
-                        }} />
-                        {/* <TableContainer component={Paper}>
-                                    <Table sx={{ maxWidth: 900 }} aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Nome</TableCell>
-                                                <TableCell align="center">Filiação</TableCell>
-                                                <TableCell align="center">Fim Carência</TableCell>
-                                                <TableCell align="center">Falecimento</TableCell>
-                                                <TableCell align="center">Valor</TableCell>
-                                                <TableCell align="center">Opções</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {rows.map((row) => (
-                                                <TableRow
-                                                    key={row.name}
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {row.name}
-                                                    </TableCell>
-                                                    <TableCell align="center">{row.filiacao}</TableCell>
-                                                    <TableCell align="center">{row.carencia}</TableCell>
-                                                    <TableCell align="center">{row.falecimento}</TableCell>
-                                                    <TableCell align="center">{row.valor}</TableCell>
-                                                    <TableCell align="center">
-                                                        <div className='botao-opcao'>
-                                                            <div className='edit-botao'>
-                                                                <button><ModeEditOutlineIcon fontSize={'small'} /></button>
-                                                            </div>
-                                                            <div className='delete-botao'>
-                                                                <button><DeleteForeverIcon fontSize={'small'} /></button>
-                                                            </div>
-                                                            <div className='promove-dependente'>
-                                                                <button>Promover</button>
-                                                            </div>
-                                                        </div>
-                                                    </TableCell>
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer> */}
+                        <TableComponent headers={headerDependente}
+                            rows={cliente.dependentes}
+                            actionsLabel={["Ações", "Acciones"]}
+                            actionCalls={{
+                                edit: (e) => handleEditDependente(e),
+                                delete: (e) => console.log(e),
+                                promote: (e) => console.log(e),
+                            }}
+                        />
                     </div>
                 </div>
 

@@ -15,6 +15,8 @@ import { useLocation } from 'react-router-dom';
 import MyAccordion from '../../components/accordion';
 import TaskIcon from '@mui/icons-material/Task';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { headerObservacao } from '../../entities/headers/header-observacao';
+import TableComponent from '../../components/table/table';
 function createData(name, data, usuario) {
     return { name, data, usuario };
 }
@@ -37,7 +39,7 @@ const Observacao = () => {
 
     const handleViewClick = (rowData) => {
         setFormData({
-            assunto: rowData.name,
+            assunto: rowData.titulo,
             data: rowData.data,
             cliente: rowData.usuario,
             informacoes: 'Informações da linha clicada...'
@@ -113,47 +115,13 @@ const Observacao = () => {
                             <div className='layout-linha'>
 
                                 <div className='container-linha'>
-                                    <TableContainer component={Paper}>
-                                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Data</TableCell>
-                                                    <TableCell align="center">Titulo</TableCell>
-                                                    <TableCell align="center">Categoria</TableCell>
-                                                    <TableCell align="center">Subcategoria</TableCell>
-                                                    <TableCell align="center">Usuario</TableCell>
-                                                    <TableCell align="center">Mensagem</TableCell>
-                                                    <TableCell align="center">Opções</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                <TableRow
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        10/02/2024
-                                                    </TableCell>
-                                                    <TableCell align="center">CONTATO COM CLIENTE</TableCell>
-                                                    <TableCell align="center">PROMOÇÃO</TableCell>
-                                                    <TableCell align="center">PROMOÇÃO ANUAL</TableCell>
-                                                    <TableCell align="center">ADMIN</TableCell>
-                                                    <TableCell align="center">Texto texto texto texto texto
-                                                        texto texto texto texto texto texto texto texto texto
-                                                        texto
-                                                        texto texto texto texto texto</TableCell>
-                                                    <TableCell align="center">
-                                                        <div className='botao-opcao'>
-                                                            <div className='edit-botao'>
-                                                                <button onClick={() => handleViewClick()}><RemoveRedEyeIcon fontSize={'small'} /></button>
-                                                            </div>
-                                                        </div>
-                                                    </TableCell>
-                                                </TableRow>
-
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-
+                                    <TableComponent headers={headerObservacao}
+                                        rows={cliente.observacao}
+                                        actionsLabel={["Ações", "Acciones"]}
+                                        actionCalls={{
+                                            view: (e) => handleViewClick(e)
+                                        }}
+                                    />
                                 </div>
                             </div>
                         </MyAccordion>

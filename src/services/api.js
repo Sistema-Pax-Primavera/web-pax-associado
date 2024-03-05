@@ -6,7 +6,7 @@ export const useAssociado = () => {
     const https = httpsInstance()
 
     const getAssociados = async () =>
-        https.get("/e54cbe19-03a5-4cc6-ac98-67402584294f")
+        https.get("/bb500c32-79fe-4b34-b490-3dcf05a730b3")
             .then(({ data }) =>
                 data.map((item) =>
                     Associado(item)

@@ -12,32 +12,6 @@ const HistoricoClinica = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
     const idioma = location.state && location.state.idioma;
-    const historicos = [
-        {
-            nome: 'Joao',
-            datanascimento: '01/01/2018',
-            procedimento: 'Exame de sangue',
-            dataprocedimento: '10/02/2022',
-            status: 'ativo',
-            imagem: Exame,
-        },
-        {
-            nome: 'Maria',
-            datanascimento: '05/03/2001',
-            procedimento: 'Estetica',
-            dataprocedimento: '15/03/2022',
-            status: 'ativo',
-            imagem: Estetica,
-        },
-        {
-            nome: 'Lucas',
-            datanascimento: '05/03/2005',
-            procedimento: 'Dentista',
-            dataprocedimento: '15/01/2022',
-            status: 'ativo',
-            imagem: Dentista,
-        },
-    ];
 
     return (
         <>
@@ -48,15 +22,14 @@ const HistoricoClinica = () => {
                         <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''}</label>
                     </div>
                     <div className="historico-container-clinica">
-                        {historicos.map((cliente, index) => (
+                        {cliente.historico_clinico.map((cliente, index) => (
                             <CardeClinica
-
                                 key={index}
-                                imagem={cliente.imagem}
+                                imagem={cliente.procedimento == 'Consulta' ? Exame : Estetica}
                                 nome={cliente.nome}
                                 procedimento={cliente.procedimento}
-                                datanascimento={cliente.datanascimento}
-                                dataprocedimento={cliente.dataprocedimento}
+                                datanascimento={cliente.data_nascimento}
+                                dataprocedimento={cliente.data_procedimento}
                                 status={cliente.status}
                             />
                         ))}

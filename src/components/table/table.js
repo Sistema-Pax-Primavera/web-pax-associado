@@ -42,27 +42,27 @@ const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel }) => {
     const acoes = (action, row) => {
         let actions = {
             delete: (
-                <div class='delete-botao'>
-                    < button
-                        key="delete"
-                        onClick={() => actionCalls.delete(row)}
-                    ><DeleteForeverIcon fontSize={'small'} /></ button>
-                </div>
+
+                < button
+                    key="delete"
+                    onClick={() => actionCalls.delete(row)}
+                ><DeleteForeverIcon fontSize={'small'} /></ button>
+
             ),
             edit: (
-                <div class='edit-botao'>
-                    <button
-                        key="edit"
-                        onClick={() => actionCalls.edit(row)}>
-                        <ModeEditOutlineIcon fontSize={'small'} />
-                    </button>
-                </div>
+
+                <button
+                    key="edit"
+                    onClick={() => actionCalls.edit(row)}>
+                    <ModeEditOutlineIcon fontSize={'small'} />
+                </button>
+
             ),
             view: (
                 <button
                     key="view"
                     onClick={() => actionCalls.view(row)} >
-                    <VisibilityIcon fontSize="small"/>
+                    <VisibilityIcon fontSize="small" />
                 </button>
             ),
             promote: (

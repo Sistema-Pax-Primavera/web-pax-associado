@@ -6,6 +6,8 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { useLocation } from 'react-router-dom';
+import { formatarTelefone } from '../../utils/fuctions';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Contato = () => {
     const [tipoContato, setTipoContato] = useState('Telefone');
@@ -18,8 +20,13 @@ const Contato = () => {
 
     const adicionarContato = () => {
         if (!contatoValue) {
-            alert('Por favor, insira um contato.');
+            toast.error('Por favor, insira um contato.');
             return;
+        } else {
+            if (contatoValue.length < 10 && tipoContato != 'Email') {
+                toast.warning('O contato deve ter pelo menos 10 números')
+                return
+            }
         }
 
         if (contatoEditando !== null) {
@@ -95,8 +102,9 @@ const Contato = () => {
                                     <div className='campos-02-contato'>
                                         <label>Contato</label>
                                         <input
+                                            placeholder={tipoContato == 'Email' ? 'exemplo@exemplo.com' : 'XX X XXXX-XXXX'}
                                             value={contatoValue}
-                                            onChange={(e) => setContatoValue(e.target.value)}
+                                            onChange={(e) => setContatoValue(formatarTelefone(e.target.value))}
                                         />
                                     </div>
                                     <div className='button-contato'>
@@ -107,7 +115,7 @@ const Contato = () => {
                                     <div className='container-linha' key={index}>
                                         <div className='campos-02-auto'>
                                             <label>{contato.tipo}</label>
-                                            <input value={contato.valor} readOnly />
+                                            <input value={contato.tipo != 'Email' ? formatarTelefone(contato.valor) : contato.valor} readOnly />
                                         </div>
                                         <div className='tipo-contato'>
                                             <button onClick={() => editarContato(index)}>

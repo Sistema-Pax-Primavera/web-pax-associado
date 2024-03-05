@@ -193,8 +193,6 @@ const Associado = () => {
             const usuarioObj = JSON.parse(savedUsuario);
             setIdioma(usuarioObj.idioma == 'BR' ? false : true);
         }
-
-
     }, []);
 
     const verificaIdioma = () => {
@@ -247,12 +245,16 @@ const Associado = () => {
             )}
             {!loading && searchResult.length > 0 && (
                 <div className='tabelas-associados'>
-                    <TableComponent headers={headers} rows={searchResult} actionsLabel={["Ações", "Acciones"]} actionCalls={{
-                        // delete: (e) =>
-                        //     console.log(e),
-                        // edit: (e) => console.log('edit'),
-                        view: (e) => handleOpenButtonClick(e)
-                    }} />
+                    <TableComponent headers={headers}
+                        rows={searchResult}
+                        actionsLabel={["Ações", "Acciones"]}
+                        actionCalls={{
+                            // delete: (e) =>
+                            //     console.log(e),
+                            // edit: (e) => console.log('edit'),
+                            view: (e) => handleOpenButtonClick(e)
+                        }}
+                    />
                 </div>
             )}
         </div>

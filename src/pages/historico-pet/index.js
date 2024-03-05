@@ -11,49 +11,7 @@ import Castracao from '../../../assets/castracao.png';
 const HistoricoPET = () => {
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
-    const idioma = location.state && location.state.idioma;
-    const historicos = [
-        {
-            nome: 'Rex',
-            datanascimento: '01/01/2018',
-            procedimento: 'Consulta de rotina',
-            dataprocedimento: '10/02/2022',
-            status: 'ativo',
-            imagem: ConsultaImage, // Defina a imagem para consulta
-        },
-        {
-            nome: 'Rex',
-            datanascimento: '01/01/2018',
-            procedimento: 'Vacinação',
-            dataprocedimento: '15/02/2022',
-            status: 'ativo',
-            imagem: PetImage, // Defina a imagem padrão para vacinação
-        },
-        {
-            nome: 'Bob',
-            datanascimento: '05/03/2019',
-            procedimento: 'Vacinação',
-            dataprocedimento: '15/03/2022',
-            status: 'inativo',
-            imagem: PetImage,
-        },
-        {
-            nome: 'Marie',
-            datanascimento: '05/03/2020',
-            procedimento: 'Consulta de rotina',
-            dataprocedimento: '16/01/2022',
-            status: 'ativo',
-            imagem: ConsultaImage,
-        },
-        {
-            nome: 'Marie',
-            datanascimento: '05/03/2020',
-            procedimento: 'Castração',
-            dataprocedimento: '15/01/2022',
-            status: 'ativo',
-            imagem: Castracao,
-        },
-    ];
+    const idioma = location.state && location.state.idioma;;
 
     return (
         <>
@@ -64,15 +22,14 @@ const HistoricoPET = () => {
                         <label><AccountCircleIcon /> {cliente ? cliente.nome : ''} Nº do Contrato - {cliente ? cliente.n_contrato : ''}</label>
                     </div>
                     <div className='cards-funeraria'>
-                        {historicos.map((cliente, index) => (
+                        {cliente.historico_pet.map((cliente, index) => (
                             <CardePet
-
                                 key={index}
-                                imagem={cliente.imagem}
+                                imagem={cliente.procedimento == 'Vacinação' ? ConsultaImage : PetImage}
                                 nome={cliente.nome}
                                 procedimento={cliente.procedimento}
-                                datanascimento={cliente.datanascimento}
-                                dataprocedimento={cliente.dataprocedimento}
+                                datanascimento={cliente.data_nascimento}
+                                dataprocedimento={cliente.data_procedimento}
                                 status={cliente.status}
                             />
                         ))}
