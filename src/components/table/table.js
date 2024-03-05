@@ -10,6 +10,7 @@ import '../../pages/associado.css';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import IconeButtonTable from "../button-icon-texto";
 
 const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel }) => {
     const [orderedBy, setOrderedBy] = useState(null)
@@ -72,6 +73,8 @@ const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel }) => {
                     onClick={() => actionCalls.view(row)} >
                     Promover
                 </button>
+
+               
 
             )
         }

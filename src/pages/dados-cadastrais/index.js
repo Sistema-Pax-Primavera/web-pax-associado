@@ -14,6 +14,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 import { useLocation } from 'react-router-dom';
+import ButtonText from '../../components/button-texto/index'
 
 const useStyles = makeStyles((theme) => ({
     accordionContainer: {
@@ -108,6 +109,7 @@ const DadosCadastrais = () => {
         setCliente(clienteEditado); // Atualize o cliente com os dados editados
         // Aqui você pode enviar os dados do cliente para salvar no servidor
     };
+
     return (
         <>
             <div className='container-associados'>
@@ -367,7 +369,10 @@ const DadosCadastrais = () => {
                     </Accordion>
 
                     <div className='salvar-associado'>
-                        <button>SALVAR</button>
+                        <ButtonText
+                            title="SALVAR"
+                            funcao={handleSave}
+                        />
                     </div>
                 </div>
             </div>
