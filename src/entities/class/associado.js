@@ -118,5 +118,5 @@ export const Associado = (data) => ({
         data_procedimento: hist?.dataProcedimento,
         data_falecimento: hist?.dataFalecimento,
         status: hist?.status
-    }))
+    })),
 })
