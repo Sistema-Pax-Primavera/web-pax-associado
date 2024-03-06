@@ -3,6 +3,8 @@ import Header from '../../components/header/header';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './registrar-obito.css'
 import { useLocation } from 'react-router-dom';
+import { Button } from '@mui/material';
+import ButtonText from '../../components/button-texto';
 
 const RegistrarObito = () => {
     const location = useLocation();
@@ -27,7 +29,7 @@ const RegistrarObito = () => {
                                 <select></select>
                             </div>
                             <div className='inativa-contrato'>
-                                <button>CONFIRMAR</button>
+                                <ButtonText title="CONFIRMAR"/>
                             </div>
                         </div>
                     </div>

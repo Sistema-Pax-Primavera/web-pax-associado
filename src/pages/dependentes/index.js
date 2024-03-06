@@ -4,21 +4,11 @@ import "./dependentes.css";
 import DateMaskInput from "../../components/inputs";
 import PetsIcon from "@mui/icons-material/Pets";
 import PersonIcon from "@mui/icons-material/Person";
-const label = { inputProps: { "aria-label": "Switch demo" } };
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ButtonText from "../../components/button-texto";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useLocation } from "react-router-dom";
 import TableComponent from "../../components/table/table";
 import { headerDependente } from "../../entities/headers/header-dependente";
-import IconeButtonTable from "../../components/button-icon-texto";
 
 function createData(name, filiacao, carencia, falecimento, valor, especie) {
   return { name, filiacao, carencia, falecimento, valor, especie };
@@ -184,7 +174,8 @@ const Dependentes = () => {
                   </div>
 
                   <div className="salva-dependentes">
-                    <button>SALVAR</button>
+                    <ButtonText
+                    title="SALVAR"/>
                   </div>
                 </div>
               </div>

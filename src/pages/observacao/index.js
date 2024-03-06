@@ -17,6 +17,7 @@ import TaskIcon from '@mui/icons-material/Task';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { headerObservacao } from '../../entities/headers/header-observacao';
 import TableComponent from '../../components/table/table';
+import ButtonText from '../../components/button-texto';
 function createData(name, data, usuario) {
     return { name, data, usuario };
 }
@@ -104,7 +105,7 @@ const Observacao = () => {
                         </div>
                     </div>
                     <div className='salva-observacao'>
-                        <button onClick={handleSaveClick}>SALVAR</button>
+                        <ButtonText title="SALVAR" funcao={handleSaveClick}/>
                     </div>
                     <div className='container-linha2'>
                         <MyAccordion

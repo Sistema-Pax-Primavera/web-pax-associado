@@ -3,6 +3,7 @@ import Header from '../../components/header/header';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './inativar-contrato.css'
 import { useLocation } from 'react-router-dom';
+import ButtonText from '../../components/button-texto/index'
 
 const InativarContrato = () => {
     const location = useLocation();
@@ -28,7 +29,7 @@ const InativarContrato = () => {
                                 <select></select>
                             </div>
                             <div className='inativa-contrato'>
-                                <button>CONFIRMAR</button>
+                                <ButtonText title="CONFIRMAR" ></ButtonText>
                             </div>
                         </div>
                     </div>

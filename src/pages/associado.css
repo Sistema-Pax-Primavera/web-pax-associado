@@ -21,7 +21,7 @@
 .pesquisa-associado input {
     background-color: var(--cinza-leve);
     width: 40%;
-    padding: 12px;
+    padding: 10px;
     font-weight: 500;
 }
 
@@ -177,4 +177,8 @@ body {
     color: var(--branco);
     background-color: var(--vermelho);
     padding: 5px;
+}
+
+.button-pesquisa-associado {
+    width: 15%;
 }

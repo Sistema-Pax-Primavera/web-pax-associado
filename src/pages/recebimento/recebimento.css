@@ -89,7 +89,7 @@
 }
 
 .adicionar-recebimento-forma {
-    margin-top: 15px;
+    margin-top: 18px;
     width: 10%;
 }
 
@@ -186,6 +186,10 @@ ul, ol {
     list-style-type: none;
 }
 
+.button-aplica-desconto{
+    width: 20%;
+}
+
 .fundo-recebimento {
     background-color: var(--cinza-leve);
     padding: 15px;
@@ -196,7 +200,6 @@ ul, ol {
 }
 
 .campos-recebimento button {
-    width: 20%;
     margin-top: 15px;
     cursor: pointer;
     font-weight: 700;
@@ -208,7 +211,6 @@ ul, ol {
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
-    width: 100%;
 }
 
 .receber-add-recebimento button {

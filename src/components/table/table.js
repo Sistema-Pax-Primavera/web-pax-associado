@@ -10,7 +10,8 @@ import '../../pages/associado.css';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import IconeButtonTable from "../button-icon-texto";
+import ButtonIcon from "../button-icon";
+import ButtonText from "../button-texto";
 
 const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel }) => {
     const [orderedBy, setOrderedBy] = useState(null)
@@ -41,40 +42,35 @@ const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel }) => {
         : [...headers]
 
     const acoes = (action, row) => {
+
         let actions = {
             delete: (
-
-                < button
+                <ButtonIcon 
+                    funcao={() => actionCalls.delete(row)} 
                     key="delete"
-                    onClick={() => actionCalls.delete(row)}
-                ><DeleteForeverIcon fontSize={'small'} /></ button>
-
+                    icon={<DeleteForeverIcon fontSize={'small'} />}
+                />
             ),
             edit: (
-
-                <button
+                <ButtonIcon 
+                    funcao={() => actionCalls.edit(row)} 
                     key="edit"
-                    onClick={() => actionCalls.edit(row)}>
-                    <ModeEditOutlineIcon fontSize={'small'} />
-                </button>
-
+                    icon={<ModeEditOutlineIcon fontSize={'small'} />}
+                />
             ),
             view: (
-                <button
+                <ButtonIcon 
+                    funcao={() => actionCalls.view(row)} 
                     key="view"
-                    onClick={() => actionCalls.view(row)} >
-                    <VisibilityIcon fontSize="small" />
-                </button>
+                    icon={<VisibilityIcon fontSize={'small'}/>}/>
             ),
             promote: (
-
-                <button
-                    key="view"
-                    onClick={() => actionCalls.view(row)} >
-                    Promover
-                </button>
-
-               
+                <ButtonText
+                key="promote"
+                title="Promover"
+                funcao={() => actionCalls.promote(row)}
+                />
+                
 
             )
         }

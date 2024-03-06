@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Switch from '@mui/material/Switch';
 import DateMaskInput from '../../components/inputs';
 import { useLocation } from 'react-router-dom';
+import ButtonText from '../../components/button-texto';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -108,7 +109,8 @@ const DadosCobranca = () => {
 
           </div>
           <div className='salvar-associado'>
-            <button>SALVAR</button>
+           <ButtonText 
+           title="SALVAR"/>
           </div>
         </div>
       </div>

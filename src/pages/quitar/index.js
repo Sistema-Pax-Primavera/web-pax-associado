@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/header/header';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from 'react-router-dom';
+import ButtonText from '../../components/button-texto';
 
 const Quitar = () => {
     const location = useLocation();
@@ -26,7 +27,7 @@ const Quitar = () => {
                                 <select></select>
                             </div>
                             <div className='inativa-contrato'>
-                                <button>CONFIRMAR</button>
+                            <ButtonText title="CONFIRMAR"/>
                             </div>
                         </div>
                     </div>

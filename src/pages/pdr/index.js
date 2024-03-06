@@ -9,6 +9,7 @@ import MyAccordion from '../../components/accordion';
 import { useLocation } from 'react-router-dom';
 import TableComponent from '../../components/table/table';
 import { headerPDR } from '../../entities/headers/header-pdr';
+import ButtonText from '../../components/button-texto';
 
 const PDR = () => {
     const location = useLocation();
@@ -136,7 +137,8 @@ const PDR = () => {
                     </MyAccordion>
 
                     <div className='salvar-associado'>
-                        <button>SALVAR</button>
+                    <ButtonText
+                    title="SALVAR"/>
                     </div>
 
                 </div>

@@ -5,6 +5,7 @@ import PETCart from '../../../assets/pet-horizontal.jpg';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './carteirinhas.css';
 import { useLocation } from 'react-router-dom';
+import ButtonText from '../../components/button-texto';
 
 const Carteirinha = () => {
     const location = useLocation();
@@ -93,7 +94,7 @@ const Carteirinha = () => {
                             <p className='validade'>Cliente: {clienteNome}</p>
                         </div>
                         <div className='carteirinha-imprimir'>
-                            <button onClick={handleImprimir}>IMPRIMIR</button>
+                            <ButtonText funcao={handleImprimir} title="IMPRIMIR"/>
                         </div>
 
                     </div>
