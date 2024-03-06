@@ -34,3 +34,31 @@ export function formatarTelefone(telefone) {
         return telefone; // Retorna o número original se não for um número de telefone válido
     }
 }
+
+//Função para formata data e hora
+export function converterDataHora(dateTimeString) {
+    if (!dateTimeString) {
+        return '';
+    }
+
+    const [datePart, timePart] = dateTimeString.split('T');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minute] = timePart.substring(0, 5).split(':');
+
+    // Verifica se year, month, day, hour e minute não são nulos ou indefinidos antes de criar a formattedDateTime
+    const formattedDateTime = (year && month && day && hour && minute) ?
+        `${day}/${month}/${year} ${hour}:${minute}` :
+        '';
+
+    return formattedDateTime;
+}
+
+//Função para formata valor adicionando duas casas decimais
+export function formatarValor(valor) {
+    if (typeof valor !== 'number') {
+        return '';
+    }
+
+    const valorFormatado = valor.toFixed(2).replace('.', ',');
+    return valorFormatado;
+}

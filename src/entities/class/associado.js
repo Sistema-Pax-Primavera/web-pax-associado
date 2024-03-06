@@ -1,4 +1,4 @@
-import { converterData, formatCPF, formatCEP } from '../../utils/fuctions';
+import { converterData, formatCPF, formatCEP, converterDataHora, formatarValor } from '../../utils/fuctions';
 
 export const Associado = (data) => ({
     id: data?.id,
@@ -75,7 +75,7 @@ export const Associado = (data) => ({
     historico_recebimento: data?.historicoRecebimento.map(historico => ({
         n_parcela: historico?.id,
         data_vencimento: converterData(historico?.data),
-        valor: historico?.valor,
+        valor: formatarValor(historico?.valor),
         status: historico?.status,
     })),
     contatos: data?.contatos.map(contato => ({
@@ -92,31 +92,43 @@ export const Associado = (data) => ({
         descricao: obs?.descricao,
         data_criacao: obs?.data
     })),
+    extrato: data?.extrato.map(extrato => ({
+        id: extrato?.id,
+        valor_total: formatarValor(extrato?.valorTotal),
+        data_hora_pagamento: converterDataHora(extrato?.dataHoraPagamento),
+        local_pagamento: extrato?.localPagamento,
+        parcelas: extrato.parcelas.map(parcela => ({
+            id: parcela?.id,
+            data_vencimento: converterData(parcela?.dataVencimento),
+            valor_parcela: formatarValor(parcela?.valorParcela),
+            forma_pagamento: parcela?.formaPagamento
+        })),
+    })),
     historico_funerario: data?.historicoFunerario.map(hist => ({
         id: hist?.id,
         nome: hist?.nome,
-        data_nascimento: hist?.dataNascimento,
-        data_falecimento: hist?.dataFalecimento,
+        data_nascimento: converterData(hist?.dataNascimento),
+        data_falecimento: converterData(hist?.dataFalecimento),
         plano: hist?.plano,
         parentesco: hist?.parentesco,
-        data_cremacao: hist?.dataCremacao
+        data_cremacao: converterData(hist?.dataCremacao)
     })),
     historico_clinico: data?.historicoClinico.map(hist => ({
         id: hist?.id,
         nome: hist?.nome,
-        data_nascimento: hist?.dataNascimento,
+        data_nascimento: converterData(hist?.dataNascimento),
         procedimento: hist?.procedimento,
-        data_procedimento: hist?.dataProcedimento,
+        data_procedimento: converterData(hist?.dataProcedimento),
         parentesco: hist?.parentesco,
         status: hist?.status
     })),
     historico_pet: data?.historicoPET.map(hist => ({
         id: hist?.id,
         nome: hist?.nome,
-        data_nascimento: hist?.dataNascimento,
+        data_nascimento: converterData(hist?.dataNascimento),
         procedimento: hist?.procedimento,
-        data_procedimento: hist?.dataProcedimento,
-        data_falecimento: hist?.dataFalecimento,
+        data_procedimento: converterData(hist?.dataProcedimento),
+        data_falecimento: converterData(hist?.dataFalecimento),
         status: hist?.status
     })),
 })
