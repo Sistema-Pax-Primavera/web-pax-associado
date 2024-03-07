@@ -205,7 +205,7 @@ const Associado = () => {
       setLoading(false);
     }
   };
-
+  
   const handleOpenButtonClick = (cliente) => {
     setShowImage(true);
     setSearchResult([]);
