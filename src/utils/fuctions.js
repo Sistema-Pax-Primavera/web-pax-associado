@@ -62,3 +62,28 @@ export function formatarValor(valor) {
     const valorFormatado = valor.toFixed(2).replace('.', ',');
     return valorFormatado;
 }
+
+//Formata data para ISO (yyyy-mm-dd)
+export function converterDataParaFormatoISO(dataString) {
+    if (!dataString) {
+        return '';
+    }
+
+    const partes = dataString.split(' '); // Divide a data e a hora, se houver
+    const dataPartes = partes[0].split('/'); // Divide a data em dia, mês e ano
+
+    // Verifica se a data está no formato esperado
+    if (dataPartes.length !== 3) {
+        return '';
+    }
+
+    let horaParte = '';
+    if (partes.length > 1) {
+        horaParte = ` ${partes[1]}`; // Se houver parte da hora, adiciona ao resultado
+    }
+
+    const [dia, mes, ano] = dataPartes; // Extrai dia, mês e ano
+    const dataFormatoISO = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}${horaParte}`; // Formata a data em formato ISO
+
+    return dataFormatoISO;
+}

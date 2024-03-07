@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/header/header";
 import DateMaskInput from "../../components/inputs";
 import "./observacao.css";
@@ -12,22 +12,46 @@ import TableComponent from "../../components/table/table";
 import ButtonText from "../../components/button-texto";
 import ModalAssociado from "../../components/modal-associado";
 import DescriptionIcon from "@mui/icons-material/Description";
-
-function createData(name, data, usuario) {
-  return { name, data, usuario };
-}
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import { converterData, converterDataHora, converterDataParaFormatoISO } from "../../utils/fuctions";
 
 const Observacao = () => {
   const location = useLocation();
   const cliente = location.state && location.state.cliente;
   const idioma = location.state && location.state.idioma;
-  const [modalAberta, setModalAberta] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [dadosModal, setDadosModal] = useState(null);
+  const [user, setUser] = useState(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [observacaoData, setObservacaoData] = useState([]); 
+  const [filteredObservacao, setFilteredObservacao] = useState([]);
 
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
+
+  const handleSearch2 = () => {
+    setLoading(true);
+    if (!startDate || !endDate) {
+      toast.warning("Informe uma data inicial e final para filtrar!");
+      setFilteredObservacao(cliente.observacao);
+      setLoading(false);
+      
+    } else {
+      console.log("cai aqui")
+      const filteredData = observacaoData.filter((item) => {
+        const itemDate = converterDataParaFormatoISO(item.data_criacao);
+        return  itemDate >= startDate && itemDate <=endDate
+      });
+      setFilteredObservacao(filteredData);
+      if (filteredData.length === 0) {
+        toast.error("Nenhum resultado encontrado");
+      }
+      
+      setLoading(false);
+    }
   };
+
 
   const [formData, setFormData] = useState({
     assunto: "",
@@ -37,10 +61,6 @@ const Observacao = () => {
     subcategoria: "",
     descricao: "",
   });
-
-  const [rows, setRows] = useState([
-    createData("Teste", "15/01/2023", "Vanderlei"),
-  ]);
 
   const handleViewClick = (rowData) => {
     //const formattedDate = new Date(rowData.data).toLocaleDateString();
@@ -85,6 +105,37 @@ const Observacao = () => {
       [name]: value,
     }));
   };
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+
+  useEffect(() => {
+    const savedUsuario = localStorage.getItem("usuario");
+    if (savedUsuario) {
+      const usuarioObj = JSON.parse(savedUsuario);
+      setUser(usuarioObj.usuario);
+    }
+
+    // Atualizar os dados do extrato
+    if (cliente && cliente.observacao) {
+      setObservacaoData(cliente.observacao);
+      setFilteredObservacao(cliente.observacao); // Inicialmente, os dados filtrados serão os dados originais
+    }
+  }, [cliente]);
+
+  useEffect(() => {
+    const savedUsuario = localStorage.getItem("usuario");
+    if (savedUsuario) {
+      const usuarioObj = JSON.parse(savedUsuario);
+      setUser(usuarioObj.usuario);
+    }
+  }, []);
+
 
   return (
     <>
@@ -139,9 +190,7 @@ const Observacao = () => {
           <div className="salva-observacao">
             <ButtonText title="SALVAR" funcao={handleSaveClick} />
           </div>
-          <div className="container-linha2">
-            
-          </div>
+          <div className="container-linha2"></div>
           {isOpen && dadosModal && (
             <ModalAssociado
               isOpen={isOpen}
@@ -186,21 +235,41 @@ const Observacao = () => {
             </ModalAssociado>
           )}
           <MyAccordion
-              title="Historico de F9"
-              icon={<TaskIcon />}
-              expandedIcon={<ExpandMoreIcon />}
-            >
-              <TableComponent
-                headers={headerObservacao}
-                rows={cliente.observacao}
-                actionsLabel={["Ações", "Acciones"]}
-                actionCalls={{
-                  view: (e) => handleViewClick(e),
-                }}
-              />
-            </MyAccordion>
+            title="Historico de F9"
+            icon={<TaskIcon />}
+            expandedIcon={<ExpandMoreIcon />}
+          >
+            <div className="container-linha">
+              <div className="campos-02">
+                <label>De</label>
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={handleStartDateChange}
+                ></input>
+              </div>
+              <div className="campos-02">
+                <label>Até</label>
+                <input
+                  type="date"
+                  value={endDate}
+                  onChange={handleEndDateChange}
+                ></input>
+              </div>
+              <div className="filtro-extrato">
+                <ButtonText title="FILTRAR" funcao={handleSearch2} />
+              </div>
+            </div>
+            <TableComponent
+              headers={headerObservacao}
+              rows={filteredObservacao}
+              actionsLabel={["Ações", "Acciones"]}
+              actionCalls={{
+                view: (e) => handleViewClick(e),
+              }}
+            />
+          </MyAccordion>
         </div>
-        
       </div>
     </>
   );

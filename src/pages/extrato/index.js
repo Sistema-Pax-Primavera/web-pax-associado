@@ -6,15 +6,16 @@ import "./extrato.css";
 import ButtonText from "../../components/button-texto";
 import { headerExtrato } from "../../entities/headers/header-extrato";
 import TableComponent from "../../components/table/table";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { converterDataHora, formatarValor } from '../../utils/fuctions';
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { converterData, converterDataHora, converterDataParaFormatoISO } from "../../utils/fuctions";
 
 const Extrato = () => {
   const location = useLocation();
+  const [datas, setDatas] = useState([]);
   const cliente = location.state && location.state.cliente;
   const idioma = location.state && location.state.idioma;
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedParcela, setSelectedParcela] = useState({});
@@ -22,6 +23,26 @@ const Extrato = () => {
   const [endDate, setEndDate] = useState("");
   const [extratoData, setExtratoData] = useState([]); // Dados originais do extrato
   const [filteredExtrato, setFilteredExtrato] = useState([]);
+
+  const handleSearch = () => {
+    setLoading(true);
+    if (!startDate || !endDate) {
+      toast.warning("Informe uma data inicial e final para filtrar!");
+      setFilteredExtrato(cliente.extrato);
+      setLoading(false);
+    } else {
+      const filteredData = extratoData.filter((item) => {
+        const itemDate = converterDataParaFormatoISO(item.data_hora_pagamento);
+        return  itemDate >= startDate && itemDate <=endDate
+      });
+      setFilteredExtrato(filteredData);
+      if (filteredData.length === 0) {
+        toast.error("Nenhum resultado encontrado");
+      }
+      
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const savedUsuario = localStorage.getItem("usuario");
@@ -55,23 +76,6 @@ const Extrato = () => {
     setEndDate(event.target.value);
   };
 
-  const handleFiltrar = () => {
-    const filteredData = extratoData.filter((extrato) => {
-      const extratoDate = new Date(extrato.data_hora_pagamento); // Aqui é onde você está tentando acessar a data_hora_pagamento
-      const startDateObj = new Date(startDate);
-      const endDateObj = new Date(endDate);
-      // Verificando se a data do extrato está dentro do intervalo selecionado pelo usuário
-      return extratoDate >= startDateObj && extratoDate <= endDateObj;
-    });
-  
-    if (filteredData.length === 0) {
-      toast.warning('Nenhum resultado encontrado.');
-    }
-  
-    setFilteredExtrato(filteredData);
-  };
-  
-
   useEffect(() => {
     const savedUsuario = localStorage.getItem("usuario");
     if (savedUsuario) {
@@ -79,7 +83,6 @@ const Extrato = () => {
       setUser(usuarioObj.usuario);
     }
   }, []);
-
 
   return (
     <div className="container-associados">
@@ -113,13 +116,13 @@ const Extrato = () => {
                   ></input>
                 </div>
                 <div className="filtro-extrato">
-                  <ButtonText title="FILTRAR" funcao={handleFiltrar} />
+                  <ButtonText title="FILTRAR" funcao={handleSearch} />
                 </div>
               </div>
             </div>
           </div>
           <div className="container-linha">
-          <TableComponent
+            <TableComponent
               headers={headerExtrato}
               rows={filteredExtrato}
               actionsLabel={["Ações", "Acciones"]}

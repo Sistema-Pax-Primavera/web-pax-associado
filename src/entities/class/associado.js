@@ -90,7 +90,7 @@ export const Associado = (data) => ({
         subcategoria: obs?.subcategoria,
         usuario: obs?.usuario,
         descricao: obs?.descricao,
-        data_criacao: obs?.data
+        data_criacao: converterData(obs?.data)
     })),
     extrato: data?.extrato.map(extrato => ({
         id: extrato?.id,
