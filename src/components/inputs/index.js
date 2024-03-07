@@ -12,7 +12,6 @@ const DateMaskInput = ({ data }) => {
   return (
     <div className='data-input'>
       <InputMask
-        mask="99/99/9999"
         maskPlaceholder={null}
         id="date"
         type="text"

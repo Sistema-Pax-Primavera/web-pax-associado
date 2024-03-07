@@ -38,7 +38,7 @@ const DadosCadastrais = () => {
     const classes = useStyles();
     const location = useLocation();
     const [clienteEditado, setClienteEditado] = useState({});
-    const [clienteInicial, setClienteInicial] = useState({}); 
+    const [clienteInicial, setClienteInicial] = useState({});
     const [carenciaAtivada, setCarenciaAtivada] = useState(clienteInicial.is_carencia);
     const [cremacaoAtivada, setCremacaoAtivada] = useState(clienteInicial.is_cremacao);
     const [isComercialEnabled, setIsComercialEnabled] = useState(clienteInicial.is_endereco_comercial);
@@ -115,7 +115,7 @@ const DadosCadastrais = () => {
             <div className='container-associados'>
                 <Header cliente={cliente} idioma={idioma} />
                 <div className='dados-cadastrais-associado'>
- 
+
                     <MyAccordion
                         title="Dados do Titular"
                         icon={<AccountCircleIcon />}
@@ -139,7 +139,7 @@ const DadosCadastrais = () => {
                             </div>
                             <div className='campos-02'>
                                 <label>Data Nascimento<span className='obrigatorio'> *</span></label>
-                                <DateMaskInput data={cliente.data_nascimento} />
+                                <input type="text" name="dataNascimento" value={cliente.data_nascimento} />
                             </div>
                             <div className='campos-03'>
                                 <label>Contrato<span className='obrigatorio'> *</span></label>
@@ -194,7 +194,8 @@ const DadosCadastrais = () => {
                             </div>
                             <div className='campos-02'>
                                 <label>Data do Contrato<span className='obrigatorio'> *</span></label>
-                                <DateMaskInput data={cliente.data_contrato} />
+                                <input type="text" name="dataContrato" value={cliente.data_contrato} />
+
                             </div>
                         </div>
                         <div className='container-linha'>
@@ -209,12 +210,11 @@ const DadosCadastrais = () => {
                                 <>
                                     <div className='data-inicio-carencia'>
                                         <label>Data Inicio Carência</label>
-                                        <DateMaskInput data={cliente.data_inicio_carencia} />
+                                        <input type="text" name="dataInicioCarencia" value={cliente.data_inicio_carencia} />
                                     </div>
                                     <div className='data-fim-carencia'>
                                         <label>Data Final Carência</label>
-                                        <DateMaskInput data={cliente.data_final_carencia} />
-
+                                        <input type="text" name="dataFimCarencia" value={cliente.data_final_carencia} />
                                     </div>
                                 </>
                             )}
