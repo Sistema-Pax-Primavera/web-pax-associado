@@ -312,7 +312,7 @@ const Observacao = () => {
                   onChange={handleEndDateChange}
                 ></input>
               </div>
-              <div className="campos-02">
+              <div className="campos-02-observacao">
                 <label>Categoria</label>
                 <select
                   value={selectedCategory}
@@ -327,7 +327,7 @@ const Observacao = () => {
                   ))}
                 </select>
               </div>
-              <div className="campos-02">
+              <div className="campos-02-observacao">
                 <label>Subcategoria</label>
                 <select
                   value={selectedSubcategory}

@@ -14,7 +14,7 @@
     flex-direction: column;
     background-color: var(--cinza-leve);
     gap: 10px;
-    max-height: 48vh;
+    max-height: 300px;
 }
 
 .data-observacao {
@@ -142,4 +142,18 @@
     height: 100px;
     padding: 5px;
     border-radius: 5px;
+}
+
+.campos-02-observacao {
+    display: flex;
+    flex-direction: column;
+    width: 27%;
+}
+
+.campos-02-observacao select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-weight: 500;
+    padding: 7px;
 }

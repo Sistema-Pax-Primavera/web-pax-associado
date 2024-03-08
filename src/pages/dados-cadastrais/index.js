@@ -15,6 +15,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 import { useLocation } from 'react-router-dom';
 import ButtonText from '../../components/button-texto/index'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
     accordionContainer: {
@@ -108,6 +110,7 @@ const DadosCadastrais = () => {
     const handleSave = () => {
         setCliente(clienteEditado); // Atualize o cliente com os dados editados
         // Aqui você pode enviar os dados do cliente para salvar no servidor
+        toast.success('Dados cadastrais salvo com sucesso!');
     };
 
     return (

@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/header/header";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useLocation } from "react-router-dom";
 import ButtonText from "../../components/button-texto";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const CancelarContrato = () => {
   const location = useLocation();
   const cliente = location.state && location.state.cliente;
   const idioma = location.state && location.state.idioma;
+  const [data, setData] = useState("");
+  const [motivoSelecionado, setMotivoSelecionado] = useState("");
 
+  const handleSalva = () => {
+    // Verifica se os campos estão preenchidos
+    if (!data || !motivoSelecionado) {
+      toast.error("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    // Aqui você pode prosseguir com a lógica para salvar os dados
+    // Por exemplo:
+    // saveData(data, motivoInativacao);
+    toast.success("Registo de óbito confirmado!");
+  };
   return (
     <>
       <div className="container-associados">
@@ -23,16 +40,28 @@ const CancelarContrato = () => {
               </label>
             </div>
             <div className="container-linha">
-              <div className="campos-03">
+              <div className="campos-02">
                 <label>Data</label>
-                <input></input>
+                <input
+                  type="date"
+                  value={data}
+                  onChange={(e) => setData(e.target.value)}
+                />
               </div>
               <div className="campos-01">
                 <label>Motivo do Cancelamento</label>
-                <select></select>
+                <select
+                    value={motivoSelecionado}
+                    onChange={(e) => setMotivoSelecionado(e.target.value)}
+                >
+                    <option value="">Selecione...</option>
+                    <option value="cancelamento">Cancelamento</option>
+                    <option value="recusado">Recusado</option>
+                    <option value="inativacao">Inativação</option>
+                </select>
               </div>
               <div className="inativa-contrato">
-                <ButtonText title="CONFIRMAR" />
+              <ButtonText title="CONFIRMAR" funcao={handleSalva}></ButtonText>
               </div>
             </div>
           </div>

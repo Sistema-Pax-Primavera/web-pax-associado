@@ -6,6 +6,8 @@ import Switch from '@mui/material/Switch';
 import DateMaskInput from '../../components/inputs';
 import { useLocation } from 'react-router-dom';
 import ButtonText from '../../components/button-texto';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -47,6 +49,12 @@ const DadosCobranca = () => {
       [name]: value
     }));
   };
+
+  const handleSave = () => {
+    console.log("cai aqui")
+    toast.success('Dados de cobrança salvo com sucesso!');
+};
+
 
   return (
     <>
@@ -110,7 +118,8 @@ const DadosCobranca = () => {
           </div>
           <div className='salvar-associado'>
            <ButtonText 
-           title="SALVAR"/>
+           title="SALVAR"
+           funcao={handleSave}/>
           </div>
         </div>
       </div>

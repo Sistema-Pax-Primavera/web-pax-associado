@@ -10,6 +10,8 @@ import { useLocation } from 'react-router-dom';
 import TableComponent from '../../components/table/table';
 import { headerPDR } from '../../entities/headers/header-pdr';
 import ButtonText from '../../components/button-texto';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PDR = () => {
     const location = useLocation();
@@ -31,6 +33,11 @@ const PDR = () => {
             [name]: value
         }));
     };
+
+    const handleSalva = () => {
+        toast.success('PDR salvo com sucesso!');
+    };
+
 
     return (
         <>
@@ -138,7 +145,8 @@ const PDR = () => {
 
                     <div className='salvar-associado'>
                     <ButtonText
-                    title="SALVAR"/>
+                    title="SALVAR"
+                    funcao={handleSalva}/>
                     </div>
 
                 </div>
