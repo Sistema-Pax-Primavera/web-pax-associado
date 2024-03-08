@@ -155,7 +155,8 @@
 
 .data-inicio-carencia{
     width: 16%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .data-inicio-carencia input{
@@ -164,7 +165,8 @@
 
 .data-fim-carencia{
     width: 16%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .data-fim-carencia input{

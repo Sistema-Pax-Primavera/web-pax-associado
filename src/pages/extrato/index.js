@@ -186,7 +186,7 @@ const Extrato = () => {
                   className="imprimir-button"
                   onClick={() => window.print()}
                 >
-                  Imprimir
+                  IMPRIMIR
                 </button>
               </div>
               <button className="fechar-modal" onClick={handleCloseModal}>

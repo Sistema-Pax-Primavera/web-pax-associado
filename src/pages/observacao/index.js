@@ -14,7 +14,11 @@ import ModalAssociado from "../../components/modal-associado";
 import DescriptionIcon from "@mui/icons-material/Description";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import { converterData, converterDataHora, converterDataParaFormatoISO } from "../../utils/fuctions";
+import {
+  converterData,
+  converterDataHora,
+  converterDataParaFormatoISO,
+} from "../../utils/fuctions";
 
 const Observacao = () => {
   const location = useLocation();
@@ -23,35 +27,76 @@ const Observacao = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dadosModal, setDadosModal] = useState(null);
   const [user, setUser] = useState(null);
+  const [clientes, setCliente] = useState({});
+  const [observacao, setObservacao] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(false);
-  const [observacaoData, setObservacaoData] = useState([]); 
+  const [observacaoData, setObservacaoData] = useState([]);
   const [filteredObservacao, setFilteredObservacao] = useState([]);
-
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
 
   const handleSearch2 = () => {
     setLoading(true);
+
     if (!startDate || !endDate) {
-      toast.warning("Informe uma data inicial e final para filtrar!");
-      setFilteredObservacao(cliente.observacao);
-      setLoading(false);
-      
-    } else {
-      console.log("cai aqui")
-      const filteredData = observacaoData.filter((item) => {
-        const itemDate = converterDataParaFormatoISO(item.data_criacao);
-        return  itemDate >= startDate && itemDate <=endDate
-      });
+      // Se as datas de início e fim não estiverem definidas,
+      // verifique se uma categoria foi selecionada
+      if (!selectedCategory) {
+        toast.warning("Selecione uma categoria ou informe uma data inicial e final para filtrar!");
+        setLoading(false);
+        return;
+      }
+
+      // Filtrar os dados apenas pela categoria selecionada
+      let filteredData = observacaoData.filter(
+        (item) => item.categoria === selectedCategory
+      );
+
+      // Se uma subcategoria estiver selecionada, filtre também por subcategoria
+      if (selectedSubcategory) {
+        filteredData = filteredData.filter(
+          (item) => item.subcategoria === selectedSubcategory
+        );
+      }
+
       setFilteredObservacao(filteredData);
       if (filteredData.length === 0) {
         toast.error("Nenhum resultado encontrado");
       }
-      
+
+      setLoading(false);
+    } else {
+      // Se as datas de início e fim estiverem definidas, execute a lógica original
+      console.log("cai aqui");
+      let filteredData = observacaoData.filter((item) => {
+        const itemDate = converterDataParaFormatoISO(item.data_criacao);
+        return itemDate >= startDate && itemDate <= endDate;
+      });
+
+      // Se uma categoria estiver selecionada, filtre também por categoria
+      if (selectedCategory) {
+        filteredData = filteredData.filter(
+          (item) => item.categoria === selectedCategory
+        );
+      }
+
+      // Se uma subcategoria estiver selecionada, filtre também por subcategoria
+      if (selectedSubcategory) {
+        filteredData = filteredData.filter(
+          (item) => item.subcategoria === selectedSubcategory
+        );
+      }
+
+      setFilteredObservacao(filteredData);
+      if (filteredData.length === 0) {
+        toast.error("Nenhum resultado encontrado");
+      }
+
       setLoading(false);
     }
   };
-
 
   const [formData, setFormData] = useState({
     assunto: "",
@@ -114,6 +159,14 @@ const Observacao = () => {
     setEndDate(event.target.value);
   };
 
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const handleSubcategoryChange = (event) => {
+    setSelectedSubcategory(event.target.value);
+  };
+
   useEffect(() => {
     const savedUsuario = localStorage.getItem("usuario");
     if (savedUsuario) {
@@ -136,6 +189,9 @@ const Observacao = () => {
     }
   }, []);
 
+  useEffect(() => {
+    setCliente(); // Inicializando o estado cliente com os dados iniciais
+  }, [cliente]);
 
   return (
     <>
@@ -255,6 +311,36 @@ const Observacao = () => {
                   value={endDate}
                   onChange={handleEndDateChange}
                 ></input>
+              </div>
+              <div className="campos-02">
+                <label>Categoria</label>
+                <select
+                  value={selectedCategory}
+                  onChange={handleCategoryChange}
+                >
+                  <option value="">Selecione uma categoria</option>
+                  {/* Renderize opções com base nas categorias disponíveis */}
+                  {cliente.observacao.map((obs) => (
+                    <option key={obs.categoria} value={obs.categoria}>
+                      {obs.categoria}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="campos-02">
+                <label>Subcategoria</label>
+                <select
+                  value={selectedSubcategory}
+                  onChange={handleSubcategoryChange}
+                >
+                  <option value="">Selecione uma subcategoria</option>
+                  {/* Renderize opções com base nas subcategorias disponíveis */}
+                  {cliente.observacao.map((obs) => (
+                    <option key={obs.subcategoria} value={obs.subcategoria}>
+                      {obs.subcategoria}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="filtro-extrato">
                 <ButtonText title="FILTRAR" funcao={handleSearch2} />

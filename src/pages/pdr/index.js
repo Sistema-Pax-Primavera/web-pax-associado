@@ -118,7 +118,7 @@ const PDR = () => {
                         icon={<AnalyticsIcon />}
                         expandedIcon={<ExpandMoreIcon />}
                     >
-                        <div className='layout-linha'>
+
                             <div className='container-linha'>
                                 <TableComponent
                                     headers={headerPDR}
@@ -133,7 +133,7 @@ const PDR = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                        </div>
+                        
                     </MyAccordion>
 
                     <div className='salvar-associado'>

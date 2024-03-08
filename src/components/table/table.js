@@ -68,11 +68,14 @@ const TableComponent = ({ headers, rows, actionCalls = {}, actionsLabel, openMod
         />
       ),
       promote: (
+        <div key="promote" style={{ padding: '2.5px', backgroundColor: '#006b33', borderRadius: '5px' }}>
         <ButtonText
           key="promote"
-          title="Promover"
+          title="PROMOVER"
           funcao={() => actionCalls.promote(row)}
+          style={{padding: '80px'}}
         />
+        </div>
       ),
     };
 
