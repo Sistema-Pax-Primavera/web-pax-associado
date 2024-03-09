@@ -20,18 +20,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
     accordionContainer: {
-        border: `1px solid rgba(0, 0, 0, 0.1)`, // Adicione uma borda padrão
-        borderColor: theme.palette.grey[300],
-        borderRadius: theme.shape.borderRadius, // Cor da borda padrão (pode ser ajustada)
+      border: `1px solid rgba(0, 0, 0, 0.1)`,
+      borderColor: theme.palette.grey[300],
+      borderRadius: theme.shape.borderRadius,
     },
     accordion: {
-        width: '100%',
-        borderRadius: theme.shape.borderRadius,
-        '&.Mui-expanded': {
-            borderColor: 'rgba(255, 0, 0, 0.5)', // Cor da borda com opacidade quando o Accordion está expandido
-        },
+      width: "100%",
+      borderRadius: theme.shape.borderRadius,
+      "&.Mui-expanded": {
+        borderColor: "rgba(255, 0, 0, 0.5)",
+      },
     },
-}));
+  }));
+  
 
 const DadosCadastrais = () => {
 
@@ -302,6 +303,7 @@ const DadosCadastrais = () => {
                             </div>
                         </div>
                     </MyAccordion>
+                    <div className='acordion-dados-comerciais'>
                     <Accordion className={isComercialEnabled ? '' : 'Mui-disabled'}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -370,6 +372,7 @@ const DadosCadastrais = () => {
 
                         </AccordionDetails>
                     </Accordion>
+                    </div>
 
                     <div className='salvar-associado'>
                         <ButtonText

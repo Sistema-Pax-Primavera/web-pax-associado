@@ -57,7 +57,7 @@
     margin-top: 15px;
     width: 95%; 
     background-color: var(--cinza-leve);
-    height: 450px;
+    height: auto;
     gap: 10px;
     display: flex;
     flex-direction: column;

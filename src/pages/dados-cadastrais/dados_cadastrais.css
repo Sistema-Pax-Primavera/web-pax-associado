@@ -176,3 +176,9 @@
 .salvar-associado{
     width: 20%;
 }
+
+.acordion-dados-comerciais{
+    width: 99.7%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}

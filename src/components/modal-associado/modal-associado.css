@@ -3,14 +3,12 @@
   transform: translateY(-100%);
 }
 
-.modal{
+.modal-associado {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
-
 
 .modal-enter-active {
   opacity: 1;
@@ -39,6 +37,7 @@
 
 .overlay {
   position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
   width: 100%;
@@ -47,13 +46,14 @@
   transition: opacity 0.3s ease;
 }
 
-.modal {
+.modal-associado {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 8px;
   padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
   overflow: hidden;
 }
@@ -62,7 +62,8 @@
   background-color: white;
   padding: 20px;
   margin-top: 100px;
-  margin-left: 150px;
+  margin-left: 350px;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   color: var(--preto);
@@ -71,14 +72,14 @@
   border-radius: 5px;
 }
 
-.fecha-modal-cadastro{
+.fecha-modal-cadastro {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.fecha-modal-cadastro button{
+.fecha-modal-cadastro button {
   color: var(--vermelho);
   width: 100%;
   display: flex;
@@ -88,7 +89,7 @@
   background-color: var(--branco);
 }
 
-.fecha-modal-cadastro label{
+.fecha-modal-cadastro label {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -96,7 +97,7 @@
   font-size: 15px;
 }
 
-.campos-do-cadastro{
+.campos-do-cadastro {
   color: var(--verde);
   max-height: 70vh;
   display: flex;

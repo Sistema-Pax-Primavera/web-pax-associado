@@ -11,10 +11,10 @@ const ModalAssociado = ({ isOpen, onClose, buttonText, icon, children, icone2, t
       <CSSTransition
         in={isOpen}
         timeout={300} 
-        classNames="modal"
+        classNames="modal-associado"
         unmountOnExit
       >
-        <div className="modal">
+        <div className="modal-associado">
           <div className="modal-content">
             <div className="fecha-modal-cadastro">
               <label>
