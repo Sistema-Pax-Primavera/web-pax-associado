@@ -49,10 +49,20 @@ export const Associado = (data) => ({
     is_transferido: data?.transferido,
     is_pagou_adesao: data?.pagouAdesao,
     ultimo_pagamento: converterData(data?.ultimoPagamento),
+    ultimo_mes_pago: converterData(data?.ultimoMesPago),
+    valor_plano: formatarValor(data?.valorPlano),
     status: data?.status,
     dia_pagamento: data?.diaPagamento,
     situacao: data?.situacao,
     tipo_associado: data?.tipoAssociado,
+    parcelas: {
+        id: data?.parcelas.id,
+        valor_total: formatarValor(data?.parcelas.valorTotal),
+        mensalidade: data?.parcelas.mensalidade.map(item => ({
+            id: item?.id,
+            valor: formatarValor(item?.valor),
+        })),
+    },
     dependentes: data?.dependentes.map(dependente => ({
         id: dependente?.id,
         nome: dependente?.nome,

@@ -8,7 +8,7 @@ import { headerExtrato } from "../../entities/headers/header-extrato";
 import TableComponent from "../../components/table/table";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { converterData, converterDataHora, converterDataParaFormatoISO } from "../../utils/fuctions";
+import { converterData, converterDataHora, converterDataParaFormatoISO, imprimirComprovante } from "../../utils/fuctions";
 
 const Extrato = () => {
   const location = useLocation();
@@ -33,13 +33,13 @@ const Extrato = () => {
     } else {
       const filteredData = extratoData.filter((item) => {
         const itemDate = converterDataParaFormatoISO(item.data_hora_pagamento);
-        return  itemDate >= startDate && itemDate <=endDate
+        return itemDate >= startDate && itemDate <= endDate
       });
       setFilteredExtrato(filteredData);
       if (filteredData.length === 0) {
         toast.error("Nenhum resultado encontrado");
       }
-      
+
       setLoading(false);
     }
   };
@@ -74,6 +74,26 @@ const Extrato = () => {
 
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
+  };
+
+  const imprimir = (parcela) => {
+    const conteudoComprovante = {
+      nome: cliente.nome,
+      parcelas: parcela.parcelas,
+      valor_total: parcela.valor_total,
+      contrato: cliente.n_contrato,
+      regiao: cliente.regiao,
+      endereco: cliente.rua_residencial + ' QD'
+        + cliente.quadra_residencial + ' LT'
+        + cliente.lote_residencial + ' Nº'
+        + cliente.numero_residencial + ' - '
+        + cliente.bairro_residencial + ' - '
+        + cliente.municipio_residencial,
+      usuario: user,
+      data_pagamento: parcela.data_hora_pagamento
+
+    }
+    imprimirComprovante(conteudoComprovante);
   };
 
   useEffect(() => {
@@ -184,7 +204,7 @@ const Extrato = () => {
               <div className="imprimir-button-container">
                 <button
                   className="imprimir-button"
-                  onClick={() => window.print()}
+                  onClick={() => imprimir(selectedParcela)}
                 >
                   IMPRIMIR
                 </button>

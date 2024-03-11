@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./recebimento.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Header from "../../components/header/header";
@@ -29,16 +29,19 @@ import PixIcon from "@mui/icons-material/Pix";
 import SourceIcon from "@mui/icons-material/Source";
 import ButtonText from "../../components/button-texto";
 import ButtonIcon from "../../components/button-icon";
+import { formatarValor } from "../../utils/fuctions";
+import TableComponent from "../../components/table/table";
+import { headerRecebimento } from "../../entities/headers/header-recebimento";
 
-function createData(parcela, datavencimento, valor, datapagamento) {
-  return { parcela, datavencimento, valor, datapagamento };
+function createData(data_vencimento, valor_total, data_hora_pagamento) {
+  return { data_vencimento, valor_total, data_hora_pagamento };
 }
 
 const rows = [
-  createData("04", "23/12/2023", "100,00", "19/02/2024"),
-  createData("03", "15/02/2024", "100,00", "18/02/2024"),
-  createData("02", "15/01/2024", "100,00", "18/04/2024"),
-  createData("01", "15/12/2023", "100,00", "16/02/2024"),
+  createData("23/12/2023", "100,00", "19/02/2024"),
+  createData("15/02/2024", "100,00", "18/02/2024"),
+  createData("15/01/2024", "100,00", "18/04/2024"),
+  createData("15/12/2023", "100,00", "16/02/2024"),
 ];
 
 const style = {
@@ -79,135 +82,24 @@ const Recebimento = () => {
     valor: "",
   });
 
-  const imprimirComprovante = async () => {
-    let conteudoComprovante = `
-    <style>
-    
-      @media print {
-        /* Oculta cabeçalho e rodapé padrão do navegador */
-        @page {
-        margin:0;
-          margin-top: 0;
-          margin-bottom: 0;
-        }
-        body {
-            
-          padding-top:0; /* Adicione um espaço para a margem superior do comprovante */
-        }
-        /* Adicione outros estilos de impressão personalizados aqui */
-      }
+  const imprimir = () => {
+    const conteudoComprovante = {
+      nome: cliente.nome,
+      parcelas: parcelas,
+      valor_total: parcela.valor_total,
+      contrato: cliente.n_contrato,
+      regiao: cliente.regiao,
+      endereco: cliente.rua_residencial + ' QD'
+        + cliente.quadra_residencial + ' LT'
+        + cliente.lote_residencial + ' Nº'
+        + cliente.numero_residencial + ' - '
+        + cliente.bairro_residencial + ' - '
+        + cliente.municipio_residencial,
+      usuario: user,
+      data_pagamento: parcela.data_hora_pagamento
 
-      /* Estilos visíveis na tela */
-      body {
-        font-family: Arial, sans-serif;
-        font-size: 11px;
-        margin: 25px;
-      }
-      .titulo {
-        text-align: center;
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      .subtitulo {
-        text-align: center;
-        font-size: 12px;
-        margin-bottom: 5px;
-      }
-      .cnpj {
-        text-align: center;
-        font-size: 10px;
-      }
-      .info {
-        font-size: 11px;
-        margin-bottom: 5px;
-      }
-      .linha {
-        border-bottom: 1px solid #000;
-        margin-bottom: 5px;
-      }
-      .parcela {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 5px;
-      }
-      .total {
-        display: flex;
-        justify-content: space-between;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      .contrato {
-        margin-bottom: 5px;
-      }
-      .cliente {
-        margin-bottom: 5px;
-      }
-      .obs {
-        font-size: 11px;
-        margin-bottom: 5px;
-      }
-      .assinatura {
-        margin-top: 10px;
-        text-align: center;
-        font-weight: bold;
-      }
-    </style>
-    <div class="titulo">PAX PRIMAVERA</div>
-    <div class="cnpj">CNPJ </div>
-    <div class="subtitulo">TELEFONE (67) 3411 - 8200</div>
-    <div class="subtitulo">IMPRESSÃO</div>
-    <br>
-    <div class="info">
-        <div class="parcela">
-            <div>DATA: ${hoje}</div>
-            <div>HORA: ${hora}</div>
-        </div>
-    </div>
-    <div class="info">USUARIO:</div>
-    <div class="linha"></div>
-    <div class="parcela">
-      <div>Parcela</div>
-      <div>VALOR</div>
-    </div>
-    <div class="linha"></div>
-    <div class="parcela">
-    <div class="data-vencimento">Data Vencimento</div>
-    <div class="valor">Valor</div>
-  </div> 
-        </div>
-    <div class="linha"></div>
-    <div class="total">
-      <div>2 Parcelas</div>
-      <div>TOTAL = 300</div>
-    </div>
-    <div class="linha"></div>
-    <div class="contrato">Data Pagamento: ${hoje}</div>
-    <div class="contrato">Contrato: 00000</div>
-    <div class="contrato">Regiao: COBRADOR</div>
-    <div class="cliente">
-    ADERBAL TESTE<br>
-      RUA DOS BOBOS, N 0, BAIRRO DOIDO<br>
-    </div>
-    <div class="linha"></div>
-    <div class="obs">BAIXE NOSSO APLICATIVO PAX PRIMAVERA<br>E CONFIRA NOSSAS PROMOÇÕES!</div>
-    <div class="info">INFORMAÇÕES (67) 99680-8200</div>
-    <br></br>
-    <div class="linha"></div>
-    <div class="assinatura">ADMINISTRADOR</div>
-  `;
-    const janelaImprimir = window.open("", "_blank");
-    janelaImprimir.document.write(conteudoComprovante);
-    janelaImprimir.document.close();
-
-    // Verifica se a janela foi aberta corretamente
-    if (janelaImprimir && !janelaImprimir.closed) {
-      // Chama o método de impressão diretamente na janela atual
-      janelaImprimir.print();
-    } else {
-      // Se não foi possível abrir uma nova janela, imprime na janela atual
-      window.print();
     }
+    imprimirComprovante(conteudoComprovante);
   };
 
   const formaPagamentoIcone = {
@@ -227,20 +119,19 @@ const Recebimento = () => {
     }
   };
 
+  // Função para lidar com a mudança na quantidade de mensalidades
   const handleQuantidadeChange = (event) => {
-    const quantidade = event.target.value;
-    const novoValor = parseFloat(quantidade);
-    if (!isNaN(novoValor) && novoValor >= 0) {
-      setQuantidadeMensalidades(quantidade);
-      const valorParcela = 100; // Valor fixo por parcela
-      const total = valorParcela * quantidade; // Calcula o valor total
-      setValorOriginal(total.toFixed(2)); // Atualiza o valor original
-      setTotalPagar(total.toFixed(2)); // Atualiza o valor total
-      setDesconto("");
-    } else {
-      alert("Digite um valor válido (positivo ou zero)");
-      setQuantidadeMensalidades("");
-    }
+    const novaQuantidade = parseInt(event.target.value, 10);
+    setQuantidadeMensalidades(novaQuantidade);
+
+    const mensalidadesSelecionadas = cliente.parcelas.mensalidade.slice(0, novaQuantidade);
+
+    const valorTotalMensalidades = mensalidadesSelecionadas.reduce((total, mensalidade) => {
+      const valorMensalidade = parseFloat(mensalidade.valor) || 0;
+      return total + valorMensalidade;
+    }, 0);
+
+    setValorOriginal(valorTotalMensalidades);
   };
 
   const handleChange = (index, campo, valor) => {
@@ -356,7 +247,7 @@ const Recebimento = () => {
                 <label>EM ABERTO:</label>
                 <div className="aberto-recebimento">
                   <AddAlertIcon fontSize="small" />
-                  <input placeholder="1" disabled={true} value={2} />
+                  <input disabled={true} value={cliente.parcelas.mensalidade.length} />
                 </div>
               </div>
             </div>
@@ -365,7 +256,7 @@ const Recebimento = () => {
                 <label>VALOR:</label>
                 <div className="aberto-recebimento">
                   <PaidIcon fontSize="small" />
-                  <input disabled={true} value={300} />
+                  <input disabled={true} value={cliente.parcelas.valor_total} />
                 </div>
               </div>
             </div>
@@ -374,7 +265,7 @@ const Recebimento = () => {
                 <label>VALOR PLANO:</label>
                 <div className="aberto-recebimento">
                   <PriceChangeIcon fontSize="small" />
-                  <input disabled={true} value={100} />
+                  <input disabled={true} value={cliente.valor_plano} />
                 </div>
               </div>
             </div>
@@ -383,7 +274,7 @@ const Recebimento = () => {
                 <label>ULT. MÊS PAGO:</label>
                 <div className="aberto-recebimento">
                   <CalendarMonthIcon fontSize="small" />
-                  <input value={"10/12/2023"} disabled={true} />
+                  <input value={cliente.ultimo_mes_pago} disabled={true} />
                 </div>
               </div>
             </div>
@@ -392,7 +283,7 @@ const Recebimento = () => {
                 <label>ULT. PAGAMENTO:</label>
                 <div className="aberto-recebimento">
                   <EventAvailableIcon fontSize="small" />
-                  <input disabled={true} value={"20/11/2023"} />
+                  <input disabled={true} value={cliente.ultimo_pagamento} />
                 </div>
               </div>
             </div>
@@ -411,7 +302,7 @@ const Recebimento = () => {
                   </div>
                   <div className="recebimento-02">
                     <label>Total a Pagar</label>
-                    <input value={valorOriginal} readOnly />
+                    <input value={formatarValor(valorOriginal)} readOnly />
                   </div>
                   <div className="recebimento-02">
                     <label>Desconto</label>
@@ -519,11 +410,11 @@ const Recebimento = () => {
                                 {["PIX", "Cheque"].includes(
                                   parcela.formaPagamento
                                 ) && (
-                                  <div className="tipo-pagamento-recebimento-3">
-                                    <h2> Conta</h2>
-                                    <label>{parcela.conta}</label>
-                                  </div>
-                                )}
+                                    <div className="tipo-pagamento-recebimento-3">
+                                      <h2> Conta</h2>
+                                      <label>{parcela.conta}</label>
+                                    </div>
+                                  )}
                                 <div className="remove-forma-paga">
                                   <ButtonIcon
                                     icon={<CancelIcon />}
@@ -576,7 +467,7 @@ const Recebimento = () => {
                                         pagamento!
                                       </label>
                                       <button
-                                        onClick={() => imprimirComprovante()}
+                                        onClick={() => imprimir()}
                                       >
                                         IMPRIMIR COMPROVANTE
                                       </button>
@@ -592,81 +483,13 @@ const Recebimento = () => {
 
                     <div className="acordion-recebimento">
                       <div>
-                        <TableContainer
-                          component={Paper}
-                          style={{ maxHeight: 210 }}
-                        >
-                          <Table
-                            sx={{ minWidth: 200 }}
-                            aria-label="simple table"
-                          >
-                            <TableHead>
-                              <TableRow sx={{ backgroundColor: "#006b33" }}>
-                                <TableCell
-                                  align="center"
-                                  sx={{
-                                    fontSize: 12,
-                                    color: "#ffff",
-                                    paddingY: 1,
-                                  }}
-                                >
-                                  DATA VENCIMENTO
-                                </TableCell>
-                                <TableCell
-                                  align="center"
-                                  sx={{
-                                    fontSize: 12,
-                                    color: "#ffff",
-                                    paddingY: 1,
-                                  }}
-                                >
-                                  VALOR
-                                </TableCell>
-                                <TableCell
-                                  align="center"
-                                  sx={{
-                                    fontSize: 12,
-                                    color: "#ffff",
-                                    paddingY: 1,
-                                  }}
-                                >
-                                  DATA PAGAMENTO
-                                </TableCell>
-                              </TableRow>
-                            </TableHead>
-                            <TableBody>
-                              {rows.map((row) => (
-                                <TableRow
-                                  key={row.parcela}
-                                  sx={{
-                                    "&:last-child td, &:last-child th": {
-                                      border: 0,
-                                    },
-                                  }}
-                                >
-                                  <TableCell
-                                    align="center"
-                                    sx={{ fontSize: 12 }}
-                                  >
-                                    {row.datavencimento}
-                                  </TableCell>
-                                  <TableCell
-                                    align="center"
-                                    sx={{ fontSize: 12 }}
-                                  >
-                                    {row.valor}
-                                  </TableCell>
-                                  <TableCell
-                                    align="center"
-                                    sx={{ fontSize: 12 }}
-                                  >
-                                    {row.datapagamento}
-                                  </TableCell>
-                                </TableRow>
-                              ))}
-                            </TableBody>
-                          </Table>
-                        </TableContainer>
+                        <TableComponent
+                          headers={headerRecebimento}
+                          rows={rows}
+                          actionsLabel={''}
+                          actionCalls={''}
+                        />
+
                       </div>
                     </div>
                   </div>
