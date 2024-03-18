@@ -5,23 +5,40 @@ import httpsInstance from './url';
 export const useAssociado = () => {
     const https = httpsInstance()
 
-    const getAssociados = async () =>
-        https.get("/4042eb75-7d7d-4695-a14a-c9a51e959bde")
-            .then(({ data }) =>
-                data.map((item) =>
-                    Associado(item)
-                )
-            );
+    const getAssociados = async (unidadeId) => {
+        try {
+            const response = await https.get(`/associados?unidadeId=${unidadeId}`);
+            const data = response.data;
+            if (data) {
+                return data.map((item) => Associado(item));
+            } else {
+                return null;
+            }
+        } catch (error) {
+            if (error.response && error.response.status) {
+                throw { message: error.message, status: error.response.status };
+            } else {
+                throw error;
+            }
+        }
+    };
 
-    const getAssociadoID = async (id) => {
-        const response = await https.get("/4042eb75-7d7d-4695-a14a-c9a51e959bde");
-        const filteredData = response.data.filter((item) => item.unidadeId === id);
-        const mappedData = filteredData.map((filteredItem) => Associado(filteredItem));
-        return mappedData;
+    const getAssociado = async (value, unidadeId) => {
+        try {
+            const response = await https.get(`/associado/busca?value=${value}&unidadeId=${unidadeId}`);
+            console.log(response);
+            return response.data.map((item) => Associado(item));
+        } catch (error) {
+            if (error.response && error.response.status) {
+                throw { message: error.message, status: error.response.status };
+            } else {
+                throw error;
+            }
+        }
     };
 
     return {
         getAssociados,
-        getAssociadoID
+        getAssociado
     }
 }

@@ -20,19 +20,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
     accordionContainer: {
-      border: `1px solid rgba(0, 0, 0, 0.1)`,
-      borderColor: theme.palette.grey[300],
-      borderRadius: theme.shape.borderRadius,
+        border: `1px solid rgba(0, 0, 0, 0.1)`,
+        borderColor: theme.palette.grey[300],
+        borderRadius: theme.shape.borderRadius,
     },
     accordion: {
-      width: "100%",
-      borderRadius: theme.shape.borderRadius,
-      "&.Mui-expanded": {
-        borderColor: "rgba(255, 0, 0, 0.5)",
-      },
+        width: "100%",
+        borderRadius: theme.shape.borderRadius,
+        "&.Mui-expanded": {
+            borderColor: "rgba(255, 0, 0, 0.5)",
+        },
     },
-  }));
-  
+}));
+
 
 const DadosCadastrais = () => {
 
@@ -152,6 +152,7 @@ const DadosCadastrais = () => {
                             <div className='campos-02'>
                                 <label>Gênero<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.genero}>
+                                    <option value={null}>Selecione uma opção</option>
                                     <option value={'Masculino'}>Masculino</option>
                                     <option value={'Feminino'}>Feminino</option>
                                     <option value={'Nao Binario'}>Não Binario</option>
@@ -161,14 +162,17 @@ const DadosCadastrais = () => {
                             <div className='campo-info-bairro'>
                                 <label>Religião<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.religiao}>
+                                    <option value={null}>Selecione uma opção</option>
                                     <option value={cliente.religiao}>{cliente.religiao}</option>
                                 </select>
                             </div>
                             <div className='campo-info-bairro'>
                                 <label>UF<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.uf}>
+                                    <option value={null}>Selecione uma opção</option>
                                     <option value={'MS'}>Mato Grosso do Sul</option>
                                     <option value={'SP'}>São Paulo</option>
+                                    <option value={'PR'}>Parana</option>
                                     <option value={'RJ'}>Rio de Janeiro</option>
                                     <option value={'MT'}>Mato Grosso</option>
                                 </select>
@@ -187,12 +191,14 @@ const DadosCadastrais = () => {
                             <div className='campos-02'>
                                 <label>Profissão<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.profissao}>
+                                    <option value={null}>Selecione uma opção</option>
                                     <option value={cliente.profissao}>{cliente.profissao}</option>
                                 </select>
                             </div>
                             <div className='campos-02'>
                                 <label>Estado Civil<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.estado_civil}>
+                                    <option value={null}>Selecione uma opção</option>
                                     <option value={cliente.estado_civil}>{cliente.estado_civil}</option>
                                 </select>
                             </div>
@@ -250,6 +256,7 @@ const DadosCadastrais = () => {
                             <div className='campo-info-bairro'>
                                 <label>UF<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.uf_residencial}>
+                                    <option value={null}>Selecione uma opção</option>
                                     <option value={'MS'}>Mato Grosso do Sul</option>
                                     <option value={'SP'}>São Paulo</option>
                                     <option value={'RJ'}>Rio de Janeiro</option>
@@ -280,6 +287,7 @@ const DadosCadastrais = () => {
                             <div className='campos-02'>
                                 <label>Tipo<span className='obrigatorio'> *</span></label>
                                 <select value={cliente.tipo_endereco_residencial}>
+                                    <option value={null}>Selecione uma opção</option>
                                     <option value={cliente.tipo_endereco_residencial}>{cliente.tipo_endereco_residencial}</option>
                                 </select>
                             </div>
@@ -304,74 +312,76 @@ const DadosCadastrais = () => {
                         </div>
                     </MyAccordion>
                     <div className='acordion-dados-comerciais'>
-                    <Accordion className={isComercialEnabled ? '' : 'Mui-disabled'}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel2-content"
-                            id="panel2-header"
-                        >
-                            <div className='icones-nome'>
-                                <label> <ApartmentIcon />Dados Comerciais</label>
-                            </div>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <div className='layout-linha'>
-                                <div className='container-linha'>
-                                    <div className='campos-03'>
-                                        <label>CEP<span className='obrigatorio'> *</span></label>
-                                        <input type="text" name="cepComercial" value={cliente.cep_comercial} />
+                        <Accordion className={isComercialEnabled ? '' : 'Mui-disabled'}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2-content"
+                                id="panel2-header"
+                            >
+                                <div className='icones-nome'>
+                                    <label> <ApartmentIcon />Dados Comerciais</label>
+                                </div>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <div className='layout-linha'>
+                                    <div className='container-linha'>
+                                        <div className='campos-03'>
+                                            <label>CEP<span className='obrigatorio'> *</span></label>
+                                            <input type="text" name="cepComercial" value={cliente.cep_comercial} />
+                                        </div>
+                                        <div className='campo-info-bairro'>
+                                            <label>UF<span className='obrigatorio'> *</span></label>
+                                            <select value={cliente.uf_comercial}>
+                                                <option value={null}>Selecione uma opção</option>
+                                                <option value={'MS'}>Mato Grosso do Sul</option>
+                                                <option value={'SP'}>São Paulo</option>
+                                                <option value={'RJ'}>Rio de Janeiro</option>
+                                                <option value={'MT'}>Mato Grosso</option>
+                                            </select>
+                                        </div>
+                                        <div className='campos-02'>
+                                            <label>Município<span className='obrigatorio'> *</span></label>
+                                            <input type="text" name="municipioComercial" value={cliente.municipio_comercial} />
+                                        </div>
+                                        <div className='campos-02'>
+                                            <label>Bairro<span className='obrigatorio'> *</span></label>
+                                            <input type="text" name="bairroComercial" value={cliente.bairro_comercial} />
+                                        </div>
+                                        <div className='campos-04'>
+                                            <label>Quadra<span className='obrigatorio'> *</span></label>
+                                            <input type="text" name="quadraComercial" value={cliente.quadra_comercial} />
+                                        </div>
+                                        <div className='campo-info-bairro'>
+                                            <label>Lote</label>
+                                            <input type="text" name="loteComercial" value={cliente.lote_comercial} />
+                                        </div>
+                                        <div className='campo-info-bairro'>
+                                            <label>Nº<span className='obrigatorio'> *</span></label>
+                                            <input type="text" name="numeroComercial" value={cliente.numero_comercial} />
+                                        </div>
+                                        <div className='campo-info-bairro'>
+                                            <label>Tipo<span className='obrigatorio'> *</span></label>
+                                            <select value={cliente.tipo_endereco_comercial}>
+                                                <option value={null}>Selecione uma opção</option>
+                                                <option value={cliente.tipo_endereco_comercial}>{cliente.tipo_endereco_comercial}</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className='campo-info-bairro'>
-                                        <label>UF<span className='obrigatorio'> *</span></label>
-                                        <select value={cliente.uf_comercial}>
-                                            <option value={'MS'}>Mato Grosso do Sul</option>
-                                            <option value={'SP'}>São Paulo</option>
-                                            <option value={'RJ'}>Rio de Janeiro</option>
-                                            <option value={'MT'}>Mato Grosso</option>
-                                        </select>
-                                    </div>
-                                    <div className='campos-02'>
-                                        <label>Município<span className='obrigatorio'> *</span></label>
-                                        <input type="text" name="municipioComercial" value={cliente.municipio_comercial} />
-                                    </div>
-                                    <div className='campos-02'>
-                                        <label>Bairro<span className='obrigatorio'> *</span></label>
-                                        <input type="text" name="bairroComercial" value={cliente.bairro_comercial} />
-                                    </div>
-                                    <div className='campos-04'>
-                                        <label>Quadra<span className='obrigatorio'> *</span></label>
-                                        <input type="text" name="quadraComercial" value={cliente.quadra_comercial} />
-                                    </div>
-                                    <div className='campo-info-bairro'>
-                                        <label>Lote</label>
-                                        <input type="text" name="loteComercial" value={cliente.lote_comercial} />
-                                    </div>
-                                    <div className='campo-info-bairro'>
-                                        <label>Nº<span className='obrigatorio'> *</span></label>
-                                        <input type="text" name="numeroComercial" value={cliente.numero_comercial} />
-                                    </div>
-                                    <div className='campo-info-bairro'>
-                                        <label>Tipo<span className='obrigatorio'> *</span></label>
-                                        <select value={cliente.tipo_endereco_comercial}>
-                                            <option value={cliente.tipo_endereco_comercial}>{cliente.tipo_endereco_comercial}</option>
-                                        </select>
+                                    <div className='container-linha'>
+                                        <div className='campos-01'>
+                                            <label>Rua<span className='obrigatorio'> *</span></label>
+                                            <input type="text" name="ruaComercial" value={cliente.rua_comercial} />
+                                        </div>
+                                        <div className='campos-02'>
+                                            <label>Complemento<span className='obrigatorio'> *</span></label>
+                                            <input type="text" name="complementoComercial" value={cliente.complemento_comercial} />
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div className='container-linha'>
-                                    <div className='campos-01'>
-                                        <label>Rua<span className='obrigatorio'> *</span></label>
-                                        <input type="text" name="ruaComercial" value={cliente.rua_comercial} />
-                                    </div>
-                                    <div className='campos-02'>
-                                        <label>Complemento<span className='obrigatorio'> *</span></label>
-                                        <input type="text" name="complementoComercial" value={cliente.complemento_comercial} />
-                                    </div>
 
-                                </div>
-                            </div>
-
-                        </AccordionDetails>
-                    </Accordion>
+                            </AccordionDetails>
+                        </Accordion>
                     </div>
 
                     <div className='salvar-associado'>

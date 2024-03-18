@@ -63,8 +63,6 @@ const Recebimento = () => {
   const [parcelasAdicionais, setParcelasAdicionais] = useState([]);
   const [receberDisponivel, setReceberDisponivel] = useState(false);
   const [mensagem, setMensagem] = useState("");
-  const hoje = moment().format("DD/MM/YYYY");
-  const hora = moment().format("HH:mm");
   const [mensagemCor, setMensagemCor] = useState(red[500]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -75,6 +73,7 @@ const Recebimento = () => {
   const location = useLocation();
   const cliente = location.state && location.state.cliente;
   const idioma = location.state && location.state.idioma;
+  const dadosTabela = [];
 
   const [novaParcela, setNovaParcela] = useState({
     formaPagamento: "Dinheiro",
@@ -228,6 +227,24 @@ const Recebimento = () => {
   const handleCloseMensagem = () => {
     setMensagem("");
   };
+
+  useEffect(() => {
+    cliente.extrato.forEach((extratoItem) => {
+      extratoItem.parcelas.forEach((parcela) => {
+        // Criar um objeto para cada parcela com as informações necessárias
+        const dadosParcela = {
+          data_vencimento: parcela.data_vencimento,
+          valor_total: parcela.valor_parcela,
+          data_hora_pagamento: extratoItem.data_hora_pagamento,
+        };
+
+        // Adicionar o objeto à estrutura de dados
+        dadosTabela.push(dadosParcela);
+      });
+    });
+
+    console.log(dadosTabela);
+  }, []);
 
   return (
     <div className="container-associados">
@@ -485,7 +502,7 @@ const Recebimento = () => {
                       <div>
                         <TableComponent
                           headers={headerRecebimento}
-                          rows={rows}
+                          rows={dadosTabela}
                           actionsLabel={''}
                           actionCalls={''}
                         />

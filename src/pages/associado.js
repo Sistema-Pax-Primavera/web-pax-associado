@@ -12,9 +12,10 @@ import { useAssociado } from "../services/api";
 import TableComponent from "../components/table/table";
 import { headers } from "../entities/headers/header-associado";
 import ButtonIcon from "../components/button-icon";
+import ErrorComponent from "../components/show-message";
 
 const Associado = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(null);
   const [unidadeID, setUnidadeID] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
@@ -22,25 +23,29 @@ const Associado = () => {
   const [showImage, setShowImage] = useState(true);
   const navigate = useNavigate();
   const [idioma, setIdioma] = useState(false);
-  const [isIdioma, setIsIdioma] = useState(true);
-  const { getAssociados, getAssociadoID } = useAssociado();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorCode, setErrorCode] = useState(null);
+  const { getAssociados, getAssociado } = useAssociado();
 
-  const handleSearch = () => {
-    setLoading(true);
-    if (!searchTerm) {
-      getAssociadoID(unidadeID).then((data) => {
+  const handleSearch = async () => {
+    try {
+      setLoading(true);
+      if (!searchTerm) {
+        const data = await getAssociados(unidadeID);
+        setClientes(data);
         setSearchResult(data);
-      });
-      setLoading(false);
-    } else {
-      const filteredClients = clientes.filter(
-        (item) =>
-          item.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.n_contrato.toString().includes(searchTerm) ||
-          item.cpf.includes(searchTerm)
-      );
-
-      setSearchResult(filteredClients);
+      } else {
+        const data = await getAssociado(searchTerm, unidadeID);
+        setClientes(data);
+        setSearchResult(data);
+      }
+    } catch (error) {
+      if (error.message === "Network Error") {
+        setErrorMessage("Erro de conexão. Por favor, verifique sua conexão com a internet e tente novamente.");
+      } else {
+        setErrorMessage(error.message);
+      }
+    } finally {
       setLoading(false);
     }
   };
@@ -61,12 +66,6 @@ const Associado = () => {
       setIdioma(usuarioObj.idioma == "BR" ? false : true);
       setUnidadeID(parseInt(usuarioObj.unidadeAtual));
     }
-    // getAssociados().then((data) => {
-    //   setClientes(data);
-    // });
-    getAssociadoID(unidadeID).then((data) => {
-      setClientes(data);
-    });
   }, []);
 
   useEffect(() => {
@@ -80,12 +79,6 @@ const Associado = () => {
     };
   }, []);
 
-  useEffect(() => {
-
-
-
-
-  }, []);
 
   const verificaIdioma = () => {
     const savedUsuario = localStorage.getItem("usuario");
@@ -119,12 +112,13 @@ const Associado = () => {
         <div className="button-pesquisa-associado">
           <ButtonIcon
             icon={<SearchIcon fontSize={"small"} />}
-            funcao={() => handleSearch()}
+            funcao={handleSearch}
           />
 
         </div>
       </div>
       <ToastContainer />
+      {errorMessage && <ErrorComponent message={errorMessage} errorCode={errorCode} />}
       {loading && (
         <div className="loading-associado">
           <Box sx={{ display: "flex" }}>
