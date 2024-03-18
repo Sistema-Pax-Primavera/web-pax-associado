@@ -28,6 +28,7 @@ const Associado = () => {
   const { getAssociados, getAssociado } = useAssociado();
 
   const handleSearch = async () => {
+    setErrorMessage(null);
     try {
       setLoading(true);
       if (!searchTerm) {
