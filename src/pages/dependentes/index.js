@@ -10,21 +10,6 @@ import { useLocation } from "react-router-dom";
 import TableComponent from "../../components/table/table";
 import { headerDependente } from "../../entities/headers/header-dependente";
 
-function createData(name, filiacao, carencia, falecimento, valor, especie) {
-  return { name, filiacao, carencia, falecimento, valor, especie };
-}
-
-const rows = [
-  createData(
-    "Tor",
-    "15/01/2023",
-    "15/01/2025",
-    "00/00/0000",
-    "100,00",
-    "Gator"
-  ),
-];
-
 const Dependentes = () => {
   const location = useLocation();
   const cliente = location.state && location.state.cliente;
@@ -40,8 +25,15 @@ const Dependentes = () => {
   };
 
   const mostrarFormulario = (tipo) => {
-    setMostrarFormularioPet(tipo === "pet");
-    setMostrarFormularioCremacao(tipo === "cremacao");
+    if (tipo === "pet") {
+      setMostrarFormularioPet(true);
+      setMostrarFormularioCremacao(false);
+      setDependente(null)
+    } else {
+      setMostrarFormularioPet(false);
+      setMostrarFormularioCremacao(true);
+      setDependente(null)
+    }
   };
 
   const handleEditDependente = (dependente) => {
@@ -175,7 +167,7 @@ const Dependentes = () => {
 
                   <div className="salva-dependentes">
                     <ButtonText
-                    title="SALVAR"/>
+                      title="SALVAR" />
                   </div>
                 </div>
               </div>
@@ -288,7 +280,7 @@ const Dependentes = () => {
                   </div>
 
                   <div className="salva-dependentes">
-                    <button onClick={handleSalvarDependente(dependente.id)}>
+                    <button onClick={() => dependente.id ? handleSalvarDependente(dependente.id) : null}>
                       SALVAR
                     </button>
                   </div>
@@ -325,7 +317,7 @@ const Dependentes = () => {
             />
           </div>
         </div>
-        
+
       </div>
     </>
   );
