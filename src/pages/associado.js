@@ -13,6 +13,7 @@ import TableComponent from "../components/table/table";
 import { headers } from "../entities/headers/header-associado";
 import ButtonIcon from "../components/button-icon";
 import ErrorComponent from "../components/show-message";
+import Carregando from "../components/carregando";
 
 const Associado = () => {
   const [searchTerm, setSearchTerm] = useState(null);
@@ -121,12 +122,7 @@ const Associado = () => {
       <ToastContainer />
       {errorMessage && <ErrorComponent message={errorMessage} errorCode={errorCode} />}
       {loading && (
-        <div className="loading-associado">
-          <Box sx={{ display: "flex" }}>
-            <CircularProgress color="success" />
-          </Box>
-          <p>{idioma ? "Cargando" : "Carregando"}...</p>
-        </div>
+        <Carregando message={idioma ? "Cargando" : "Carregando"} />
       )}
       {showImage && !loading && searchResult.length === 0 && (
         <div className="imagem-pesquisar-associado">

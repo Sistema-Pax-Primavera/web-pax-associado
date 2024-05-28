@@ -87,6 +87,12 @@ const Header = ({ cliente, idioma }) => {
                 {idioma ? idiomas.es_PY.header.acoes.recebimento : idiomas.pt_BR.header.acoes.recebimento}
             </button>
 
+            <button
+                onClick={() => handleMenuClick("/atendimento")}
+                className={activeRoute === "/atendimento" ? "active" : ""}
+                style={{ display: isItemActive("associado", "atendimento") ? "flex" : "none" }}>
+                {idioma ? idiomas.es_PY.header.acoes.atendimento : idiomas.pt_BR.header.acoes.atendimento}
+            </button>
 
             <button
                 onClick={() => handleMenuClick("/inativar-contrato")}

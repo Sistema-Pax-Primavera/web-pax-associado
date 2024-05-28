@@ -19,6 +19,7 @@ import CancelarContrato from "../pages/cancelar";
 import Quitar from "../pages/quitar";
 import Negociar from "../pages/negociar";
 import Extrato from "../pages/extrato";
+import Atendimento from "../pages/atendimento";
 
 const RoutesApp = () => (
     <BrowserRouter basename="pax-primavera/associado">
@@ -30,6 +31,7 @@ const RoutesApp = () => (
             <Route exact path="/dependentes" element={<Dependentes />} />
             <Route exact path="/pdr" element={<PDR />} />
             <Route exact path="/recebimento" element={<Recebimento />} />
+            <Route exact path="/atendimento" element={<Atendimento />} />
             <Route exact path="/inativar-contrato" element={<InativarContrato />} />
             <Route exact path="/cancelar-contrato" element={<CancelarContrato />} />
             <Route exact path="/registrar-obito" element={<RegistrarObito />} />

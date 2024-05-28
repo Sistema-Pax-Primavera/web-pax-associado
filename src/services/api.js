@@ -26,7 +26,6 @@ export const useAssociado = () => {
     const getAssociado = async (value, unidadeId) => {
         try {
             const response = await https.get(`/associado/busca?value=${value}&unidadeId=${unidadeId}`);
-            console.log(response);
             return response.data.map((item) => Associado(item));
         } catch (error) {
             if (error.response && error.response.status) {
