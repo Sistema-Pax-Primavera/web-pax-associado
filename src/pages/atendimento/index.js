@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header/header";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ButtonText from "../../components/button-texto";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +12,7 @@ import Carregando from "../../components/carregando";
 
 
 const Atendimento = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const cliente = location.state && location.state.cliente;
     const idioma = location.state && location.state.idioma;
@@ -19,10 +20,20 @@ const Atendimento = () => {
     const [modalAtendimento, setModalAtendimento] = useState(false);
     const [selectedCliente, setSelectedCliente] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [redireciona, setRedireciona] = useState(false);
     const [atendimentoClose, setAtendimentoClose] = useState(true);
 
     const handleClose = () => {
         setModalAtendimento(false);
+        setRedireciona(true);
+        handleMudarTela();
+    };
+
+    const handleMudarTela = () => {
+        setTimeout(() => {
+            navigate('/dados-cadastrais', { state: { cliente, idioma } })
+            localStorage.setItem("page-associado", "/dados-cadastrais");
+        }, 3000);
     };
 
     useEffect(() => {
@@ -47,9 +58,11 @@ const Atendimento = () => {
             <div className="container-associados">
                 <Header cliente={cliente} idioma={idioma} />
                 <div className="dados-cobranca-associado">
-                    {modalAtendimento != true && loading == false ?
+                    {redireciona ?
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                            <label>Atendimento encerrado!</label>
+                            <div>
+                                <Carregando message="Atendimento encerrado! Você será redirecionado para aba de Dados Cadastrais. Aguarde..." />
+                            </div>
                         </div>
                         : <></>
                     }
