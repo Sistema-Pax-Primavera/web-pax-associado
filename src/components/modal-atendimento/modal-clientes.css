@@ -1,14 +1,14 @@
-.sidebar-cobranca {
-
+.sidebar-associado-atendimento {
     display: flex;
     align-items: center;
     width: 100%;
+    background-color: var(--cinza-leve);
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.cliente-cobran-nome {
+.cliente-associado-atendimento-nome {
     width: 65%;
     display: flex;
     padding: 10px;
@@ -17,7 +17,7 @@
     gap: 10px;
 }
 
-.nomes-cobranca {
+.nome-associado-atendimento {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -28,14 +28,14 @@
     /* Sobrescreve o padding do arquivo CSS externo */
 }
 
-.nomes-cobranca label {
+.nome-associado-atendimento label {
     font-size: 18px;
     color: black;
     font-weight: 500;
 
 }
 
-.nomes-cobranca p {
+.nome-associado-atendimento p {
     font-size: 12px;
     color: black;
     font-weight: 200;
@@ -43,7 +43,7 @@
 }
 
 
-.sidebar-cobranca .atender-cliente {
+.sidebar-associado-atendimento .atender-cliente {
     margin-left: 12%;
     margin-right: 2%;
     width: 15%;
@@ -54,7 +54,7 @@
     border-radius: 5px;
 }
 
-.sidebar-cobranca .atender-cliente button {
+.sidebar-associado-atendimento .atender-cliente button {
     color: var(--branco);
     cursor: pointer;
     width: 100%;
@@ -85,7 +85,7 @@
     gap: 50px;
 }
 
-.container-modal-cobran {
+.container-modal-associado-atendimento {
     z-index: 5;
     padding-left: 10px;
     width: 100%;
@@ -101,7 +101,16 @@
     cursor: pointer;
 }
 
-.dados-basico-cobran2 {
+.dados-basico-associado-atendimento {
+    width: 94%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+
+.dados-basico-associado-atendimento2 {
     width: 94%;
     padding: 5px;
     gap: 20px;
@@ -128,10 +137,9 @@
     gap: 10px;
 }
 
-.origin-lead-cobran {
+.origin-lead-associado-atendimento {
     display: flex;
     align-items: end;
-    gap: 5px;
     width: 100%;
 }
 
@@ -150,7 +158,7 @@
     font-weight: 500;
 }
 
-.infor-modal-cobrancas {
+.infor-modal-associado-atendimento {
     display: flex;
     align-items: center;
     width: 100%;
@@ -168,10 +176,9 @@
     font-weight: 500;
 }
 
-.tipo-atendimento-cobran {
+.tipo-atendimento-associado {
     width: 95%;
     display: flex;
-    border: 1px solid rgba(0, 0, 0, .6);
     border-radius: 5px;
     padding: 10px;
     flex-direction: column;
@@ -283,7 +290,7 @@
 
 }
 
-.tipo-atendimento-cobran label {
+.tipo-atendimento-associado label {
     color: var(--preto);
     font-weight: 500;
     font-size: 12px;
@@ -330,8 +337,7 @@
 }
 
 .container-linhas-cobran {
-
-    gap: 10px;
+    gap: 1px;
 }
 
 .container-linhas-cobran label {
@@ -516,7 +522,7 @@
     width: 30%;
 }
 
-.close-modal-cobran {
+.close-modal-associado-atendimento {
     width: 5%;
 }
 
@@ -827,14 +833,14 @@ tipos-arquivos-anexos a {
     gap: 10px;
 }
 
-.opcoes-modal-cobranca {
+.opcoes-modal-associado-atendimento {
     display: flex;
     align-items: center;
     gap: 5px;
     width: 100%;
 }
 
-.opcoes-modal-cobranca button {
+.opcoes-modal-associado-atendimento button {
     width: 18%;
     cursor: pointer;
     font-size: 11px;

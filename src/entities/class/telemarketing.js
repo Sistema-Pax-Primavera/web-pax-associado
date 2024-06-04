@@ -44,9 +44,9 @@ export const Telemarketing = (data) => ({
         })),
         pagamentos: data?.dadosCliente?.pagamentos?.map((pagamento) => ({
             mes: converterData(pagamento?.mesPago),
-            data_pagamento: converterData(pagamento?.dataPagamento),
+            data_hora_pagamento: converterData(pagamento?.dataPagamento),
             status: pagamento?.status,
-            valor: formatarValor(pagamento?.valor),
+            valor_total: formatarValor(pagamento?.valor),
             local_pagamento: pagamento?.localPagamento,
         })),
         observacao: data?.dadosCliente?.historico?.map((historico) => ({

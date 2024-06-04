@@ -216,14 +216,14 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
     >
       <Box sx={style}>
         <Typography>
-          <div className="sidebar-cobranca">
-            <div className="cliente-cobran-nome">
-              <div className="close-modal-cobran">
+          <div className="sidebar-associado-atendimento">
+            <div className="cliente-associado-atendimento-nome">
+              <div className="close-modal-associado-atendimento">
                 <ButtonIconRed
                   funcao={handleClose}
                   icon={<HighlightOffIcon />} />
               </div>
-              <div className="nomes-cobranca">
+              <div className="nome-associado-atendimento">
                 <label>
                   {nome} - CT: {contrato}
                 </label>
@@ -245,12 +245,12 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
         <Grid container spacing={1}>
           <Grid item xs={8}>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <div className="container-modal-cobran">
-                <div className="dados-basico-cobran">
-                  <div className="infor-modal-cobrancas">
-                    <div className="origin-lead-cobran">
-                      <div className="tipo-atendimento-cobran">
-                        <div className="opcoes-modal-cobranca">
+              <div className="container-modal-associado-atendimento">
+                <div className="dados-basico-associado-atendimento">
+                  <div className="infor-modal-associado-atendimento">
+                    <div className="origin-lead-associado-atendimento">
+                      <div className="tipo-atendimento-associado">
+                        <div className="opcoes-modal-associado-atendimento">
                           <button
                             className={mostrarFormularioCadastro ? "" : "botao-ativo"}
                             onClick={() => mostrarFormulario("cadastro")}
@@ -301,10 +301,10 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
             </Typography>
             {mostrarFormularioCadastro && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
-                      <div className="origin-lead-cobran">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
+                      <div className="origin-lead-associado-atendimento">
                         <ButtonIconFundo
                           icon={<PersonOutlineOutlinedIcon fontSize={"small"} />} />
                         <div className="lead-origin-cobran">
@@ -312,7 +312,7 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                           <label>{titular.sexo}</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-associado-atendimento">
                         <ButtonIconFundo
                           icon={<CalendarMonthOutlinedIcon fontSize={"small"} />} />
                         <div className="lead-origin-cobran">
@@ -320,7 +320,7 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                           <label>{data_contrato}</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-associado-atendimento">
                         <ButtonIconFundo
                           icon={<GroupOutlinedIcon fontSize={"small"} />} />
                         <div className="lead-origin-cobran">
@@ -328,7 +328,7 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                           <label>{titular.estado_civil}</label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-associado-atendimento">
                         <ButtonIconFundo
                           icon={<PsychologyAltOutlinedIcon fontSize={"small"} />} />
                         <div className="lead-origin-cobran">
@@ -337,8 +337,8 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="infor-modal-cobrancas">
-                      <div className="origin-lead-cobran">
+                    <div className="infor-modal-associado-atendimento">
+                      <div className="origin-lead-associado-atendimento">
                         <ButtonIconFundo
                           icon={<CalendarMonthOutlinedIcon fontSize={"small"} />} />
                         <div className="lead-origin-cobran">
@@ -350,9 +350,9 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                   </div>
                 </div>
                 <br></br>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
                       <div className="origin-lead-cobran2">
                         <ButtonIconFundo
                           icon={<ContactPageOutlinedIcon fontSize={"small"} />} />
@@ -448,10 +448,10 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                   </div>
                 </div>
                 <br></br>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
-                      <div className="origin-lead-cobran">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
+                      <div className="origin-lead-associado-atendimento">
                         <ButtonIconFundo
                           icon={<LocationOnOutlinedIcon fontSize={"small"} />} />
                         <div className="lead-origin-cobran">
@@ -461,7 +461,7 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                           </label>
                         </div>
                       </div>
-                      <div className="origin-lead-cobran">
+                      <div className="origin-lead-associado-atendimento">
                         <ButtonIconFundo
                           icon={<LocationOnOutlinedIcon fontSize={"small"} />} />
                         <div className="lead-origin-cobran">
@@ -478,9 +478,9 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
             )}
             {mostrarFormularioContato && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
                       {titular.contatos.map((item) => (
                         <div key={item.id} className="origin-lead-cobran">
                           <ButtonIconFundo
@@ -502,9 +502,9 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
             )}
             {mostrarFormularioPagamento && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
                       <TableComponent
                         headers={headerExtrato}
                         rows={pagamentos}
@@ -517,9 +517,9 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
             )}
             {mostrarFormularioDependente && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
                       <TableComponent
                         headers={headerDependente}
                         rows={deps}
@@ -532,9 +532,9 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
             )}
             {mostrarFormularioObservacao && (
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
                       <TableComponent
                         headers={headerObservacao}
                         rows={observacao}
@@ -546,10 +546,10 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
                   </div>
                 </div>
                 <br></br>
-                <div className="container-modal-cobran">
+                <div className="container-modal-associado-atendimento">
                   <label>Registrar F9</label>
-                  <div className="dados-basico-cobran2">
-                    <div className="infor-modal-cobrancas">
+                  <div className="dados-basico-associado-atendimento2">
+                    <div className="infor-modal-associado-atendimento">
                       <div className="obs-cobranca-f9">
                         <label>Selecione a categoria:</label>
                         <select
@@ -650,9 +650,9 @@ const ModalAtendimento = ({ setAtendimentoClose, onClose, clienteData }) => {
               </div>
               {isAtendimento
                 ?
-                <div className="container-modal-cobran">
-                  <div className="dados-basico-cobran">
-                    <div className="infor-modal-cobrancas">
+                <div className="container-modal-associado-atendimento">
+                  <div className="dados-basico-associado-atendimento">
+                    <div className="infor-modal-associado-atendimento">
                       <div className="obs-cobranca-dados">
                         <div className="container-linhas-cobran">
                           <div className="obs-cobran-lead">

@@ -13,14 +13,6 @@ export const useTelemarketing = () => {
             } else {
                 return null;
             }
-            // if (data && Array.isArray(data)) {
-            //     const telemarketing = data.map(item => {
-            //         return new Telemarketing(item);
-            //     });
-            //     return telemarketing;
-            // } else {
-            //     return null;
-            // }
         } catch (error) {
             if (error.response && error.response.status) {
                 throw { message: error.message, status: error.response.status };
